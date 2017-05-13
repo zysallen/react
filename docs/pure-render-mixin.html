@@ -87,7 +87,7 @@
 <p>If your React component&#39;s render function renders the same result given the same props and state, you can use this mixin for a performance boost in some cases.</p>
 
 <p>Example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">PureRenderMixin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-addons-pure-render-mixin&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">PureRenderMixin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-addons-pure-render-mixin&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">createReactClass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;create-react-class&#39;</span><span class="p">);</span>
 <span class="nx">createReactClass</span><span class="p">({</span>
   <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">PureRenderMixin</span><span class="p">],</span>
@@ -98,7 +98,7 @@
 <span class="p">});</span>
 </code></pre></div>
 <p>Example using ES6 class syntax:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">PureRenderMixin</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-pure-render-mixin&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">PureRenderMixin</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-pure-render-mixin&#39;</span><span class="p">;</span>
 <span class="kr">class</span> <span class="nx">FooComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>

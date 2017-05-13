@@ -79,13 +79,13 @@
     <div class="subHeader"></div>
 
     <p>HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form&gt;</span>
-  <span class="nt">&lt;label&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
     Name:
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Submit&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it&#39;s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called &quot;controlled components&quot;.</p>
 
@@ -96,7 +96,7 @@
 <p>We can combine the two by making the React state be the &quot;single source of truth&quot;. Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a &quot;controlled component&quot;.</p>
 
 <p>For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">NameForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">NameForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">};</span>
@@ -132,19 +132,19 @@
 <p>Since the <code>value</code> attribute is set on our form element, the displayed value will always be <code>this.state.value</code>, making the React state the source of truth. Since <code>handleChange</code> runs on every keystroke to update the React state, the displayed value will update as the user types.</p>
 
 <p>With a controlled component, every state mutation will have an associated handler function. This makes it straightforward to modify or validate user input. For example, if we wanted to enforce that names are written with all uppercase letters, we could write <code>handleChange</code> as:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">handleChange</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">handleChange</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">value</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()});</span>
 </span><span class="p">}</span>
 </code></pre></div>
 <h2>The textarea Tag</h2>
 
 <p>In HTML, a <code>&lt;textarea&gt;</code> element defines its text by its children:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;textarea&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">textarea</span><span class="p">&gt;</span>
   Hello there, this is some text in a text area
-<span class="nt">&lt;/textarea&gt;</span>
+<span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>In React, a <code>&lt;textarea&gt;</code> uses a <code>value</code> attribute instead. This way, a form using a <code>&lt;textarea&gt;</code> can be written very similarly to a form that uses a single-line input:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">EssayForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">EssayForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
@@ -182,15 +182,15 @@
 <h2>The select Tag</h2>
 
 <p>In HTML, <code>&lt;select&gt;</code> creates a drop-down list. For example, this HTML creates a drop-down list of flavors:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select&gt;</span>
-  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;grapefruit&quot;</span><span class="nt">&gt;</span>Grapefruit<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;lime&quot;</span><span class="nt">&gt;</span>Lime<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option</span> <span class="na">selected</span> <span class="na">value=</span><span class="s">&quot;coconut&quot;</span><span class="nt">&gt;</span>Coconut<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;mango&quot;</span><span class="nt">&gt;</span>Mango<span class="nt">&lt;/option&gt;</span>
-<span class="nt">&lt;/select&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">select</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;grapefruit&quot;</span><span class="p">&gt;</span>Grapefruit<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;lime&quot;</span><span class="p">&gt;</span>Lime<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">selected</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;coconut&quot;</span><span class="p">&gt;</span>Coconut<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;mango&quot;</span><span class="p">&gt;</span>Mango<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Note that the Coconut option is initially selected, because of the <code>selected</code> attribute. React, instead of using this <code>selected</code> attribute, uses a <code>value</code> attribute on the root <code>select</code> tag. This is more convenient in a controlled component because you only need to update it in one place. For example:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">FlavorForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">FlavorForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;coconut&#39;</span><span class="p">};</span>
@@ -235,7 +235,7 @@
 <p>When you need to handle multiple controlled <code>input</code> elements, you can add a <code>name</code> attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>.</p>
 
 <p>For example:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Reservation</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Reservation</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
@@ -269,7 +269,7 @@
         <span class="o">&lt;</span><span class="err">/label&gt;</span>
         <span class="o">&lt;</span><span class="nx">br</span> <span class="o">/&gt;</span>
         <span class="o">&lt;</span><span class="nx">label</span><span class="o">&gt;</span>
-          <span class="nb">Number</span> <span class="nx">of</span> <span class="nx">guests</span><span class="o">:</span>
+          <span class="nb">Number</span> <span class="k">of</span> <span class="nx">guests</span><span class="o">:</span>
           <span class="o">&lt;</span><span class="nx">input</span>
 <span class="hll">            <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;numberOfGuests&quot;</span>
 </span>            <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;number&quot;</span>
@@ -284,12 +284,12 @@
 <p><a href="https://codepen.io/gaearon/pen/wgedvV?editors=0010">Try it on CodePen.</a></p>
 
 <p>Note how we used the ES6 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">computed property name</a> syntax to update the state key corresponding to the given input name:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
 <span class="hll">  <span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">:</span> <span class="nx">value</span>
 </span><span class="p">});</span>
 </code></pre></div>
 <p>It is equivalent to this ES5 code:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">partialState</span> <span class="o">=</span> <span class="p">{};</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">partialState</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="hll"><span class="nx">partialState</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
 </span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">partialState</span><span class="p">);</span>
 </code></pre></div>

@@ -131,36 +131,36 @@
 <h2>Usage</h2>
 
 <p>Transform your JSX files via the provided <code>jsx</code> module:</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">react</span> <span class="kn">import</span> <span class="n">jsx</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">react</span> <span class="kn">import</span> <span class="n">jsx</span>
 
-<span class="c"># For multiple paths, use the JSXTransformer class.</span>
+<span class="c1"># For multiple paths, use the JSXTransformer class.</span>
 <span class="n">transformer</span> <span class="o">=</span> <span class="n">jsx</span><span class="o">.</span><span class="n">JSXTransformer</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">jsx_path</span><span class="p">,</span> <span class="n">js_path</span> <span class="ow">in</span> <span class="n">my_paths</span><span class="p">:</span>
     <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">jsx_path</span><span class="p">,</span> <span class="n">js_path</span><span class="p">)</span>
 
-<span class="c"># For a single file, you can use a shortcut method.</span>
-<span class="n">jsx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s">&#39;path/to/input/file.jsx&#39;</span><span class="p">,</span> <span class="s">&#39;path/to/output/file.js&#39;</span><span class="p">)</span>
+<span class="c1"># For a single file, you can use a shortcut method.</span>
+<span class="n">jsx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">&#39;path/to/input/file.jsx&#39;</span><span class="p">,</span> <span class="s1">&#39;path/to/output/file.js&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p>For full paths to React files, use the <code>source</code> module:</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">react</span> <span class="kn">import</span> <span class="n">source</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">react</span> <span class="kn">import</span> <span class="n">source</span>
 
-<span class="c"># path_for raises IOError if the file doesn&#39;t exist.</span>
-<span class="n">react_js</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">path_for</span><span class="p">(</span><span class="s">&#39;react.min.js&#39;</span><span class="p">)</span>
+<span class="c1"># path_for raises IOError if the file doesn&#39;t exist.</span>
+<span class="n">react_js</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">path_for</span><span class="p">(</span><span class="s1">&#39;react.min.js&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2>Django</h2>
 
 <p>PyReact includes a JSX compiler for <a href="https://github.com/cyberdelia/django-pipeline">django-pipeline</a>. Add it to your project&#39;s pipeline settings like this:</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">PIPELINE_COMPILERS</span> <span class="o">=</span> <span class="p">(</span>
-  <span class="s">&#39;react.utils.pipeline.JSXCompiler&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">PIPELINE_COMPILERS</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="s1">&#39;react.utils.pipeline.JSXCompiler&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 <h2>Installation</h2>
 
 <p>PyReact is hosted on PyPI, and can be installed with <code>pip</code>:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ pip install PyReact
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ pip install PyReact
 </code></pre></div>
 <p>Alternatively, add it into your <code>requirements</code> file:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">PyReact==0.1.1
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>PyReact==0.1.1
 </code></pre></div>
 <p><strong>Dependencies</strong>: PyReact uses <a href="https://github.com/doloopwhile/PyExecJS">PyExecJS</a> to execute the bundled React code, which requires that a JS runtime environment is installed on your machine. We don&#39;t explicitly set a dependency on a runtime environment; Mac OS X comes bundled with one. If you&#39;re on a different platform, we recommend <a href="https://code.google.com/p/pyv8/">PyV8</a>.</p>
 
@@ -208,7 +208,7 @@
 
 <blockquote>
 <p>Browserify v2 transform for <code>text/jsx</code>. Basic usage is:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">% browserify -t reactify main.jsx
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>% browserify -t reactify main.jsx
 </code></pre></div>
 <p><code>reactify</code> transform activates for files with either <code>.jsx</code> extension or <code>/** @jsx React.DOM */</code> pragma as a first line for any <code>.js</code> file.</p>
 
@@ -218,7 +218,7 @@
 <h2>React Integration with Este</h2>
 
 <p><a href="http://daniel.steigerwald.cz/">Daniel Steigerwald</a> is now using React within <a href="https://github.com/steida/este">Este</a>, which is a development stack for web apps in CoffeeScript that are statically typed using the Closure Library.</p>
-<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nv">este.demos.react.todoApp = </span><span class="nx">este</span><span class="p">.</span><span class="nx">react</span><span class="p">.</span><span class="nx">create</span> <span class="p">(</span><span class="o">`</span><span class="sr">/** @lends {React.ReactComponent.prototype} */</span><span class="o">`</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span></span><span class="nv">este.demos.react.todoApp = </span><span class="nx">este</span><span class="p">.</span><span class="nx">react</span><span class="p">.</span><span class="nx">create</span> <span class="p">(</span><span class="o">`</span><span class="sr">/** @lends {React.ReactComponent.prototype} */</span><span class="o">`</span><span class="p">)</span>
   <span class="nv">render: </span><span class="nf">-&gt;</span>
     <span class="nx">@div</span> <span class="p">[</span>
       <span class="nx">este</span><span class="p">.</span><span class="nx">demos</span><span class="p">.</span><span class="nx">react</span><span class="p">.</span><span class="nx">todoList</span> <span class="s">&#39;items&#39;</span><span class="o">:</span> <span class="nx">@state</span><span class="p">[</span><span class="s">&#39;items&#39;</span><span class="p">]</span>
@@ -311,20 +311,20 @@
 <h2>Packaging react.js</h2>
 
 <p>To make <code>react.js</code> available for use client-side, simply add <code>react</code> to your manifest, and declare the variant you&#39;d like to use in your environment. When you use <code>:production</code>, the minified and optimized <code>react.min.js</code> will be used instead of the development version. For example:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/environments/development.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># config/environments/development.rb</span>
 
 <span class="no">MyApp</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
   <span class="n">config</span><span class="o">.</span><span class="n">react</span><span class="o">.</span><span class="n">variant</span> <span class="o">=</span> <span class="ss">:development</span>
   <span class="c1"># use :production in production.rb</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// app/assets/javascript/application.js</span>
+</code></pre></div><div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// app/assets/javascript/application.js</span>
 
 <span class="c1">//= require react</span>
 </code></pre></div>
 <h2>Writing JSX</h2>
 
 <p>When you name your file with <code>myfile.js.jsx</code>, <code>react-rails</code> will automatically try to transform that file. For the time being, we still require that you include the docblock at the beginning of the file. For example, this file will get transformed on request.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/** @jsx React.DOM */</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="cm">/** @jsx React.DOM */</span>
 <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">MyComponent</span><span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">))</span>
 </code></pre></div>
 <h2>Asset Pipeline</h2>
@@ -468,7 +468,7 @@
 <h2>React Chosen Wrapper</h2>
 
 <p><a href="https://github.com/chenglou">Cheng Lou</a> wrote a wrapper for the <a href="https://harvesthq.github.io/chosen/">Chosen</a> input library called <a href="https://github.com/chenglou/react-chosen">react-chosen</a>. It took just 25 lines to be able to use jQuery component as a React one.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span>
   <span class="o">&lt;</span><span class="nx">Chosen</span> <span class="nx">noResultsText</span><span class="o">=</span><span class="s2">&quot;No result&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Harvest&quot;</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">doSomething</span><span class="p">}</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Facebook&quot;</span><span class="o">&gt;</span><span class="nx">Facebook</span><span class="o">&lt;</span><span class="err">/option&gt;</span>
     <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Harvest&quot;</span><span class="o">&gt;</span><span class="nx">Harvest</span><span class="o">&lt;</span><span class="err">/option&gt;</span>

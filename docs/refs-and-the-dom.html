@@ -103,7 +103,7 @@
 <p>React supports a special attribute that you can attach to any component. The <code>ref</code> attribute takes a callback function, and the callback will be executed immediately after the component is mounted or unmounted.</p>
 
 <p>When the <code>ref</code> attribute is used on an HTML element, the <code>ref</code> callback receives the underlying DOM element as its argument. For example, this code uses the <code>ref</code> callback to store a reference to a DOM node:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">focus</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">focus</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -139,7 +139,7 @@
 <h3>Adding a Ref to a Class Component</h3>
 
 <p>When the <code>ref</code> attribute is used on a custom component declared as a class, the <code>ref</code> callback receives the mounted instance of the component as its argument. For example, if we wanted to wrap the <code>CustomTextInput</code> above to simulate it being clicked immediately after mounting:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">AutoFocusTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">AutoFocusTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">textInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
 </span>  <span class="p">}</span>
@@ -153,14 +153,14 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Note that this only works if <code>CustomTextInput</code> is declared as a class:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="hll"><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll"><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 </span>  <span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3>Refs and Functional Components</h3>
 
 <p><strong>You may not use the <code>ref</code> attribute on functional components</strong> because they don&#39;t have instances:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="hll"><span class="kd">function</span> <span class="nx">MyFunctionalComponent</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="hll"><span class="kd">function</span> <span class="nx">MyFunctionalComponent</span><span class="p">()</span> <span class="p">{</span>
 </span>  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -177,7 +177,7 @@
 <p>You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.</p>
 
 <p>You can, however, <strong>use the <code>ref</code> attribute inside a functional component</strong> as long as you refer to a DOM element or a class component:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">  <span class="c1">// textInput must be declared here so the ref callback can refer to it</span>
 </span><span class="hll">  <span class="kd">let</span> <span class="nx">textInput</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 </span>
@@ -208,7 +208,7 @@
 <p>Instead, in such cases we recommend exposing a special prop on the child. The child would take a function prop with an arbitrary name (e.g. <code>inputRef</code>) and attach it to the DOM node as a <code>ref</code> attribute. This lets the parent pass its ref callback to the child&#39;s DOM node through the component in the middle.</p>
 
 <p>This works both for classes and for functional components.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
 <span class="hll">      <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">inputRef</span><span class="p">}</span> <span class="o">/&gt;</span>
@@ -233,7 +233,7 @@
 <p>This works even though <code>CustomTextInput</code> is a functional component. Unlike the special <code>ref</code> attribute which can <a href="#refs-and-functional-components">only be specified for DOM elements and for class components</a>, there are no restrictions on regular component props like <code>inputRef</code>.</p>
 
 <p>Another benefit of this pattern is that it works several components deep. For example, imagine <code>Parent</code> didn&#39;t need that DOM node, but a component that rendered <code>Parent</code> (let&#39;s call it <code>Grandparent</code>) needed access to it. Then we could let the <code>Grandparent</code> specify the <code>inputRef</code> prop to the <code>Parent</code>, and let <code>Parent</code> &quot;forward&quot; it to the <code>CustomTextInput</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
 <span class="hll">      <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">inputRef</span><span class="p">}</span> <span class="o">/&gt;</span>

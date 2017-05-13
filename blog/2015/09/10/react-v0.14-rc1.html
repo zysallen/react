@@ -141,7 +141,7 @@ Minified build for production: <a href="https://fb.me/react-dom-0.14.0-rc1.min.j
 <p>The <code>react</code> package contains <code>React.createElement</code>, <code>.createClass</code>, <code>.Component</code>, <code>.PropTypes</code>, <code>.Children</code>, and the other helpers related to elements and component classes. We think of these as the <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/"><em>isomorphic</em></a> or <a href="https://medium.com/@mjackson/universal-javascript-4761051b7ae9"><em>universal</em></a> helpers that you need to build components.</p>
 
 <p>The <code>react-dom</code> package has <code>ReactDOM.render</code>, <code>.unmountComponentAtNode</code>, and <code>.findDOMNode</code>. In <code>react-dom/server</code> we have server-side rendering support with <code>ReactDOMServer.renderToString</code> and <code>.renderToStaticMarkup</code>.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">ReactDOM</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-dom&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
@@ -160,7 +160,7 @@ Minified build for production: <a href="https://fb.me/react-dom-0.14.0-rc1.min.j
 <li><h4>DOM node refs</h4>
 
 <p>The other big change we’re making in this release is exposing refs to DOM components as the DOM node itself. That means: we looked at what you can do with a <code>ref</code> to a React DOM component and realized that the only useful thing you can do with it is call <code>this.refs.giraffe.getDOMNode()</code> to get the underlying DOM node. In this release, <code>this.refs.giraffe</code> <em>is</em> the actual DOM node. <strong>Note that refs to custom (user-defined) components work exactly as before; only the built-in DOM components are affected by this change.</strong></p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">Zoo</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">Zoo</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Giraffe</span> <span class="nx">name</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">ref</span><span class="o">=</span><span class="s2">&quot;giraffe&quot;</span> <span class="o">/&gt;&lt;</span><span class="err">/div&gt;;</span>
   <span class="p">},</span>
@@ -175,7 +175,7 @@ Minified build for production: <a href="https://fb.me/react-dom-0.14.0-rc1.min.j
 <li><h4>Stateless function components</h4>
 
 <p>In idiomatic React code, most of the components you write will be stateless, simply composing other components. We’re introducing a new, simpler syntax for these components where you can take <code>props</code> as an argument and return the element you want to render:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Using an ES2015 (ES6) arrow function:</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Using an ES2015 (ES6) arrow function:</span>
 <span class="kd">var</span> <span class="nx">Aquarium</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">fish</span> <span class="o">=</span> <span class="nx">getFish</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">species</span><span class="p">);</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Tank</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">fish</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Tank&gt;;</span>

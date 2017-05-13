@@ -85,7 +85,7 @@
 <p>At Facebook, internally we use a custom module system called &quot;Haste&quot;. It is similar to <a href="https://nodejs.org/docs/latest/api/modules.html">CommonJS</a> and also uses <code>require()</code> but has a few important differences that often confuse outside contributors.</p>
 
 <p>In CommonJS, when you import a module, you need to specify its relative path:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Importing from the same folder:</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Importing from the same folder:</span>
 <span class="kd">var</span> <span class="nx">setInnerHTML</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./setInnerHTML&#39;</span><span class="p">);</span>
 
 <span class="c1">// Importing from a different folder:</span>
@@ -95,7 +95,7 @@
 <span class="kd">var</span> <span class="nx">setInnerHTML</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../client/utils/setInnerHTML&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>However, with Haste <strong>all filenames are globally unique.</strong> In the React codebase, you can import any module from any other module by its name alone:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">setInnerHTML</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;setInnerHTML&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">setInnerHTML</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;setInnerHTML&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>Haste was originally developed for giant apps like Facebook. It&#39;s easy to move files to different folders and import them without worrying about relative paths. The fuzzy file search in any editor always takes you to the correct place thanks to globally unique names.</p>
 
@@ -162,7 +162,7 @@
 <h3>Warnings and Invariants</h3>
 
 <p>The React codebase uses the <code>warning</code> module to display warnings:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">warning</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">warning</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">);</span>
 
 <span class="nx">warning</span><span class="p">(</span>
   <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">4</span><span class="p">,</span>
@@ -174,7 +174,7 @@
 <p>One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.</p>
 
 <p>It is a good idea to avoid spamming the console with duplicate warnings:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">warning</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">warning</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;warning&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">didWarnAboutMath</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">didWarnAboutMath</span><span class="p">)</span> <span class="p">{</span>
@@ -186,7 +186,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use <code>invariant</code> module instead:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">invariant</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;invariant&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">invariant</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;invariant&#39;</span><span class="p">);</span>
 
 <span class="nx">invariant</span><span class="p">(</span>
   <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">4</span><span class="p">,</span>
@@ -206,14 +206,14 @@
 <p>It is inlined during the compile step, and turns into <code>process.env.NODE_ENV !== &#39;production&#39;</code> checks in the CommonJS builds.</p>
 
 <p>For standalone builds, it becomes <code>true</code> in the unminified build, and gets completely stripped out with the <code>if</code> blocks it guards in the minified build.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">__DEV__</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">__DEV__</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// This code will only run in development.</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3> JSDoc</h3>
 
 <p>Some of the internal and public methods are annotated with <a href="http://usejsdoc.org/">JSDoc annotations</a>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/**</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="cm">/**</span>
 <span class="cm">  * Updates this component by updating the text content.</span>
 <span class="cm">  *</span>
 <span class="cm">  * @param {ReactText} nextText The next text content</span>
@@ -231,7 +231,7 @@
 <p>We recently started introducing <a href="https://flowtype.org/">Flow</a> checks to the codebase. Files marked with the <code>@flow</code> annotation in the license header comment are being typechecked.</p>
 
 <p>We accept pull requests <a href="https://github.com/facebook/react/pull/7600/files">adding Flow annotations to existing code</a>. Flow annotations look like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactRef</span><span class="p">.</span><span class="nx">detachRefs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactRef</span><span class="p">.</span><span class="nx">detachRefs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span>
   <span class="nx">instance</span><span class="o">:</span> <span class="nx">ReactInstance</span><span class="p">,</span>
   <span class="nx">element</span><span class="o">:</span> <span class="nx">ReactElement</span> <span class="o">|</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">number</span> <span class="o">|</span> <span class="kc">null</span> <span class="o">|</span> <span class="kc">false</span><span class="p">,</span>
 <span class="p">)</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
@@ -246,7 +246,7 @@ You can run <code>npm run flow</code> locally to check your code with Flow.</p>
 <p>React was originally written in ES5. We have since enabled ES6 features with <a href="http://babeljs.io/">Babel</a>, including classes. However, most of React code is still written in ES5.</p>
 
 <p>In particular, you might see the following pattern quite often:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Constructor</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Constructor</span>
 <span class="kd">function</span> <span class="nx">ReactDOMComponent</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">_currentElement</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
 <span class="p">}</span>
@@ -269,7 +269,7 @@ You can run <code>npm run flow</code> locally to check your code with Flow.</p>
 <p>The <code>Mixin</code> in this code has no relation to React <code>mixins</code> feature. It is just a way of grouping a few methods under an object. Those methods may later get attached to some other class. We use this pattern in a few places although we try to avoid it in the new code.</p>
 
 <p>The equivalent code in ES6 would look like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">ReactDOMComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">ReactDOMComponent</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_currentElement</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
   <span class="p">}</span>
@@ -288,7 +288,7 @@ You can run <code>npm run flow</code> locally to check your code with Flow.</p>
 <p>React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.</p>
 
 <p>You may see modules declaring their dynamic dependencies like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Dynamically injected</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Dynamically injected</span>
 <span class="kd">var</span> <span class="nx">textComponentClass</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 <span class="c1">// Relies on dynamically injected value</span>
@@ -312,10 +312,10 @@ You can run <code>npm run flow</code> locally to check your code with Flow.</p>
 <p>The <code>injection</code> field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.</p>
 
 <p>In React DOM, <a href="https://github.com/facebook/react/blob/4f345e021a6bd9105f09f3aee6d8762eaa9db3ec/src/renderers/dom/shared/ReactDefaultInjection.js"><code>ReactDefaultInjection</code></a> injects a DOM-specific implementation:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactHostComponent</span><span class="p">.</span><span class="nx">injection</span><span class="p">.</span><span class="nx">injectTextComponentClass</span><span class="p">(</span><span class="nx">ReactDOMTextComponent</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactHostComponent</span><span class="p">.</span><span class="nx">injection</span><span class="p">.</span><span class="nx">injectTextComponentClass</span><span class="p">(</span><span class="nx">ReactDOMTextComponent</span><span class="p">);</span>
 </code></pre></div>
 <p>In React Native, <a href="https://github.com/facebook/react/blob/4f345e021a6bd9105f09f3aee6d8762eaa9db3ec/src/renderers/native/ReactNativeDefaultInjection.js"><code>ReactNativeDefaultInjection</code></a> injects its own implementation:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactHostComponent</span><span class="p">.</span><span class="nx">injection</span><span class="p">.</span><span class="nx">injectTextComponentClass</span><span class="p">(</span><span class="nx">ReactNativeTextComponent</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactHostComponent</span><span class="p">.</span><span class="nx">injection</span><span class="p">.</span><span class="nx">injectTextComponentClass</span><span class="p">(</span><span class="nx">ReactNativeTextComponent</span><span class="p">);</span>
 </code></pre></div>
 <p>There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.</p>
 
@@ -419,7 +419,7 @@ You can run <code>npm run flow</code> locally to check your code with Flow.</p>
 
 <p>The &quot;fiber&quot; reconciler is a new effort aiming to resolve the problems inherent in the stack reconciler and fix a few long-standing issues.</p>
 
-<p>It is a complete rewrite of the reconciler and is currently <a href="https://github.com/facebook/react/pulls?utf8=%E2%9C%93&amp;q=is%3Apr%20is%3Aopen%20fiber">in active development</a>.</p>
+<p>It is a complete rewrite of the reconciler and is currently <a href="https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr%20is%3Aopen%20fiber">in active development</a>.</p>
 
 <p>Its main goals are:</p>
 

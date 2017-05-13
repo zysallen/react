@@ -117,7 +117,7 @@
 <p>Prop types are a feature for runtime validation of props during development. We&#39;ve extracted the built-in prop types to a separate package to reflect the fact that not everybody uses them.</p>
 
 <p>In 15.5, instead of accessing <code>PropTypes</code> from the main <code>React</code> object, install the <code>prop-types</code> package and import them from there:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 
 <span class="kr">class</span> <span class="nx">Component</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
@@ -145,7 +145,7 @@
 </span><span class="p">};</span>
 </code></pre></div>
 <p>The <a href="https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types">codemod</a> for this change performs this conversion automatically. Basic usage:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">jscodeshift -t react-codemod/transforms/React-PropTypes-to-prop-types.js &lt;path&gt;
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>jscodeshift -t react-codemod/transforms/React-PropTypes-to-prop-types.js &lt;path&gt;
 </code></pre></div>
 <p>The <code>propTypes</code>, <code>contextTypes</code>, and <code>childContextTypes</code> APIs will work exactly as before. The only change is that the built-in validators now live in a separate package.</p>
 
@@ -158,7 +158,7 @@
 <p>Later, classes were added to the language as part of ES2015, so we added the ability to create React components using JavaScript classes. <strong>Along with functional components, JavaScript classes are now the <a href="/react/docs/components-and-props.html#functional-and-class-components">preferred way to create components in React</a>.</strong></p>
 
 <p>For your existing <code>createClass</code> components, we recommend that you migrate them to JavaScript classes. However, if you have components that rely on mixins, converting to classes may not be immediately feasible. If so, <code>create-react-class</code> is available on npm as a drop-in replacement:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 
 <span class="hll"><span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
@@ -184,7 +184,7 @@
 <p>The <a href="https://github.com/reactjs/react-codemod#explanation-of-the-new-es2015-class-transform-with-property-initializers">codemod</a> for this change attempts to convert a <code>createClass</code> component to a JavaScript class, with a fallback to <code>create-react-class</code> if necessary. It has converted thousands of components internally at Facebook.</p>
 
 <p>Basic usage:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">jscodeshift -t react-codemod/transforms/class.js path/to/components
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>jscodeshift -t react-codemod/transforms/class.js path/to/components
 </code></pre></div>
 <h3>Discontinuing support for React Addons</h3>
 
@@ -206,7 +206,7 @@
 <h3>React Test Utils</h3>
 
 <p>Currently, the React Test Utils live inside <code>react-addons-test-utils</code>. As of 15.5, we&#39;re deprecating that package and moving them to <code>react-dom/test-utils</code> instead:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kr">import</span> <span class="nx">TestUtils</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">;</span>
 
 <span class="c1">// After (15.5)</span>
@@ -215,7 +215,7 @@
 <p>This reflects the fact that what we call the Test Utils are really a set of APIs that wrap the DOM renderer.</p>
 
 <p>The exception is shallow rendering, which is not DOM-specific. The shallow renderer has been moved to <code>react-test-renderer/shallow</code>.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="hll"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRenderer</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">;</span>
 </span>
 <span class="c1">// After (15.5)</span>
@@ -240,10 +240,10 @@
 <p>We recommend using <a href="https://yarnpkg.com/">Yarn</a> or <a href="https://www.npmjs.com/">npm</a> for managing front-end dependencies. If you&#39;re new to package managers, the <a href="https://yarnpkg.com/en/docs/getting-started">Yarn documentation</a> is a good place to get started.</p>
 
 <p>To install React with Yarn, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">yarn add react@^15.5.0 react-dom@^15.5.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>yarn add react@^15.5.0 react-dom@^15.5.0
 </code></pre></div>
 <p>To install React with npm, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install --save react@^15.5.0 react-dom@^15.5.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>npm install --save react@^15.5.0 react-dom@^15.5.0
 </code></pre></div>
 <p>We recommend using a bundler like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> so you can write modular code and bundle it together into small packages to optimize load time.</p>
 

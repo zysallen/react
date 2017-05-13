@@ -79,7 +79,7 @@
     <div class="subHeader"></div>
 
     <p><strong>Importing</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">Perf</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-perf&#39;</span><span class="p">;</span> <span class="c1">// ES6</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="nx">Perf</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-perf&#39;</span><span class="p">;</span> <span class="c1">// ES6</span>
 <span class="kd">var</span> <span class="nx">Perf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-addons-perf&#39;</span><span class="p">);</span> <span class="c1">// ES5 with npm</span>
 </code></pre></div>
 <h2>Overview</h2>
@@ -133,7 +133,7 @@
 <h3><code>start()</code></h3>
 
 <h3><code>stop()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
 <span class="c1">// ...</span>
 <span class="nx">Perf</span><span class="p">.</span><span class="nx">stop</span><span class="p">()</span>
 </code></pre></div>
@@ -144,7 +144,7 @@
 <hr>
 
 <h3><code>getLastMeasurements()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">getLastMeasurements</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">getLastMeasurements</span><span class="p">()</span>
 </code></pre></div>
 <p>Get the opaque data structure describing measurements from the last start-stop session. You can save it and pass it to the other print methods in <a href="#printing-results"><code>Perf</code></a> to analyze past measurements.</p>
 
@@ -157,7 +157,7 @@
 <hr>
 
 <h3><code>printInclusive()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">printInclusive</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">printInclusive</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
 </code></pre></div>
 <p>Prints the overall time taken. If no argument&#39;s passed, defaults to all the measurements from the last recording. This prints a nicely formatted table in the console, like so:</p>
 
@@ -166,7 +166,7 @@
 <hr>
 
 <h3><code>printExclusive()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">printExclusive</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">printExclusive</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
 </code></pre></div>
 <p>&quot;Exclusive&quot; times don&#39;t include the times taken to mount the components: processing props, calling <code>componentWillMount</code> and <code>componentDidMount</code>, etc.</p>
 
@@ -175,7 +175,7 @@
 <hr>
 
 <h3><code>printWasted()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">printWasted</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">printWasted</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>The most useful part of the profiler</strong>.</p>
 
@@ -186,7 +186,7 @@
 <hr>
 
 <h3><code>printOperations()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">printOperations</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">printOperations</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
 </code></pre></div>
 <p>Prints the underlying DOM manipulations, e.g. &quot;set innerHTML&quot; and &quot;remove&quot;.</p>
 
@@ -195,7 +195,7 @@
 <hr>
 
 <h3><code>printDOM()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Perf</span><span class="p">.</span><span class="nx">printDOM</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Perf</span><span class="p">.</span><span class="nx">printDOM</span><span class="p">(</span><span class="nx">measurements</span><span class="p">)</span>
 </code></pre></div>
 <p>This method has been renamed to <a href="#printoperations"><code>printOperations()</code></a>. Currently <code>printDOM()</code> still exists as an alias but it prints a deprecation warning and will eventually be removed.</p>
 

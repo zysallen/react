@@ -90,7 +90,7 @@
 <p>To fix this, composite components should &quot;consume&quot; any prop that is intended for the composite component and not intended for the child component. Example:</p>
 
 <p><strong>Bad:</strong> Unexpected <code>layout</code> prop is forwarded to the <code>div</code> tag.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">layout</span> <span class="o">===</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// BAD! Because you know for sure &quot;layout&quot; is not a prop that &lt;div&gt; understands.</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">getHorizontalStyle</span><span class="p">()}</span> <span class="o">/&gt;</span>
@@ -101,7 +101,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Good:</strong> The spread operator can be used to pull variables off props, and put the remaining props into a variable.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="p">{</span> <span class="nx">layout</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">layout</span> <span class="o">===</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="nx">rest</span><span class="p">}</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">getHorizontalStyle</span><span class="p">()}</span> <span class="o">/&gt;</span>
@@ -111,7 +111,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Good:</strong> You can also assign the props to a new object and delete the keys that you&#39;re using from the new object. Be sure not to delete the props from the original <code>this.props</code> object, since that object should be considered immutable.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">MyDiv</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kr">const</span> <span class="nx">divProps</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">props</span><span class="p">);</span>
   <span class="k">delete</span> <span class="nx">divProps</span><span class="p">.</span><span class="nx">layout</span><span class="p">;</span>

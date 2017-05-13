@@ -106,7 +106,7 @@
 
 <p>In order to make debugging in production easier, we&#39;re introducing an Error Code System in <a href="https://github.com/facebook/react/releases/tag/v15.2.0">15.2.0</a>. We developed a <a href="https://github.com/facebook/react/blob/master/scripts/error-codes/gulp-extract-errors.js">gulp script</a> that collects all of our <code>invariant</code> error messages and folds them to a <a href="https://github.com/facebook/react/blob/master/scripts/error-codes/codes.json">JSON file</a>, and at build-time Babel uses the JSON to <a href="https://github.com/facebook/react/blob/master/scripts/error-codes/dev-expression-with-codes.js">rewrite</a> our <code>invariant</code> calls in production to reference the corresponding error IDs. Now when things go wrong in production, the error that React throws will contain a URL with an error ID and relevant information. The URL will point you to a page in our documentation where the original error message gets reassembled.</p>
 
-<p>While we hope you don&#39;t see errors often, you can see how it works <a href="/react/docs/error-decoder.html?invariant=109&amp;args%5B%5D=Foo">here</a>. This is what the same error from above will look like:</p>
+<p>While we hope you don&#39;t see errors often, you can see how it works <a href="/react/docs/error-decoder.html?invariant=109&args%5B%5D=Foo">here</a>. This is what the same error from above will look like:</p>
 
 <blockquote>
 <p>Minified React error #109; visit https://facebook.github.io/react/docs/error-decoder.html?invariant=109&amp;args[]=Foo for the full message or use the non-minified dev environment for full errors and additional helpful warnings.</p>

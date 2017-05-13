@@ -85,7 +85,7 @@
 <p><code>React.Component</code> is an abstract base class, so it rarely makes sense to refer to <code>React.Component</code> directly. Instead, you will typically subclass it, and define at least a <a href="#render"><code>render()</code></a> method.</p>
 
 <p>Normally you would define a React component as a plain <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">JavaScript class</a>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
   <span class="p">}</span>
@@ -156,7 +156,7 @@
 <h2>Reference</h2>
 
 <h3><code>render()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">render</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">render</span><span class="p">()</span>
 </code></pre></div>
 <p>The <code>render()</code> method is required.</p>
 
@@ -175,14 +175,14 @@
 <hr>
 
 <h3><code>constructor()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
 </code></pre></div>
 <p>The constructor for a React component is called before it is mounted. When implementing the constructor for a <code>React.Component</code> subclass, you should call <code>super(props)</code> before any other statement. Otherwise, <code>this.props</code> will be undefined in the constructor, which can lead to bugs.</p>
 
 <p>The constructor is the right place to initialize state. If you don&#39;t initialize state and you don&#39;t bind methods, you don&#39;t need to implement a constructor for your React component.</p>
 
 <p>It&#39;s okay to initialize state based on props. This effectively &quot;forks&quot; the props and sets the state with the initial props. Here&#39;s an example of a valid <code>React.Component</code> subclass constructor:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">color</span><span class="o">:</span> <span class="nx">props</span><span class="p">.</span><span class="nx">initialColor</span>
@@ -196,7 +196,7 @@
 <hr>
 
 <h3><code>componentWillMount()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillMount</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentWillMount</span><span class="p">()</span>
 </code></pre></div>
 <p><code>componentWillMount()</code> is invoked immediately before mounting occurs. It is called before <code>render()</code>, therefore setting state synchronously in this method will not trigger a re-rendering. Avoid introducing any side-effects or subscriptions in this method.</p>
 
@@ -205,14 +205,14 @@
 <hr>
 
 <h3><code>componentDidMount()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidMount</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentDidMount</span><span class="p">()</span>
 </code></pre></div>
 <p><code>componentDidMount()</code> is invoked immediately after a component is mounted. Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request. Setting state in this method will trigger a re-rendering.</p>
 
 <hr>
 
 <h3><code>componentWillReceiveProps()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span>
 </code></pre></div>
 <p><code>componentWillReceiveProps()</code> is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare <code>this.props</code> and <code>nextProps</code> and perform state transitions using <code>this.setState()</code> in this method.</p>
 
@@ -223,7 +223,7 @@
 <hr>
 
 <h3><code>shouldComponentUpdate()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
 </code></pre></div>
 <p>Use <code>shouldComponentUpdate()</code> to let React know if a component&#39;s output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.</p>
 
@@ -238,7 +238,7 @@
 <hr>
 
 <h3><code>componentWillUpdate()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentWillUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
 </code></pre></div>
 <p><code>componentWillUpdate()</code> is invoked immediately before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.</p>
 
@@ -253,7 +253,7 @@
 <hr>
 
 <h3><code>componentDidUpdate()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span>
 </code></pre></div>
 <p><code>componentDidUpdate()</code> is invoked immediately after updating occurs. This method is not called for the initial render.</p>
 
@@ -268,14 +268,14 @@
 <hr>
 
 <h3><code>componentWillUnmount()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillUnmount</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">componentWillUnmount</span><span class="p">()</span>
 </code></pre></div>
 <p><code>componentWillUnmount()</code> is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any DOM elements that were created in <code>componentDidMount</code></p>
 
 <hr>
 
 <h3><code>setState()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">setState</span><span class="p">(</span><span class="nx">updater</span><span class="p">,</span> <span class="p">[</span><span class="nx">callback</span><span class="p">])</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">setState</span><span class="p">(</span><span class="nx">updater</span><span class="p">,</span> <span class="p">[</span><span class="nx">callback</span><span class="p">])</span>
 </code></pre></div>
 <p><code>setState()</code> enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.</p>
 
@@ -286,10 +286,10 @@
 <p><code>setState()</code> will always lead to a re-render unless <code>shouldComponentUpdate()</code> returns <code>false</code>. If mutable objects are being used and conditional rendering logic cannot be implemented in <code>shouldComponentUpdate()</code>, calling <code>setState()</code> only when the new state differs from the previous state will avoid unnecessary re-renders.</p>
 
 <p>The first argument is an <code>updater</code> function with the signature:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="nx">prevState</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">stateChange</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">(</span><span class="nx">prevState</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">stateChange</span>
 </code></pre></div>
 <p><code>prevState</code> is a reference to the previous state. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from <code>prevState</code> and <code>props</code>. For instance, suppose we wanted to increment a value in state by <code>props.step</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">prevState</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">prevState</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span><span class="nx">counter</span><span class="o">:</span> <span class="nx">prevState</span><span class="p">.</span><span class="nx">counter</span> <span class="o">+</span> <span class="nx">props</span><span class="p">.</span><span class="nx">step</span><span class="p">};</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -298,13 +298,13 @@
 <p>The second parameter to <code>setState()</code> is an optional callback function that will be executed once <code>setState</code> is completed and the component is re-rendered. Generally we recommend using <code>componentDidUpdate()</code> for such logic instead.</p>
 
 <p>You may optionally pass an object as the first argument to <code>setState()</code> instead of a function:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">setState</span><span class="p">(</span><span class="nx">stateChange</span><span class="p">,</span> <span class="p">[</span><span class="nx">callback</span><span class="p">])</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">setState</span><span class="p">(</span><span class="nx">stateChange</span><span class="p">,</span> <span class="p">[</span><span class="nx">callback</span><span class="p">])</span>
 </code></pre></div>
 <p>This performs a shallow merge of <code>stateChange</code> into the new state, e.g., to adjust a shopping cart item quantity:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">quantity</span><span class="o">:</span> <span class="mi">2</span><span class="p">})</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">quantity</span><span class="o">:</span> <span class="mi">2</span><span class="p">})</span>
 </code></pre></div>
 <p>This form of <code>setState()</code> is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:</p>
-<div class="highlight"><pre><code class="language-javaScript" data-lang="javaScript"><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javaScript" data-lang="javaScript"><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span>
   <span class="nx">previousState</span><span class="p">,</span>
   <span class="p">{</span><span class="nx">quantity</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">+</span> <span class="mi">1</span><span class="p">},</span>
   <span class="p">{</span><span class="nx">quantity</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">+</span> <span class="mi">1</span><span class="p">},</span>
@@ -312,7 +312,7 @@
 <span class="p">)</span>
 </code></pre></div>
 <p>Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the previous state, we recommend using the updater function form, instead:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">prevState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">prevState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span><span class="nx">counter</span><span class="o">:</span> <span class="nx">prevState</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">+</span> <span class="mi">1</span><span class="p">};</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -321,7 +321,7 @@
 <hr>
 
 <h3><code>forceUpdate()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">component</span><span class="p">.</span><span class="nx">forceUpdate</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">component</span><span class="p">.</span><span class="nx">forceUpdate</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
 </code></pre></div>
 <p>By default, when your component&#39;s state or props change, your component will re-render. If your <code>render()</code> method depends on some other data, you can tell React that the component needs re-rendering by calling <code>forceUpdate()</code>.</p>
 
@@ -336,7 +336,7 @@
 <h3><code>defaultProps</code></h3>
 
 <p><code>defaultProps</code> can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CustomButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CustomButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span>
 
@@ -345,12 +345,12 @@
 <span class="p">};</span>
 </code></pre></div>
 <p>If <code>props.color</code> is not provided, it will be set by default to <code>&#39;blue&#39;</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">CustomButton</span> <span class="o">/&gt;</span> <span class="p">;</span> <span class="c1">// props.color will be set to blue</span>
   <span class="p">}</span>
 </code></pre></div>
 <p>If <code>props.color</code> is set to null, it will remain null:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">CustomButton</span> <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="kc">null</span><span class="p">}</span> <span class="o">/&gt;</span> <span class="p">;</span> <span class="c1">// props.color will remain null</span>
   <span class="p">}</span>
 </code></pre></div>

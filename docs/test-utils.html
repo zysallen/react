@@ -79,7 +79,7 @@
     <div class="subHeader"></div>
 
     <p><strong>Importing</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">ReactTestUtils</span> <span class="nx">from</span> <span class="s1">&#39;react-dom/test-utils&#39;</span><span class="p">;</span> <span class="c1">// ES6</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="nx">ReactTestUtils</span> <span class="nx">from</span> <span class="s1">&#39;react-dom/test-utils&#39;</span><span class="p">;</span> <span class="c1">// ES6</span>
 <span class="kd">var</span> <span class="nx">ReactTestUtils</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-dom/test-utils&#39;</span><span class="p">);</span> <span class="c1">// ES5 with npm</span>
 </code></pre></div>
 <h2>Overview</h2>
@@ -113,7 +113,7 @@
 <h2>Reference</h2>
 
 <h3><code>Simulate</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Simulate</span><span class="p">.{</span><span class="nx">eventName</span><span class="p">}(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Simulate</span><span class="p">.{</span><span class="nx">eventName</span><span class="p">}(</span>
   <span class="nx">element</span><span class="p">,</span>
   <span class="p">[</span><span class="nx">eventData</span><span class="p">]</span>
 <span class="p">)</span>
@@ -123,12 +123,12 @@
 <p><code>Simulate</code> has a method for <a href="/react/docs/events.html#supported-events">every event that React understands</a>.</p>
 
 <p><strong>Clicking an element</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// &lt;button ref=&quot;button&quot;&gt;...&lt;/button&gt;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// &lt;button ref=&quot;button&quot;&gt;...&lt;/button&gt;</span>
 <span class="kr">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">button</span><span class="p">;</span>
 <span class="nx">ReactTestUtils</span><span class="p">.</span><span class="nx">Simulate</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
 </code></pre></div>
 <p><strong>Changing the value of an input field and then pressing ENTER.</strong></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// &lt;input ref=&quot;input&quot; /&gt;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// &lt;input ref=&quot;input&quot; /&gt;</span>
 <span class="kr">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">input</span><span class="p">;</span>
 <span class="nx">node</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;giraffe&#39;</span><span class="p">;</span>
 <span class="nx">ReactTestUtils</span><span class="p">.</span><span class="nx">Simulate</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
@@ -143,7 +143,7 @@
 <hr>
 
 <h3><code>renderIntoDocument()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">renderIntoDocument</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">renderIntoDocument</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
 </code></pre></div>
 <p>Render a React element into a detached DOM node in the document. <strong>This function requires a DOM.</strong></p>
 
@@ -156,7 +156,7 @@
 <hr>
 
 <h3><code>mockComponent()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">mockComponent</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">mockComponent</span><span class="p">(</span>
   <span class="nx">componentClass</span><span class="p">,</span>
   <span class="p">[</span><span class="nx">mockTagName</span><span class="p">]</span>
 <span class="p">)</span>
@@ -166,14 +166,14 @@
 <hr>
 
 <h3><code>isElement()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">isElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">isElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns <code>true</code> if <code>element</code> is any React element.</p>
 
 <hr>
 
 <h3><code>isElementOfType()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">isElementOfType</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">isElementOfType</span><span class="p">(</span>
   <span class="nx">element</span><span class="p">,</span>
   <span class="nx">componentClass</span>
 <span class="p">)</span>
@@ -183,21 +183,21 @@
 <hr>
 
 <h3><code>isDOMComponent()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">isDOMComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">isDOMComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns <code>true</code> if <code>instance</code> is a DOM component (such as a <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>).</p>
 
 <hr>
 
 <h3><code>isCompositeComponent()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">isCompositeComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">isCompositeComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns <code>true</code> if <code>instance</code> is a user-defined component, such as a class or a function.</p>
 
 <hr>
 
 <h3><code>isCompositeComponentWithType()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">isCompositeComponentWithType</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">isCompositeComponentWithType</span><span class="p">(</span>
   <span class="nx">instance</span><span class="p">,</span>
   <span class="nx">componentClass</span>
 <span class="p">)</span>
@@ -207,7 +207,7 @@
 <hr>
 
 <h3><code>findAllInRenderedTree()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">findAllInRenderedTree</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">findAllInRenderedTree</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">test</span>
 <span class="p">)</span>
@@ -217,7 +217,7 @@
 <hr>
 
 <h3><code>scryRenderedDOMComponentsWithClass()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">scryRenderedDOMComponentsWithClass</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">scryRenderedDOMComponentsWithClass</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">className</span>
 <span class="p">)</span>
@@ -227,7 +227,7 @@
 <hr>
 
 <h3><code>findRenderedDOMComponentWithClass()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">findRenderedDOMComponentWithClass</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">findRenderedDOMComponentWithClass</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">className</span>
 <span class="p">)</span>
@@ -237,7 +237,7 @@
 <hr>
 
 <h3><code>scryRenderedDOMComponentsWithTag()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">scryRenderedDOMComponentsWithTag</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">scryRenderedDOMComponentsWithTag</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">tagName</span>
 <span class="p">)</span>
@@ -247,7 +247,7 @@
 <hr>
 
 <h3><code>findRenderedDOMComponentWithTag()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">findRenderedDOMComponentWithTag</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">findRenderedDOMComponentWithTag</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">tagName</span>
 <span class="p">)</span>
@@ -257,7 +257,7 @@
 <hr>
 
 <h3><code>scryRenderedComponentsWithType()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">scryRenderedComponentsWithType</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">scryRenderedComponentsWithType</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">componentClass</span>
 <span class="p">)</span>
@@ -267,7 +267,7 @@
 <hr>
 
 <h3><code>findRenderedComponentWithType()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">findRenderedComponentWithType</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">findRenderedComponentWithType</span><span class="p">(</span>
   <span class="nx">tree</span><span class="p">,</span>
   <span class="nx">componentClass</span>
 <span class="p">)</span>
@@ -279,14 +279,14 @@
 <h2>Shallow Rendering</h2>
 
 <h3><code>createRenderer()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">createRenderer</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">createRenderer</span><span class="p">()</span>
 </code></pre></div>
 <p>Call this in your tests to create a <a href="#shallow-rendering">shallow renderer</a>.</p>
 
 <hr>
 
 <h3><code>shallowRenderer.render()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">shallowRenderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">shallowRenderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
   <span class="nx">element</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -295,7 +295,7 @@
 <hr>
 
 <h3><code>shallowRenderer.getRenderOutput()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">shallowRenderer</span><span class="p">.</span><span class="nx">getRenderOutput</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">shallowRenderer</span><span class="p">.</span><span class="nx">getRenderOutput</span><span class="p">()</span>
 </code></pre></div>
 <p>After <a href="#shallowrenderer.render"><code>shallowRenderer.render()</code></a> has been called, returns shallowly rendered output.</p>
 

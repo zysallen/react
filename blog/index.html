@@ -147,7 +147,7 @@
 <p>Prop types are a feature for runtime validation of props during development. We&#39;ve extracted the built-in prop types to a separate package to reflect the fact that not everybody uses them.</p>
 
 <p>In 15.5, instead of accessing <code>PropTypes</code> from the main <code>React</code> object, install the <code>prop-types</code> package and import them from there:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 
 <span class="kr">class</span> <span class="nx">Component</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
@@ -175,7 +175,7 @@
 </span><span class="p">};</span>
 </code></pre></div>
 <p>The <a href="https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types">codemod</a> for this change performs this conversion automatically. Basic usage:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">jscodeshift -t react-codemod/transforms/React-PropTypes-to-prop-types.js &lt;path&gt;
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>jscodeshift -t react-codemod/transforms/React-PropTypes-to-prop-types.js &lt;path&gt;
 </code></pre></div>
 <p>The <code>propTypes</code>, <code>contextTypes</code>, and <code>childContextTypes</code> APIs will work exactly as before. The only change is that the built-in validators now live in a separate package.</p>
 
@@ -188,7 +188,7 @@
 <p>Later, classes were added to the language as part of ES2015, so we added the ability to create React components using JavaScript classes. <strong>Along with functional components, JavaScript classes are now the <a href="/react/docs/components-and-props.html#functional-and-class-components">preferred way to create components in React</a>.</strong></p>
 
 <p>For your existing <code>createClass</code> components, we recommend that you migrate them to JavaScript classes. However, if you have components that rely on mixins, converting to classes may not be immediately feasible. If so, <code>create-react-class</code> is available on npm as a drop-in replacement:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 
 <span class="hll"><span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
@@ -214,7 +214,7 @@
 <p>The <a href="https://github.com/reactjs/react-codemod#explanation-of-the-new-es2015-class-transform-with-property-initializers">codemod</a> for this change attempts to convert a <code>createClass</code> component to a JavaScript class, with a fallback to <code>create-react-class</code> if necessary. It has converted thousands of components internally at Facebook.</p>
 
 <p>Basic usage:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">jscodeshift -t react-codemod/transforms/class.js path/to/components
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>jscodeshift -t react-codemod/transforms/class.js path/to/components
 </code></pre></div>
 <h3>Discontinuing support for React Addons</h3>
 
@@ -236,7 +236,7 @@
 <h3>React Test Utils</h3>
 
 <p>Currently, the React Test Utils live inside <code>react-addons-test-utils</code>. As of 15.5, we&#39;re deprecating that package and moving them to <code>react-dom/test-utils</code> instead:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="kr">import</span> <span class="nx">TestUtils</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">;</span>
 
 <span class="c1">// After (15.5)</span>
@@ -245,7 +245,7 @@
 <p>This reflects the fact that what we call the Test Utils are really a set of APIs that wrap the DOM renderer.</p>
 
 <p>The exception is shallow rendering, which is not DOM-specific. The shallow renderer has been moved to <code>react-test-renderer/shallow</code>.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Before (15.4 and below)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Before (15.4 and below)</span>
 <span class="hll"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRenderer</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-addons-test-utils&#39;</span><span class="p">;</span>
 </span>
 <span class="c1">// After (15.5)</span>
@@ -270,10 +270,10 @@
 <p>We recommend using <a href="https://yarnpkg.com/">Yarn</a> or <a href="https://www.npmjs.com/">npm</a> for managing front-end dependencies. If you&#39;re new to package managers, the <a href="https://yarnpkg.com/en/docs/getting-started">Yarn documentation</a> is a good place to get started.</p>
 
 <p>To install React with Yarn, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">yarn add react@^15.5.0 react-dom@^15.5.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>yarn add react@^15.5.0 react-dom@^15.5.0
 </code></pre></div>
 <p>To install React with npm, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install --save react@^15.5.0 react-dom@^15.5.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>npm install --save react@^15.5.0 react-dom@^15.5.0
 </code></pre></div>
 <p>We recommend using a bundler like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> so you can write modular code and bundle it together into small packages to optimize load time.</p>
 
@@ -408,7 +408,7 @@ Minified build for production: <a href="https://unpkg.com/react-dom@15.5.0/dist/
 <h3>Mocking Refs for Snapshot Testing</h3>
 
 <p>If you&#39;re using Jest <a href="https://facebook.github.io/jest/blog/2016/07/27/jest-14.html">snapshot testing</a>, you might have had <a href="https://github.com/facebook/react/issues/7371">issues</a> with components that rely on refs. With React 15.4.0, we introduce a way to provide mock refs to the test renderer. For example, consider this component using a ref in <code>componentDidMount</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">MyInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
@@ -425,7 +425,7 @@ Minified build for production: <a href="https://unpkg.com/react-dom@15.5.0/dist/
 <span class="p">}</span>
 </code></pre></div>
 <p>With snapshot renderer, <code>this.input</code> will be <code>null</code> because there is no DOM. React 15.4.0 lets us avoid such crashes by passing a custom <code>createNodeMock</code> function to the snapshot renderer in an <code>options</code> argument:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">MyInput</span> <span class="nx">from</span> <span class="s1">&#39;./MyInput&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">renderer</span> <span class="nx">from</span> <span class="s1">&#39;react-test-renderer&#39;</span><span class="p">;</span>
 
@@ -455,10 +455,10 @@ Minified build for production: <a href="https://unpkg.com/react-dom@15.5.0/dist/
 <p>We recommend using <a href="https://yarnpkg.com/">Yarn</a> or <a href="https://www.npmjs.com/">npm</a> for managing front-end dependencies. If you&#39;re new to package managers, the <a href="https://yarnpkg.com/en/docs/getting-started">Yarn documentation</a> is a good place to get started.</p>
 
 <p>To install React with Yarn, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">yarn add react@15.4.0 react-dom@15.4.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>yarn add react@15.4.0 react-dom@15.4.0
 </code></pre></div>
 <p>To install React with npm, run:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install --save react@15.4.0 react-dom@15.4.0
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>npm install --save react@15.4.0 react-dom@15.4.0
 </code></pre></div>
 <p>We recommend using a bundler like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> so you can write modular code and bundle it together into small packages to optimize load time.</p>
 
@@ -593,7 +593,7 @@ Minified build for production: <a href="https://unpkg.com/react-dom@15.4.0/dist/
 <p>We&#39;ve spent a lot of time trying to explain the concepts behind React and the problems it attempts to solve, but we haven&#39;t talked much about how React evolved before being open sourced. This milestone seemed like as good a time as any to dig through the earliest commits and share some of the more important moments and fun facts.</p>
 
 <p>The story begins in our ads org, where we were building incredibly sophisticated client side web apps using an internal MVC framework called <a href="http://web.archive.org/web/20130608154901/http://shaneosullivan.github.io/boltjs/intro.html">BoltJS</a>. Here&#39;s a sample of what some Bolt code looked like:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">CarView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;javelin/core&#39;</span><span class="p">).</span><span class="nx">createClass</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">CarView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;javelin/core&#39;</span><span class="p">).</span><span class="nx">createClass</span><span class="p">({</span>
   <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;CarView&#39;</span><span class="p">,</span>
   <span class="nx">extend</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">).</span><span class="nx">Container</span><span class="p">,</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
@@ -628,7 +628,7 @@ Minified build for production: <a href="https://unpkg.com/react-dom@15.4.0/dist/
 <p>Bolt introduced a number of APIs and features that would eventually make their way into React including <code>render</code>, <code>createClass</code>, and <code>refs</code>. Bolt introduced the concept of <code>refs</code> as a way to create references to nodes that can be used imperatively. This was relevant for legacy interoperability and incremental adoption, and while React would eventually strive to be a lot more functional, <code>refs</code> proved to be a very useful way to break out of the functional paradigm when the need arose.</p>
 
 <p>But as our applications grew more and more sophisticated, our Bolt codebases got pretty complicated. Recognizing some of the framework&#39;s shortcomings, <a href="https://twitter.com/jordwalke">Jordan Walke</a> started experimenting with a side-project called <a href="https://github.com/jordwalke/FaxJs">FaxJS</a>. His goal was to solve many of the same problems as Bolt, but in a very different way. This is actually where most of React&#39;s fundamentals were born, including props, state, re-evaluating large portions of the tree to “diff” the UI, server-side rendering, and a basic concept of components.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">TestProject</span><span class="p">.</span><span class="nx">PersonDisplayer</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">TestProject</span><span class="p">.</span><span class="nx">PersonDisplayer</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">structure</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">Div</span><span class="p">({</span>
       <span class="nx">classSet</span><span class="o">:</span> <span class="p">{</span> <span class="nx">personDisplayerContainer</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
@@ -661,7 +661,7 @@ I might add for the sake of discussion, that many systems advertise some kind of
 <h2>Adding JSX</h2>
 
 <p>Since about 2010 Facebook has been using an extension of PHP called <a href="https://www.facebook.com/notes/facebook-engineering/xhp-a-new-way-to-write-php/294003943919/">XHP</a>, which enables engineers to create UIs using XML literals right inside their PHP code. It was first introduced to help prevent XSS holes but ended up being an excellent way to structure applications with custom components.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">final</span> <span class="kr">class</span> <span class="o">:</span><span class="nx">a</span><span class="o">:</span><span class="nx">post</span> <span class="kr">extends</span> <span class="o">:</span><span class="nx">x</span><span class="o">:</span><span class="nx">element</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">final</span> <span class="kr">class</span> <span class="o">:</span><span class="nx">a</span><span class="o">:</span><span class="nx">post</span> <span class="kr">extends</span> <span class="o">:</span><span class="nx">x</span><span class="o">:</span><span class="nx">element</span> <span class="p">{</span>
   <span class="nx">attribute</span> <span class="o">:</span><span class="nx">a</span><span class="p">;</span>
   <span class="kr">protected</span> <span class="kd">function</span> <span class="nx">render</span><span class="p">()</span><span class="o">:</span> <span class="nx">XHPRoot</span> <span class="p">{</span>
     <span class="nx">$anchor</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">a</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">$this</span><span class="o">-&gt;</span><span class="nx">getChildren</span><span class="p">()}</span><span class="o">&lt;</span><span class="err">/a&gt;;</span>
@@ -679,7 +679,7 @@ I might add for the sake of discussion, that many systems advertise some kind of
 <span class="p">}</span>
 </code></pre></div>
 <p>Before Jordan&#39;s work had even made its way into the Facebook codebase, Adam Hupp implemented an XHP-like concept for JavaScript, written in Haskell. This system enabled you to write the following inside a JavaScript file:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="o">:</span><span class="nx">example</span><span class="o">:</span><span class="nx">hello</span><span class="p">(</span><span class="nx">attrib</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="o">:</span><span class="nx">example</span><span class="o">:</span><span class="nx">hello</span><span class="p">(</span><span class="nx">attrib</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;special&quot;</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="err">/h1&gt;</span>
@@ -689,7 +689,7 @@ I might add for the sake of discussion, that many systems advertise some kind of
 <span class="p">}</span>
 </code></pre></div>
 <p>It would compile the above into the following normal ES3-compatible JavaScript:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">jsx_example_hello</span><span class="p">(</span><span class="nx">attrib</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">jsx_example_hello</span><span class="p">(</span><span class="nx">attrib</span><span class="p">,</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="nx">S</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="o">:</span> <span class="s2">&quot;special&quot;</span><span class="p">},</span> <span class="p">[</span>
       <span class="nx">S</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">[</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">]),</span>
@@ -725,7 +725,7 @@ For the first step, I propose that we do the easiest, yet most general transform
 <blockquote>
 <p>Adam Hupp:
 I think we should just treat arrays of elements as a frag. This is useful for constructs like:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">foo</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">i</span><span class="p">.</span><span class="nx">data</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;; })}&lt;/ul&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">foo</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">i</span><span class="p">.</span><span class="nx">data</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;; })}&lt;/ul&gt;</span>
 </code></pre></div>
 <p>In this case the ul(..) will get a childList with a single child, which is itself a list.</p>
 </blockquote>
@@ -948,14 +948,14 @@ I think we should just treat arrays of elements as a frag. This is useful for co
 <h3>Installation</h3>
 
 <p>First, install the global package:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">npm install -g create-react-app
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>npm install -g create-react-app
 </code></pre></div>
 <p>Node.js 4.x or higher is required.</p>
 
 <h3>Creating an App</h3>
 
 <p>Now you can use it to create a new app:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">create-react-app hello-world
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>create-react-app hello-world
 </code></pre></div>
 <p>This will take a while as npm installs the transitive dependencies, but once it’s done, you will see a list of commands you can run in the created folder:</p>
 
@@ -989,7 +989,7 @@ The console output is tuned to be minimal to help you focus on the problems:</p>
 <h3>One Dependency</h3>
 
 <p>Your <code>package.json</code> contains only a single build dependency and a few scripts:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;hello-world&quot;</span><span class="p">,</span>
   <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;react&quot;</span><span class="o">:</span> <span class="s2">&quot;^15.2.1&quot;</span><span class="p">,</span>
@@ -1010,7 +1010,7 @@ The console output is tuned to be minimal to help you focus on the problems:</p>
 <h3>Zero Configuration</h3>
 
 <p>It is worth repeating: there are no configuration files or complicated folder structures. The tool only generates the files you need to build your app.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">hello-world/
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>hello-world/
   README.md
   index.html
   favicon.ico

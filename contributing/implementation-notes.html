@@ -95,10 +95,10 @@
 <h3>Mounting as a Recursive Process</h3>
 
 <p>Let&#39;s consider the first time you mount a component:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 </code></pre></div>
 <p>React DOM will pass <code>&lt;App /&gt;</code> along to the reconciler. Remember that <code>&lt;App /&gt;</code> is a React element, that is, a description of <em>what</em> to render. You can think about it as a plain object:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">);</span>
 <span class="c1">// { type: App, props: {} }</span>
 </code></pre></div>
 <p>The reconciler will check if <code>App</code> is a class or a function.</p>
@@ -112,7 +112,7 @@
 <p>This process is recursive. <code>App</code> may render to a <code>&lt;Greeting /&gt;</code>, <code>Greeting</code> may render to a <code>&lt;Button /&gt;</code>, and so on. The reconciler will &quot;drill down&quot; through user-defined components recursively as it learns what each component renders to.</p>
 
 <p>You can imagine this process as a pseudocode:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">isClass</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">isClass</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// React.Component subclasses have this flag</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="nb">Boolean</span><span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
@@ -180,7 +180,7 @@
 <p>In addition to user-defined (&quot;composite&quot;) components, React elements may also represent platform-specific (&quot;host&quot;) components. For example, <code>Button</code> might return a <code>&lt;div /&gt;</code> from its render method.</p>
 
 <p>If element&#39;s <code>type</code> property is a string, we are dealing with a host element:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span> <span class="o">/&gt;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span> <span class="o">/&gt;</span><span class="p">);</span>
 <span class="c1">// { type: &#39;div&#39;, props: {} }</span>
 </code></pre></div>
 <p>There is no user-defined code associated with host elements.</p>
@@ -198,7 +198,7 @@
 </blockquote>
 
 <p>If we were to extend the code to handle host elements, it would look like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">isClass</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">isClass</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// React.Component subclasses have this flag</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="nb">Boolean</span><span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
@@ -290,7 +290,7 @@
 <h3>Introducing Internal Instances</h3>
 
 <p>The key feature of React is that you can re-render everything, and it won&#39;t recreate the DOM or reset the state:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 <span class="c1">// Should reuse the existing DOM:</span>
 <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 </code></pre></div>
@@ -301,7 +301,7 @@
 <p>Instead of separate <code>mountHost</code> and <code>mountComposite</code> functions, we will create two classes: <code>DOMComponent</code> and <code>CompositeComponent</code>.</p>
 
 <p>Both classes have a constructor accepting the <code>element</code>, as well as a <code>mount()</code> method returning the mounted node. We will replace a top-level <code>mount()</code> function with a factory that instantiates the correct class:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">instantiateComponent</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">instantiateComponent</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// User-defined components</span>
@@ -313,7 +313,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>First, let&#39;s consider the implementation of <code>CompositeComponent</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">currentElement</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">renderedComponent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -371,7 +371,7 @@
 <p>In contrast, we call an instance of the user-defined class a &quot;public instance&quot;. The public instance is what you see as <code>this</code> in the <code>render()</code> and other methods of your custom components.</p>
 
 <p>The <code>mountHost()</code> function, refactored to be a <code>mount()</code> method on <code>DOMComponent</code> class, also looks familiar:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">currentElement</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">renderedChildren</span> <span class="o">=</span> <span class="p">[];</span>
@@ -421,7 +421,7 @@
 <p>The main difference after refactoring from <code>mountHost()</code> is that we now keep <code>this.node</code> and <code>this.renderedChildren</code> associated with the internal DOM component instance. We will also use them for applying non-destructive updates in the future.</p>
 
 <p>As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a functional <code>&lt;App&gt;</code> component renders a <code>&lt;Button&gt;</code> class component, and <code>Button</code> class renders a <code>&lt;div&gt;</code>, the internal instance tree would look like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">[</span><span class="nx">object</span> <span class="nx">CompositeComponent</span><span class="p">]</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">[</span><span class="nx">object</span> <span class="nx">CompositeComponent</span><span class="p">]</span> <span class="p">{</span>
   <span class="nx">currentElement</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span>
   <span class="nx">publicInstance</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="nx">renderedComponent</span><span class="o">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nx">CompositeComponent</span><span class="p">]</span> <span class="p">{</span>
@@ -458,7 +458,7 @@
 <p><img src="/react/img/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" /></p>
 
 <p>To complete this refactoring, we will introduce a function that mounts a complete tree into a container node, just like <code>ReactDOM.render()</code>. It returns a public instance, also like <code>ReactDOM.render()</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Create the top-level internal instance</span>
   <span class="kd">var</span> <span class="nx">rootComponent</span> <span class="o">=</span> <span class="nx">instantiateComponent</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 
@@ -477,7 +477,7 @@
 <h3>Unmounting</h3>
 
 <p>Now that we have internal instances that hold onto their children and the DOM nodes, we can implement unmounting. For a composite component, unmounting calls a lifecycle hook and recurses.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
 
   <span class="c1">// ...</span>
 
@@ -497,7 +497,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>For <code>DOMComponent</code>, unmounting tells each child to unmount:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
 
   <span class="c1">// ...</span>
 
@@ -511,7 +511,7 @@
 <p>In practice, unmounting DOM components also removes the event listeners and clears some caches, but we will skip those details.</p>
 
 <p>We can now add a new top-level function called <code>unmountTree(containerNode)</code> that is similar to <code>ReactDOM.unmountComponentAtNode()</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">unmountTree</span><span class="p">(</span><span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">unmountTree</span><span class="p">(</span><span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Read the internal instance from a DOM node:</span>
   <span class="c1">// (This doesn&#39;t work yet, we will need to change mountTree() to store it.)</span>
   <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">containerNode</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span>
@@ -523,7 +523,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>In order for this to work, we need to read an internal root instance from a DOM node. We will modify <code>mountTree()</code> to add the <code>_internalInstance</code> property to the root DOM node. We will also teach <code>mountTree()</code> to destroy any existing tree so it can be called multiple times:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Destroy any existing tree</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">containerNode</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">unmountTree</span><span class="p">(</span><span class="nx">containerNode</span><span class="p">);</span>
@@ -549,14 +549,14 @@
 <h3>Updating</h3>
 
 <p>In the previous section, we implemented unmounting. However React wouldn&#39;t be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">rootEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">rootEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
 
 <span class="nx">mountTree</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 <span class="c1">// Should reuse the existing DOM:</span>
 <span class="nx">mountTree</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 </code></pre></div>
 <p>We will extend our internal instance contract with one more method. In addition to <code>mount()</code> and <code>unmount()</code>, both <code>DOMComponent</code> and <code>CompositeComponent</code> will implement a new method called <code>receive(nextElement)</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 
   <span class="nx">receive</span><span class="p">(</span><span class="nx">nextElement</span><span class="p">)</span> <span class="p">{</span>
@@ -581,7 +581,7 @@
 <p>When a composite component receives a new element, we run the <code>componentWillUpdate()</code> lifecycle hook.</p>
 
 <p>Then we re-render the component with the new props, and get the next rendered element:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
 
   <span class="c1">// ...</span>
 
@@ -618,7 +618,7 @@
 <p>Next, we can look at the rendered element&#39;s <code>type</code>. If the <code>type</code> has not changed since the last render, the component below can also be updated in place.</p>
 
 <p>For example, if it returned <code>&lt;Button color=&quot;red&quot; /&gt;</code> the first time, and <code>&lt;Button color=&quot;blue&quot; /&gt;</code> the second time, we can just tell the corresponding internal instance to <code>receive()</code> the next element:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// ...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>    <span class="c1">// ...</span>
 
     <span class="c1">// If the rendered element type has not changed,</span>
     <span class="c1">// reuse the existing component instance and exit.</span>
@@ -632,7 +632,7 @@
 <p>However, if the next rendered element has a different <code>type</code> than the previously rendered element, we can&#39;t update the internal instance. A <code>&lt;button&gt;</code> can&#39;t &quot;become&quot; an <code>&lt;input&gt;</code>.</p>
 
 <p>Instead, we have to unmount the existing internal instance and mount the new one corresponding to the rendered element type. For example, this is what happens when a component that previously rendered a <code>&lt;button /&gt;</code> renders an <code>&lt;input /&gt;</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// ...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>    <span class="c1">// ...</span>
 
     <span class="c1">// If we reached this point, we need to unmount the previously</span>
     <span class="c1">// mounted component, mount the new one, and swap their nodes.</span>
@@ -660,7 +660,7 @@
 <p>There is another condition under which a component will re-mount rather than receive an element, and that is when the element&#39;s <code>key</code> has changed. We don&#39;t discuss <code>key</code> handling in this document because it adds more complexity to an already complex tutorial.</p>
 
 <p>Note that we needed to add a method called <code>getHostNode()</code> to the internal instance contract so that it&#39;s possible to locate the platform-specific node and replace it during the update. Its implementation is straightforward for both classes:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CompositeComponent</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 
   <span class="nx">getHostNode</span><span class="p">()</span> <span class="p">{</span>
@@ -681,7 +681,7 @@
 <h3>Updating Host Components</h3>
 
 <p>Host component implementations, such as <code>DOMComponent</code>, update differently. When they receive an element, they need to update the underlying platform-specific view. In case of React DOM, this means updating the DOM attributes:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">DOMComponent</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 
   <span class="nx">receive</span><span class="p">(</span><span class="nx">nextElement</span><span class="p">)</span> <span class="p">{</span>
@@ -711,7 +711,7 @@
 <p>In this simplified example, we use an array of internal instances and iterate over it, either updating or replacing the internal instances depending on whether the received <code>type</code> matches their previous <code>type</code>. The real reconciler also takes element&#39;s <code>key</code> in the account and track moves in addition to insertions and deletions, but we will omit this logic.</p>
 
 <p>We collect DOM operations on children in a list so we can execute them in batch:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// ...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>    <span class="c1">// ...</span>
 
     <span class="c1">// These are arrays of React elements:</span>
     <span class="kd">var</span> <span class="nx">prevChildren</span> <span class="o">=</span> <span class="nx">prevProps</span><span class="p">.</span><span class="nx">children</span> <span class="o">||</span> <span class="p">[];</span>
@@ -792,7 +792,7 @@
     <span class="c1">// ...</span>
 </code></pre></div>
 <p>As the last step, we execute the DOM operations. Again, the real reconciler code is more complex because it also handles moves:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// ...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>    <span class="c1">// ...</span>
 
     <span class="c1">// Process the operation queue.</span>
     <span class="k">while</span> <span class="p">(</span><span class="nx">operationQueue</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -817,7 +817,7 @@
 <h3>Top-Level Updates</h3>
 
 <p>Now that both <code>CompositeComponent</code> and <code>DOMComponent</code> implement the <code>receive(nextElement)</code> method, we can change the top-level <code>mountTree()</code> function to use it when the element <code>type</code> is the same as it was the last time:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">mountTree</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">containerNode</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Check for an existing tree</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">containerNode</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">prevNode</span> <span class="o">=</span> <span class="nx">containerNode</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span>
@@ -839,7 +839,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Now calling <code>mountTree()</code> two times with the same type isn&#39;t destructive:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">rootEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">rootEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">);</span>
 
 <span class="nx">mountTree</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">rootEl</span><span class="p">);</span>
 <span class="c1">// Reuses the existing DOM:</span>

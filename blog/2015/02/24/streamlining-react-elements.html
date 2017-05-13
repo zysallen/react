@@ -103,7 +103,7 @@
 <h2>Immutable Props</h2>
 
 <p>In React 0.12, the props object was mutable. It allows you to do patterns like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">bar</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">bar</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">shouldUseFoo</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
   <span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -114,7 +114,7 @@
 <h3>Problem: Mutating Props You Don’t Own</h3>
 
 <p>If you mutate something, you destroy the original value. Therefore, there is nothing to diff against. Imagine something like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">child</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">child</span><span class="p">;</span>
 <span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
 <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
 </code></pre></div>
@@ -137,14 +137,14 @@
 <p>Therefore, we would like to be able to freeze the element.props object so that it is immediately immutable at the JSX callsite (or createElement). In React 0.13 we will start warning you if you mutate <code>element.props</code> after this point.</p>
 
 <p>You can generally refactor these pattern to simply use two different JSX calls:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">shouldUseFoo</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">shouldUseFoo</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">foo</span><span class="o">=</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span> <span class="nx">bar</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">bar</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>However, if you really need to dynamically build up your props you can just use a temporary object and spread it into JSX:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bar</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bar</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">shouldUseFoo</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">props</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
   <span class="nx">props</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -152,7 +152,7 @@
 <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>It is still OK to do deep mutations of objects. E.g:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">nestedObject</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">myModel</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="nx">nestedObject</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">myModel</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>In this case it&#39;s still ok to mutate the myModel object in state. We recommend that you use fully immutable models. E.g. by using immutable-js. However, we realize that mutable models are still convenient in many cases. Therefore we&#39;re only considering shallow freezing the props object that belongs to the ReactElement itself. Not nested objects.</p>
 
@@ -161,13 +161,13 @@
 <p>We will also start warning you for PropTypes at the JSX or createElement callsite. This will help debugging as you’ll have the stack trace right there. Similarly, Flow also validates PropTypes at this callsite.</p>
 
 <p>Note: There are valid patterns that clones a ReactElement and adds additional props to it. In that case these additional props needs to be optional.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="o">/&gt;</span><span class="p">;</span> <span class="c1">// extra prop is optional</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">Foo</span> <span class="o">/&gt;</span><span class="p">;</span> <span class="c1">// extra prop is optional</span>
 <span class="kd">var</span> <span class="nx">element2</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">cloneWithProps</span><span class="p">(</span><span class="nx">element1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">extra</span><span class="o">:</span> <span class="s1">&#39;prop&#39;</span> <span class="p">});</span>
 </code></pre></div>
 <h2>Owner</h2>
 
 <p>In React each child has both a &quot;parent&quot; and an “owner”. The owner is the component that created a ReactElement. I.e. the render method which contains the JSX or createElement callsite.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;&lt;</span><span class="nx">span</span> <span class="o">/&gt;&lt;</span><span class="err">/div&gt;;</span>
   <span class="p">}</span>
@@ -180,7 +180,7 @@
 <h3>Problem: The Semantics are Opaque and Confusing</h3>
 
 <p>The problem is that these are hidden artifacts attached to the ReactElement. In fact, you probably didn’t even know about it. It silently changes semantics. Take this for example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="kr">class</span> <span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">bar</span> <span class="o">?</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span> <span class="o">/&gt;</span> <span class="o">:</span> <span class="nx">foo</span><span class="p">;</span>
@@ -192,7 +192,7 @@
 <h3>Problem: Timing Matters</h3>
 
 <p>The owner is tracked by the currently executing stack. This means that the semantics of a ReactElement varies depending on when it is executed. Take this example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">A</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">A</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">B</span> <span class="nx">renderer</span><span class="o">=</span><span class="p">{</span><span class="nx">text</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">text</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span&gt;} /</span><span class="o">&gt;</span><span class="p">;</span>
   <span class="p">}</span>
@@ -226,7 +226,7 @@
 <h2>Keyed Objects as Maps</h2>
 
 <p>In React 0.12, and earlier, you could use keyed objects to provide an external key to an element or a set. This pattern isn’t actually widely used. It shouldn’t be an issue for most of you.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </code></pre></div>
 <h3>Problem: Relies on Enumeration Order</h3>
 
@@ -237,7 +237,7 @@
 <p>It is generally accepted that using objects as maps screw up type systems, VM optimizations, compilers etc. It is much better to use a dedicated data structure like ES6 Maps.</p>
 
 <p>More importantly, this can have important security implications. For example this has a potential security problem:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="p">{};</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">children</span><span class="p">[</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="o">/&gt;</span><span class="p">);</span>
 <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
 </code></pre></div>
@@ -252,13 +252,13 @@
 <h3>Solution: Just use an Array and key={…}</h3>
 
 <p>Most of the time you can just use an array with keyed ReactElements.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">);</span>
 <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </code></pre></div>
 <h3>Solution: React.addons.createFragment</h3>
 
 <p>However, this is not always possible if you’re trying to add a prefix key to an unknown set (e.g. this.props.children). It is also not always the easiest upgrade path. Therefore, we are adding a helper to <code>React.addons</code> called <code>createFragment()</code>. This accepts a keyed object and returns an opaque type.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">createFragment</span><span class="p">({</span> <span class="nx">a</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span> <span class="p">})}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">React</span><span class="p">.</span><span class="nx">addons</span><span class="p">.</span><span class="nx">createFragment</span><span class="p">({</span> <span class="nx">a</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span> <span class="p">})}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </code></pre></div>
 <p>The exact signature of this kind of fragment will be determined later. It will likely be some kind of immutable sequence.</p>
 

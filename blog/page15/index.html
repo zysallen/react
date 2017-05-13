@@ -220,7 +220,7 @@ It has several purposes:</p>
 <li>On-the-fly JSX to JavaScript compilation. Simply reference JSX files and they
 will be compiled and cached server-side.</li>
 </ul>
-<div class="highlight"><pre><code class="language-html" data-lang="html">   <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;@Url.Content(&quot;</span><span class="err">/</span><span class="na">Scripts</span><span class="err">/</span><span class="na">HelloWorld</span><span class="err">.</span><span class="na">jsx</span><span class="err">&quot;)&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>   <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;@Url.Content(&quot;</span><span class="err">/</span><span class="na">Scripts</span><span class="err">/</span><span class="na">HelloWorld</span><span class="err">.</span><span class="na">jsx</span><span class="err">&quot;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div>
 <ul>
 <li>JSX to JavaScript compilation via popular minification/combination libraries
@@ -292,7 +292,7 @@ report bugs <a href="https://github.com/reactjs/React.NET">on GitHub</a>.</p>
 <h2>ES6</h2>
 
 <p>Before we even launched React publicly, members of the team were talking about how we could leverage ES6, namely classes, to improve the experience of creating React components. Calling <code>React.createClass(...)</code> isn&#39;t great. We don&#39;t quite have the right answer here yet, but we&#39;re close. We want to make sure we make this as simple as possible. It could look like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="p">...</span>
   <span class="p">}</span>
@@ -375,7 +375,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.10.0.m
 <p>In 0.10, we’re adding more warnings to catch a similar set of patterns. When a component is mounted we clone it and use that object for our internal representation. This allows us to capture calls you think you’re making to a mounted component. We’ll forward them on to the right object, but also warn you that this is breaking. See “Access to the Mounted Instance” on <a href="https://fb.me/react-warning-descriptors">this page</a>. Most of the time you can solve your pattern by using refs.</p>
 
 <p>Storing a reference to your top level component is a pattern touched upon on that page, but another examples that demonstrates what we see a lot of:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// This is a common pattern. However instance here really refers to a</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// This is a common pattern. However instance here really refers to a</span>
 <span class="c1">// &quot;descriptor&quot;, not necessarily the mounted instance.</span>
 <span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">MyComponent</span><span class="o">/&gt;</span><span class="p">;</span>
 <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>

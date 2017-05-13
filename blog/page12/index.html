@@ -233,7 +233,7 @@
 <h2>Undo-Redo with Immutable Data Structures</h2>
 
 <p><a href="https://github.com/ameyakarve">Ameya Karve</a> explained how to use <a href="https://github.com/swannodette/mori">Mori</a>, a library that provides immutable data structures, in order to <a href="http://ameyakarve.com/jekyll/update/2014/02/06/Undo-React-Flux-Mori.html">implement undo-redo</a>. This usually very challenging feature only takes a few lines of code with Flux!</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">undo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">undo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">redoStates</span> <span class="o">=</span> <span class="nx">Mori</span><span class="p">.</span><span class="nx">conj</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">redoStates</span><span class="p">,</span> <span class="nx">Mori</span><span class="p">.</span><span class="nx">first</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">undoStates</span><span class="p">));</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">undoStates</span> <span class="o">=</span> <span class="nx">Mori</span><span class="p">.</span><span class="nx">drop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">undoStates</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">todosState</span> <span class="o">=</span> <span class="nx">Mori</span><span class="p">.</span><span class="nx">first</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">undoStates</span><span class="p">);</span>
@@ -378,7 +378,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>JSX Lower-case Convention</h3>
 
 <p>We used to have a whitelist of HTML tags that got special treatment in JSX. However as new HTML tags got added to the spec, or we added support for more SVG tags, we had to go update our whitelist. Additionally, there was ambiguity about the behavior. There was always the chance that something new added to the tag list would result in breaking your code. For example:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">component</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">component</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Is <code>component</code> an existing HTML tag? What if it becomes one?</p>
 
@@ -393,7 +393,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>JSX Spread Attributes</h3>
 
 <p>Previously there wasn&#39;t a way to for you to pass a dynamic or unknown set of properties through JSX. This is now possible using the spread <code>...</code> operator.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">myProps</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">myProps</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
 <span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>This merges the properties of the object onto the props of <code>MyComponent</code>.</p>
@@ -401,10 +401,10 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p><a href="https://gist.github.com/sebmarkbage/07bbe37bc42b6d4aef81">Read More About Spread Attributes</a></p>
 
 <p>If you used to use plain function calls to pass arbitrary props objects...</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="nx">MyComponent</span><span class="p">(</span><span class="nx">myProps</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="nx">MyComponent</span><span class="p">(</span><span class="nx">myProps</span><span class="p">);</span>
 </code></pre></div>
 <p>You can now switch to using Spread Attributes instead:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <h2>Breaking Change: <code>key</code> and <code>ref</code> Removed From <code>this.props</code></h2>
 
@@ -431,10 +431,10 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p><code>transferPropsTo</code> is deprecated in v0.12 and will be removed in v0.13. This helper function was a bit magical. It auto-merged a certain whitelist of properties and excluded others. It was also transferring too many properties. This meant that we have to keep a whitelist of valid HTML attributes in the React runtime. It also means that we can&#39;t catch typos on props.</p>
 
 <p>Our suggested solution is to use the Spread Attributes.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Or, just if you&#39;re not using JSX:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="nx">div</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="nx">div</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
 </code></pre></div>
 <p>Although to avoid passing too many props down, you&#39;ll probably want to use something like ES7 rest properties. <a href="https://gist.github.com/sebmarkbage/a6e220b7097eb3c79ab7">Read more about upgrading from transferPropsTo</a>.</p>
 
@@ -491,7 +491,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>If you currently use JSX everywhere, you don&#39;t really have to do anything to get these benefits! The updated transformer will do it for you.</p>
 
 <p>If you can&#39;t or don&#39;t want to use JSX, then please insert some hints for us. Add a <code>React.createFactory</code> call around your imported class when you require it:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">));</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">));</span>
 </code></pre></div>
 <p>Everything is backwards compatible for now, and as always React will provide you with descriptive console messaging to help you upgrade.</p>
 
@@ -508,19 +508,19 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>Creating a ReactElement</h2>
 
 <p>We now expose an external API for programmatically creating a <code>ReactElement</code> object.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">reactElement</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">reactElement</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">);</span>
 </code></pre></div>
 <p>The <code>type</code> argument is either a string (HTML tag) or a class. It&#39;s a description of what tag/class is going to be rendered and what props it will contain. You can also create factory functions for specific types. This basically just provides the type argument for you:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">reactDivElement</span> <span class="o">=</span> <span class="nx">div</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">children</span><span class="p">);</span>
 </code></pre></div>
 <h2>Deprecated: Auto-generated Factories</h2>
 
 <p>Imagine if <code>React.createClass</code> was just a plain JavaScript class. If you call a class as a plain function you would call the component&#39;s constructor to create a Component instance, not a <code>ReactElement</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">new</span> <span class="nx">MyComponent</span><span class="p">();</span> <span class="c1">// Component, not ReactElement</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">new</span> <span class="nx">MyComponent</span><span class="p">();</span> <span class="c1">// Component, not ReactElement</span>
 </code></pre></div>
 <p>React 0.11 gave you a factory function for free when you called <code>React.createClass</code>. This wrapped your internal class and then returned a <code>ReactElement</code> factory function for you.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span>
   <span class="kr">class</span> <span class="p">{</span>
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
       <span class="p">...</span>
@@ -537,12 +537,12 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>React With JSX</h3>
 
 <p>If you use the React specific <a href="https://facebook.github.io/jsx/">JSX</a> transform, the upgrade path is simple. Just make sure you have React in scope.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// If you use node/browserify modules make sure</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// If you use node/browserify modules make sure</span>
 <span class="c1">// that you require React into scope.</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>React&#39;s JSX will create the <code>ReactElement</code> for you. You can continue to use JSX with regular classes:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(...);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(...);</span>
 
 <span class="kd">var</span> <span class="nx">MyOtherComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -555,7 +555,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>React Without JSX</h3>
 
 <p>If you don&#39;t use JSX and just call components as functions, you will need to explicitly create a factory before calling it:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponentClass</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(...);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyComponentClass</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(...);</span>
 
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">MyComponentClass</span><span class="p">);</span> <span class="c1">// New step</span>
 
@@ -568,13 +568,13 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>If you&#39;re using a module system, the recommended solution is to export the class and create the factory on the requiring side.</p>
 
 <p>Your class creation is done just like before:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// MyComponent.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// MyComponent.js</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(...);</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyComponent</span><span class="p">;</span>
 </code></pre></div>
 <p>The other side uses <code>React.createFactory</code> after <code>require</code>ing the component class:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// MyOtherComponent.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// MyOtherComponent.js</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="c1">// All you have to do to upgrade is wrap your requires like this:</span>
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">));</span>
@@ -588,7 +588,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyOtherComponent</span><span class="p">;</span>
 </code></pre></div>
 <p>You ONLY have to do this for custom classes. React still has built-in factories for common HTML elements.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyDOMComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyDOMComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">({</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span> <span class="p">});</span> <span class="c1">// still ok</span>
   <span class="p">}</span>
@@ -599,7 +599,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>Anti-Pattern: Exporting Factories</h3>
 
 <p>If you have an isolated project that only you use, then you could create a helper that creates both the class and the factory at once:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Anti-pattern - Please, don&#39;t use</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Anti-pattern - Please, don&#39;t use</span>
 <span class="kd">function</span> <span class="nx">createClass</span><span class="p">(</span><span class="nx">spec</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">(</span><span class="nx">spec</span><span class="p">));</span>
 <span class="p">}</span>
@@ -613,7 +613,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>Third-party Languages</h2>
 
 <p>The signature of a <code>ReactElement</code> is something like this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
   <span class="nx">type</span> <span class="o">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="kr">class</span><span class="p">,</span>
   <span class="nx">props</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">className</span><span class="p">,</span> <span class="nx">etc</span><span class="p">.</span> <span class="p">},</span>
   <span class="nx">key</span> <span class="o">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="kr">boolean</span> <span class="o">|</span> <span class="nx">number</span> <span class="o">|</span> <span class="kc">null</span><span class="p">,</span>
@@ -625,7 +625,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>Your Thoughts and Ideas</h2>
 
 <p>We&#39;d love to hear your feedback on this API and your preferred style. A plausible alternative could be to directly inline objects instead of creating factory functions:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// MyOtherComponent.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// MyOtherComponent.js</span>
 <span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">);</span>
 
@@ -644,7 +644,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>The Next Step: ES6 Classes</h2>
 
 <p>After 0.12 we&#39;ll begin work on moving to ES6 classes. We will still support <code>React.createClass</code> as a backwards compatible API. If you use an ES6 transpiler you will be able to declare your components like this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="p">...</span>
   <span class="p">}</span>
@@ -697,7 +697,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <li>Run <code>npm install jest-cli —save-dev</code></li>
 <li>Add the following to your package.json</li>
 </ol>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
   <span class="p">...</span>
   <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;test&quot;</span><span class="o">:</span> <span class="s2">&quot;jest&quot;</span>
@@ -708,7 +708,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>Now you&#39;re ready to run your tests from the command line with <code>npm test</code>.</p>
 
 <p>By default, all modules are mocked, so the only boilerplate we need in TodoStore-test.js is a declarative call to Jest&#39;s <code>dontMock()</code> method.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jest</span><span class="p">.</span><span class="nx">dontMock</span><span class="p">(</span><span class="s1">&#39;TodoStore&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">jest</span><span class="p">.</span><span class="nx">dontMock</span><span class="p">(</span><span class="s1">&#39;TodoStore&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>This tells Jest to let TodoStore be a real object with real, live methods. Jest will mock all other objects involved with the test.</p>
 
@@ -719,7 +719,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>By design, stores can&#39;t be modified from the outside. They have no setters. The only way new data can enter a store is through the callback it registers with the dispatcher.</p>
 
 <p>We therefore need to simulate the Flux data flow with this <em>one weird trick</em>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mockRegister</span> <span class="o">=</span> <span class="nx">MyDispatcher</span><span class="p">.</span><span class="nx">register</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">mockRegister</span> <span class="o">=</span> <span class="nx">MyDispatcher</span><span class="p">.</span><span class="nx">register</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">mockRegisterInfo</span> <span class="o">=</span> <span class="nx">mockRegister</span><span class="p">.</span><span class="nx">mock</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">callsToRegister</span> <span class="o">=</span> <span class="nx">mockRegisterInfo</span><span class="p">.</span><span class="nx">calls</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">firstCall</span> <span class="o">=</span> <span class="nx">callsToRegister</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -731,10 +731,10 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>For folks new to Jest, or mocks in general, it might not be entirely obvious what is happening in that code block, so let&#39;s look at each part of it a bit more closely. We start out by looking at the <code>register()</code> method of our application&#39;s dispatcher — the method that the store uses to register its callback with the dispatcher. The dispatcher has been thoroughly mocked automatically by Jest, so we can get a reference to the mocked version of the <code>register()</code> method just as we would normally refer to that method in our production code. But we can get additional information about that method with the <code>mock</code> <em>property</em> of that method. We don&#39;t often think of methods having properties, but in Jest, this idea is vital. Every method of a mocked object has this property, and it allows us to examine how the method is being called during the test. A chronologically ordered list of calls to <code>register()</code> is available with the <code>calls</code> property of <code>mock</code>, and each of these calls has a list of the arguments that were used in each method call.</p>
 
 <p>So in this code, we are really saying, &quot;Give me a reference to the first argument of the first call to MyDispatcher&#39;s <code>register()</code> method.&quot; That first argument is the store&#39;s callback, so now we have all we need to start testing.  But first, we can save ourselves some semicolons and roll all of this into a single line:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">callback</span> <span class="o">=</span> <span class="nx">MyDispatcher</span><span class="p">.</span><span class="nx">register</span><span class="p">.</span><span class="nx">mock</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">callback</span> <span class="o">=</span> <span class="nx">MyDispatcher</span><span class="p">.</span><span class="nx">register</span><span class="p">.</span><span class="nx">mock</span><span class="p">.</span><span class="nx">calls</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
 </code></pre></div>
 <p>We can invoke that callback whenever we like, independent of our application&#39;s dispatcher or action creators. We will, in fact, fake the behavior of the dispatcher and action creators by invoking the callback with an action that we&#39;ll create directly in our test.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;VIEW_ACTION&#39;</span><span class="p">,</span>
   <span class="nx">action</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">actionType</span><span class="o">:</span> <span class="nx">TodoConstants</span><span class="p">.</span><span class="nx">TODO_CREATE</span><span class="p">,</span>
@@ -749,7 +749,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>Putting it All Together</h2>
 
 <p>The example Flux TodoMVC application has been updated with an example test for the TodoStore, but let&#39;s look at an abbreviated version of the entire test. The most important things to notice in this test are how we keep a reference to the store&#39;s registered callback in the closure of the test, and how we recreate the store before every test so that we clear the state of the store entirely.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">jest</span><span class="p">.</span><span class="nx">dontMock</span><span class="p">(</span><span class="s1">&#39;../TodoStore&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">jest</span><span class="p">.</span><span class="nx">dontMock</span><span class="p">(</span><span class="s1">&#39;../TodoStore&#39;</span><span class="p">);</span>
 <span class="nx">jest</span><span class="p">.</span><span class="nx">dontMock</span><span class="p">(</span><span class="s1">&#39;react/lib/merge&#39;</span><span class="p">);</span>
 
 <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;TodoStore&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -816,7 +816,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h2>Mocking Data Derived from Other Stores</h2>
 
 <p>Sometimes our stores rely on data from other stores. Because all of our modules are mocked, we&#39;ll need to simulate the data that comes from the other store.  We can do this by retrieving the mock function and adding a custom return value to it.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyOtherStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../MyOtherStore&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyOtherStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../MyOtherStore&#39;</span><span class="p">);</span>
 <span class="nx">MyOtherStore</span><span class="p">.</span><span class="nx">getState</span><span class="p">.</span><span class="nx">mockReturnValue</span><span class="p">({</span>
   <span class="s1">&#39;123&#39;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span>
@@ -839,7 +839,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p>What often starts as a little piece of seemingly benign logic in our React components often presents a problem while creating unit tests. We want to be able to write tests that read like a specification for our application&#39;s behavior, and when application logic slips into our view layer, this becomes more difficult.</p>
 
 <p>For example, when a user has marked each of their to-do items as complete, the TodoMVC specification dictates that we should also change the status of the &quot;Mark all as complete&quot; checkbox automatically. To create that logic, we might be tempted to write code like this in our MainSection&#39;s <code>render()</code> method:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">allTodos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">allTodos</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">allTodos</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">allTodos</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">allChecked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">allTodos</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">allTodos</span><span class="p">[</span><span class="nx">id</span><span class="p">].</span><span class="nx">complete</span><span class="p">)</span> <span class="p">{</span>
@@ -861,7 +861,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <span class="p">);</span>
 </code></pre></div>
 <p>While this seems like an easy, normal thing to do, this is an example of application logic slipping into the views, and it can&#39;t be described in our spec-style TodoStore test. Let&#39;s take that logic and move it to the store. First, we&#39;ll create a public method on the store that will encapsulate that logic:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">areAllComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">areAllComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">_todos</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_todos</span><span class="p">[</span><span class="nx">id</span><span class="p">].</span><span class="nx">complete</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -871,7 +871,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <span class="p">},</span>
 </code></pre></div>
 <p>Now we have the application logic where it belongs, and we can write the following test:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;determines whether all to-do items are complete&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;determines whether all to-do items are complete&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">callback</span><span class="p">(</span><span class="nx">mockTodoCreate</span><span class="p">);</span>
@@ -901,7 +901,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <span class="p">});</span>
 </code></pre></div>
 <p>Finally, we revise our view layer. We&#39;ll call for that data in the controller-view, TodoApp.js, and pass it down to the MainSection component.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getTodoState</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">getTodoState</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="nx">allTodos</span><span class="o">:</span> <span class="nx">TodoStore</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(),</span>
     <span class="nx">areAllComplete</span><span class="o">:</span> <span class="nx">TodoStore</span><span class="p">.</span><span class="nx">areAllComplete</span><span class="p">()</span>
@@ -935,7 +935,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <span class="p">});</span>
 </code></pre></div>
 <p>And then we&#39;ll utilize that property for the rendering of the checkbox.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="p">...</span>
 
   <span class="k">return</span> <span class="p">(</span>

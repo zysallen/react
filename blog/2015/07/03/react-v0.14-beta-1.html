@@ -113,7 +113,7 @@
 <p>The <code>react</code> package contains <code>React.createElement</code>, <code>React.createClass</code> and <code>React.Component</code>, <code>React.PropTypes</code>, <code>React.Children</code>, and the other helpers related to elements and component classes. We think of these as the <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/"><em>isomorphic</em></a> or <a href="https://medium.com/@mjackson/universal-javascript-4761051b7ae9"><em>universal</em></a> helpers that you need to build components.</p>
 
 <p>The <code>react-dom</code> package contains <code>ReactDOM.render</code>, <code>ReactDOM.unmountComponentAtNode</code>, and <code>ReactDOM.findDOMNode</code>, and in <code>react-dom/server</code> we have server-side rendering support with <code>ReactDOMServer.renderToString</code> and <code>ReactDOMServer.renderToStaticMarkup</code>.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">ReactDOM</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react-dom&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
@@ -137,7 +137,7 @@
 <p>The other big change we&#39;re making in this release is exposing refs to DOM components as the DOM node itself. That means: we looked at what you can do with a <code>ref</code> to a DOM component and realized that the only useful thing you can do with it is call <code>this.refs.giraffe.getDOMNode()</code> to get the underlying DOM node. In this release, <code>this.refs.giraffe</code> <em>is</em> the actual DOM node.</p>
 
 <p>Refs to custom component classes work exactly as before.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">Zoo</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">Zoo</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>

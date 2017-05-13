@@ -6,9 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Composition vs Inheritance - React</title>
+  <title>组合 vs 继承 - React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Composition vs Inheritance - React">
+  <meta property="og:title" content="组合 vs 继承 - React">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://facebook.github.io/react/docs/composition-vs-inheritance.html">
   <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
@@ -74,20 +74,20 @@
   <div class="inner-content">
     <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/composition-vs-inheritance.md" target="_blank">Edit on GitHub</a>
     <h1>
-      Composition vs Inheritance
+      组合 vs 继承
     </h1>
     <div class="subHeader"></div>
 
-    <p>React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.</p>
+    <p>React 具有强大的组合模型，我们建议使用组合而不是继承来复用组件之间的代码。</p>
 
-<p>In this section, we will consider a few problems where developers new to React often reach for inheritance, and show how we can solve them with composition.</p>
+<p>在本节中，我们将围绕几个 React 新手经常使用继承解决的问题，我们将展示如果用组合来解决它们。</p>
 
-<h2>Containment</h2>
+<h2>约束性</h2>
 
-<p>Some components don&#39;t know their children ahead of time. This is especially common for components like <code>Sidebar</code> or <code>Dialog</code> that represent generic &quot;boxes&quot;.</p>
+<p>一些组件不能提前知道它们的子组件是什么。这对于 <code>Sidebar</code> 或 <code>Dialog</code> 这类通用容器尤其常见。</p>
 
-<p>We recommend that such components use the special <code>children</code> prop to pass children elements directly into their output:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">FancyBorder</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<p>我们建议这些组件使用 <code>children</code> 属性将子元素直接传递到输出。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">FancyBorder</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;FancyBorder FancyBorder-&#39;</span> <span class="o">+</span> <span class="nx">props</span><span class="p">.</span><span class="nx">color</span><span class="p">}</span><span class="o">&gt;</span>
 <span class="hll">      <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
@@ -95,8 +95,8 @@
   <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This lets other components pass arbitrary children to them by nesting the JSX:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">WelcomeDialog</span><span class="p">()</span> <span class="p">{</span>
+<p>这样做还允许其他组件通过嵌套 JSX 来传递子组件。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">WelcomeDialog</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">FancyBorder</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="o">&gt;</span>
 <span class="hll">      <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;Dialog-title&quot;</span><span class="o">&gt;</span>
@@ -109,12 +109,12 @@
   <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/gaearon/pen/ozqNOV?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/gaearon/pen/ozqNOV?editors=0010">在 CodePen 上尝试。</a></p>
 
-<p>Anything inside the <code>&lt;FancyBorder&gt;</code> JSX tag gets passed into the <code>FancyBorder</code> component as a <code>children</code> prop. Since <code>FancyBorder</code> renders <code>{props.children}</code> inside a <code>&lt;div&gt;</code>, the passed elements appear in the final output.</p>
+<p><code>&lt;FancyBorder&gt;</code> JSX 标签内的任何内容都将通过 <code>children</code> 属性传入 <code>FancyBorder</code>。由于 <code>FancyBorder</code> 在一个 <code>&lt;div&gt;</code> 内渲染了 <code>{props.children}</code>，所以被传递的所有元素都会出现在最终输出中。</p>
 
-<p>While this is less common, sometimes you might need multiple &quot;holes&quot; in a component. In such cases you may come up with your own convention instead of using <code>children</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">SplitPane</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<p>虽然不太常见，但有时你可能需要在组件中有多个入口，这种情况下你可以使用自己约定的属性而不是 <code>children</code>：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">SplitPane</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;SplitPane&quot;</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;SplitPane-left&quot;</span><span class="o">&gt;</span>
@@ -139,16 +139,16 @@
   <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/gaearon/pen/gwZOJp?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/gaearon/pen/gwZOJp?editors=0010">在 CodePen 上尝试。</a></p>
 
-<p>React elements like <code>&lt;Contacts /&gt;</code> and <code>&lt;Chat /&gt;</code> are just objects, so you can pass them as props like any other data.</p>
+<p>类似 <code>&lt;Contacts /&gt;</code> 和 <code>&lt;Chat /&gt;</code> 这样的 React 元素都是对象，所以你可以像任何其他元素一样传递它们。</p>
 
-<h2>Specialization</h2>
+<h2>专一性</h2>
 
-<p>Sometimes we think about components as being &quot;special cases&quot; of other components. For example, we might say that a <code>WelcomeDialog</code> is a special case of <code>Dialog</code>.</p>
+<p>有时我们认为组件是其他组件的特殊情况。例如，我们会说 <code>WelcomeDialog</code> 是 <code>Dialog</code> 的特殊情况。</p>
 
-<p>In React, this is also achieved by composition, where a more &quot;specific&quot; component renders a more &quot;generic&quot; one and configures it with props:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Dialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<p>在 React 中，这也是通过组合来实现的，通过配置属性用较特殊的组件来渲染较通用的组件。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">Dialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">FancyBorder</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;Dialog-title&quot;</span><span class="o">&gt;</span>
@@ -169,10 +169,10 @@
 </span>  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/gaearon/pen/kkEaOZ?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/gaearon/pen/kkEaOZ?editors=0010">在 CodePen 上尝试</a></p>
 
-<p>Composition works equally well for components defined as classes:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Dialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<p>组合对于定义为类的组件同样适用：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">Dialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">FancyBorder</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;Dialog-title&quot;</span><span class="o">&gt;</span>
@@ -212,19 +212,19 @@
   <span class="p">}</span>
 
   <span class="nx">handleSignUp</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="err">`</span><span class="nx">Welcome</span> <span class="nx">aboard</span><span class="p">,</span> <span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">login</span><span class="p">}</span><span class="o">!</span><span class="err">`</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="sb">`Welcome aboard, </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">login</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/gaearon/pen/gwZbYa?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/gaearon/pen/gwZbYa?editors=0010">在 CodePen 上尝试。</a></p>
 
-<h2>So What About Inheritance?</h2>
+<h2>那么继承呢？</h2>
 
-<p>At Facebook, we use React in thousands of components, and we haven&#39;t found any use cases where we would recommend creating component inheritance hierarchies.</p>
+<p>在 Facebook 网站上，我们的 React 使用了数以千计的组件，然而却还未发现任何需要推荐你使用继承的情况。</p>
 
-<p>Props and composition give you all the flexibility you need to customize a component&#39;s look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.</p>
+<p>属性和组合为你提供了以清晰和安全的方式自定义组件的样式和行为所需的所有灵活性。请记住，组件可以接受任意元素，包括基本数据类型、React 元素或函数。</p>
 
-<p>If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.</p>
+<p>如果要在组件之间复用 UI 无关的功能，我们建议将其提取到单独的 JavaScript 模块中。这样可以在不对组件进行扩展的前提下导入并使用该函数、对象或类。</p>
 
 
     <div class="docs-prevnext">

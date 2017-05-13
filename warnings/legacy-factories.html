@@ -75,7 +75,7 @@
     <h1>React Element Factories and JSX Warning</h1>
     <div class="subHeader"></div>
     <p>You probably came here because your code is calling your component as a plain function call. This is now deprecated:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">MyComponent</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">});</span>  <span class="c1">// WARNING</span>
@@ -84,7 +84,7 @@
 <h2>JSX</h2>
 
 <p>React components can no longer be called directly like this. Instead <a href="/react/docs/jsx-in-depth.html">you can use JSX</a>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
@@ -94,7 +94,7 @@
 <h2>Without JSX</h2>
 
 <p>If you don&#39;t want to, or can&#39;t use JSX, then you&#39;ll need to wrap your component in a factory before calling it:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;MyComponent&#39;</span><span class="p">));</span>
 
 <span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
@@ -106,7 +106,7 @@
 <h2>Dynamic components without JSX</h2>
 
 <p>If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">React</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;react&#39;</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">render</span><span class="p">(</span><span class="nx">MyComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">MyComponent</span><span class="p">,</span> <span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">});</span>

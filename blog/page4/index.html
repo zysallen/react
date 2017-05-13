@@ -206,7 +206,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p>If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a <code>Button</code> <em>component</em> by creating a class. When the app is running, you may have several <em>instances</em> of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. Why introduce <em>elements</em>?</p>
 
 <p>In this traditional UI model, it is up to you to take care of creating and destroying child component instances. If a <code>Form</code> component wants to render a <code>Button</code> component, it needs to create its instance, and manually keep it up to date with any new information.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Form</span> <span class="kr">extends</span> <span class="nx">TraditionalObjectOrientedView</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Form</span> <span class="kr">extends</span> <span class="nx">TraditionalObjectOrientedView</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Read some data passed to the view</span>
     <span class="kr">const</span> <span class="p">{</span> <span class="nx">isSubmitted</span><span class="p">,</span> <span class="nx">buttonText</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">attrs</span><span class="p">;</span>
@@ -255,7 +255,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <h3>DOM Elements</h3>
 
 <p>When an element’s <code>type</code> is a string, it represents a DOM node with that tag name, and <code>props</code> correspond to its attributes. This is what React will render. For example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;button button-blue&#39;</span><span class="p">,</span>
@@ -269,11 +269,11 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">}</span>
 </code></pre></div>
 <p>This element is just a way to represent the following HTML as a plain object:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&#39;button button-blue&#39;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;b&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;button button-blue&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>
     OK!
-  <span class="nt">&lt;/b&gt;</span>
-<span class="nt">&lt;/button&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Note how elements can be nested. By convention, when we want to create an element tree, we specify one or more child elements as the <code>children</code> prop of their containing element.</p>
 
@@ -284,7 +284,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <h3>Component Elements</h3>
 
 <p>However, the <code>type</code> of an element can also be a function or a class corresponding to a React component:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">Button</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
@@ -297,7 +297,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p><strong>An element describing a component is also an element, just like an element describing the DOM node. They can be nested and mixed with each other.</strong></p>
 
 <p>This feature lets you define a <code>DangerButton</code> component as a <code>Button</code> with a specific <code>color</code> property value without worrying about whether <code>Button</code> renders to a DOM <code>&lt;button&gt;</code>, a <code>&lt;div&gt;</code>, or something else entirely:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">DangerButton</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">DangerButton</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">Button</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
@@ -306,7 +306,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">});</span>
 </code></pre></div>
 <p>You can mix and match DOM and component elements in a single element tree:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">DeleteAccount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">DeleteAccount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">children</span><span class="o">:</span> <span class="p">[{</span>
@@ -329,7 +329,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">});</span>
 </code></pre></div>
 <p>Or, if you prefer JSX:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">DeleteAccount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">DeleteAccount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
   <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span><span class="o">?&lt;</span><span class="err">/p&gt;</span>
     <span class="o">&lt;</span><span class="nx">DangerButton</span><span class="o">&gt;</span><span class="nx">Yep</span><span class="o">&lt;</span><span class="err">/DangerButton&gt;</span>
@@ -350,7 +350,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p>When React sees an element with a function or class <code>type</code>, it knows to ask <em>that</em> component what element it renders to, given the corresponding <code>props</code>.</p>
 
 <p>When it sees this element:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">Button</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
@@ -359,7 +359,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">}</span>
 </code></pre></div>
 <p>React will ask <code>Button</code> what it renders to. The <code>Button</code> will return this element:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;button button-blue&#39;</span><span class="p">,</span>
@@ -377,7 +377,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p>React is like a child asking “what is Y” for every “X is Y” you explain to them until they figure out every little thing in the world.</p>
 
 <p>Remember the <code>Form</code> example above? It can be written in React as follows<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">isSubmitted</span><span class="p">,</span> <span class="nx">buttonText</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">isSubmitted</span><span class="p">,</span> <span class="nx">buttonText</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">isSubmitted</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Form submitted! Return a message element.</span>
     <span class="k">return</span> <span class="p">{</span>
@@ -407,7 +407,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <h3>Components Can Be Classes or Functions</h3>
 
 <p>In the code above, <code>Form</code>, <code>Message</code>, and <code>Button</code> are React components. They can either be written as functions, like above, or as classes descending from <code>React.Component</code>. These three ways to declare a component are mostly equivalent:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// 1) As a function of props</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// 1) As a function of props</span>
 <span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">color</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
@@ -468,7 +468,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <h3>Top-Down Reconciliation</h3>
 
 <p>When you call:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">({</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">({</span>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">Form</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">isSubmitted</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -477,7 +477,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">},</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">));</span>
 </code></pre></div>
 <p>React will ask the <code>Form</code> component what element tree it returns, given those <code>props</code>. It will gradually “refine” its understanding of your component tree in terms of simpler primitives:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// React: You told me this...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// React: You told me this...</span>
 <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">Form</span><span class="p">,</span>
   <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
@@ -586,7 +586,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p>The primary use case for <code>isMounted()</code> is to avoid calling <code>setState()</code> after a component has unmounted, because calling <code>setState()</code> after a component has unmounted will emit a warning. The “setState warning” exists to help you catch bugs, because calling <code>setState()</code> on an unmounted component is an indication that your app/component has somehow failed to clean up properly. Specifically, calling <code>setState()</code> in an unmounted component means that your app is still holding a reference to the component after the component has been unmounted - which often indicates a memory leak!</p>
 
 <p>To avoid the error message, people often add lines like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isMounted</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// This is bad.</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isMounted</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// This is bad.</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...});</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -599,7 +599,7 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <p>An optimal solution would be to find places where <code>setState()</code> might be called after a component has unmounted, and fix them. Such situations most commonly occur due to callbacks, when a component is waiting for some data and gets unmounted before the data arrives. Ideally, any callbacks should be canceled in <code>componentWillUnmount</code>, prior to unmounting.</p>
 
 <p>For instance, if you are using a Flux store in your component, you must unsubscribe in <code>componentWillUnmount</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">mydatastore</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
   <span class="p">}</span>
@@ -612,8 +612,8 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="p">}</span>
 </code></pre></div>
 <p>If you use ES6 promises, you may need to wrap your promise in order to make it cancelable.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">cancelablePromise</span> <span class="o">=</span> <span class="nx">makeCancelable</span><span class="p">(</span>
-  <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">component</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...}}))</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">cancelablePromise</span> <span class="o">=</span> <span class="nx">makeCancelable</span><span class="p">(</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">component</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...}}))</span>
 <span class="p">);</span>
 
 <span class="nx">cancelablePromise</span>
@@ -624,10 +624,10 @@ Minified build for production: <a href="https://fb.me/react-dom-server-0.14.4.mi
 <span class="nx">cancelablePromise</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span> <span class="c1">// Cancel the promise</span>
 </code></pre></div>
 <p>Where <code>makeCancelable</code> is <a href="https://github.com/facebook/react/issues/5465#issuecomment-157888325">defined by @istarkov</a> as:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">makeCancelable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">makeCancelable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">hasCanceled_</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
-  <span class="kr">const</span> <span class="nx">wrappedPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">wrappedPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">val</span><span class="p">)</span> <span class="o">=&gt;</span>
       <span class="nx">hasCanceled_</span> <span class="o">?</span> <span class="nx">reject</span><span class="p">({</span><span class="nx">isCanceled</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span> <span class="o">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
     <span class="p">);</span>

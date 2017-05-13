@@ -101,7 +101,7 @@
 <p>The primary use case for <code>isMounted()</code> is to avoid calling <code>setState()</code> after a component has unmounted, because calling <code>setState()</code> after a component has unmounted will emit a warning. The “setState warning” exists to help you catch bugs, because calling <code>setState()</code> on an unmounted component is an indication that your app/component has somehow failed to clean up properly. Specifically, calling <code>setState()</code> in an unmounted component means that your app is still holding a reference to the component after the component has been unmounted - which often indicates a memory leak!</p>
 
 <p>To avoid the error message, people often add lines like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isMounted</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// This is bad.</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isMounted</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// This is bad.</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...});</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -114,7 +114,7 @@
 <p>An optimal solution would be to find places where <code>setState()</code> might be called after a component has unmounted, and fix them. Such situations most commonly occur due to callbacks, when a component is waiting for some data and gets unmounted before the data arrives. Ideally, any callbacks should be canceled in <code>componentWillUnmount</code>, prior to unmounting.</p>
 
 <p>For instance, if you are using a Flux store in your component, you must unsubscribe in <code>componentWillUnmount</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">mydatastore</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
   <span class="p">}</span>
@@ -127,8 +127,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>If you use ES6 promises, you may need to wrap your promise in order to make it cancelable.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">cancelablePromise</span> <span class="o">=</span> <span class="nx">makeCancelable</span><span class="p">(</span>
-  <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">component</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...}}))</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">cancelablePromise</span> <span class="o">=</span> <span class="nx">makeCancelable</span><span class="p">(</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">component</span><span class="p">.</span><span class="nx">setState</span><span class="p">({...}}))</span>
 <span class="p">);</span>
 
 <span class="nx">cancelablePromise</span>
@@ -139,10 +139,10 @@
 <span class="nx">cancelablePromise</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span> <span class="c1">// Cancel the promise</span>
 </code></pre></div>
 <p>Where <code>makeCancelable</code> is <a href="https://github.com/facebook/react/issues/5465#issuecomment-157888325">defined by @istarkov</a> as:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">makeCancelable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">makeCancelable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">hasCanceled_</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
-  <span class="kr">const</span> <span class="nx">wrappedPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">wrappedPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">val</span><span class="p">)</span> <span class="o">=&gt;</span>
       <span class="nx">hasCanceled_</span> <span class="o">?</span> <span class="nx">reject</span><span class="p">({</span><span class="nx">isCanceled</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span> <span class="o">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span>
     <span class="p">);</span>

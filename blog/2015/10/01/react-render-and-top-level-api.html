@@ -104,12 +104,12 @@
   <p>When you&#39;re in React&#39;s world you are just building components that fit into other components. Everything is a component. Unfortunately not everything around you is built using React. At the root of your tree you still have to write some plumbing code to connect the outer world into React.</p>
 
 <p>The primary API for rendering into the DOM looks like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">reactElement</span><span class="p">,</span> <span class="nx">domContainerNode</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">reactElement</span><span class="p">,</span> <span class="nx">domContainerNode</span><span class="p">)</span>
 </code></pre></div>
 <p>To update the properties of an existing component, you call render again with a new element.</p>
 
 <p>If you are rendering React components within a single-page app, you may need to plug into the app&#39;s view lifecycle to ensure your app will invoke unmountComponentAtNode at the appropriate time. React will not automatically clean up a tree. You need to manually call:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">unmountComponentAtNode</span><span class="p">(</span><span class="nx">domContainerNode</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">unmountComponentAtNode</span><span class="p">(</span><span class="nx">domContainerNode</span><span class="p">)</span>
 </code></pre></div>
 <p>This is important and often forgotten. Forgetting to call <code>unmountComponentAtNode</code> will cause your app to leak memory. There is no way for us to automatically detect when it is appropriate to do this work. Every system is different.</p>
 
@@ -126,7 +126,7 @@
 <h2>Object Oriented Updates</h2>
 
 <p>If you call <code>ReactDOM.render</code> a second time to update properties, all your props are completely replaced.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="nx">locale</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span> <span class="nx">userID</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">container</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="nx">locale</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span> <span class="nx">userID</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">container</span><span class="p">);</span>
 <span class="c1">// props.userID == 1</span>
 <span class="c1">// props.locale == &quot;en-US&quot;</span>
 <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">App</span> <span class="nx">userID</span><span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nx">container</span><span class="p">);</span>
@@ -138,7 +138,7 @@
 <p>We used to have a helper function called <code>setProps</code> which allowed you to update only a few properties at a time. Unfortunately this API lived on a component instance, required React to keep this state internally and wasn&#39;t very natural anyway. Therefore, we&#39;re deprecating it and suggest that you build it into your own wrapper instead.</p>
 
 <p>Here&#39;s some boilerplate to get you started. It is a 0.14 migration path for codebases using <code>setProps</code> and <code>replaceProps</code>.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">ReactComponentRenderer</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">ReactComponentRenderer</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">klass</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">klass</span> <span class="o">=</span> <span class="nx">klass</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">container</span> <span class="o">=</span> <span class="nx">container</span><span class="p">;</span>
@@ -172,7 +172,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Object-oriented APIs don&#39;t look like that though. They use setters and methods. I think we can do better. If you know more about the component API that you&#39;re rendering, you can create a more natural object-oriented API around your React component.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">ReactVideoPlayer</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">ReactVideoPlayer</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_container</span> <span class="o">=</span> <span class="nx">container</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>

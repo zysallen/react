@@ -81,7 +81,7 @@
     <p>A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React&#39;s compositional nature.</p>
 
 <p>Concretely, <strong>a higher-order component is a function that takes a component and returns a new component.</strong></p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">higherOrderComponent</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">higherOrderComponent</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">);</span>
 </code></pre></div>
 <p>Whereas a component transforms props into UI, a higher-order component transforms a component into another component.</p>
 
@@ -100,7 +100,7 @@
 <p>Components are the primary unit of code reuse in React. However, you&#39;ll find that some patterns aren&#39;t a straightforward fit for traditional components.</p>
 
 <p>For example, say you have a <code>CommentList</code> component that subscribes to an external data source to render a list of comments:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">CommentList</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CommentList</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -139,7 +139,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Later, you write a component for subscribing to a single blog post, which follows a similar pattern:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">BlogPost</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">BlogPost</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -178,7 +178,7 @@
 <p>You can imagine that in a large app, this same pattern of subscribing to <code>DataSource</code> and calling <code>setState</code> will occur over and over again. We want an abstraction that allows us to define this logic in a single place and share them across many components. This is where higher-order components excel.</p>
 
 <p>We can write a function that creates components, like <code>CommentList</code> and <code>BlogPost</code>, that subscribe to <code>DataSource</code>. The function will accept as one of its arguments a child component that receives the subscribed data as a prop. Let&#39;s call the function <code>withSubscription</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">CommentListWithSubscription</span> <span class="o">=</span> <span class="nx">withSubscription</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">CommentListWithSubscription</span> <span class="o">=</span> <span class="nx">withSubscription</span><span class="p">(</span>
   <span class="nx">CommentList</span><span class="p">,</span>
   <span class="p">(</span><span class="nx">DataSource</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">DataSource</span><span class="p">.</span><span class="nx">getComments</span><span class="p">()</span>
 <span class="p">);</span>
@@ -191,7 +191,7 @@
 <p>The first parameter is the wrapped component. The second parameter retrieves the data we&#39;re interested in, given a <code>DataSource</code> and the current props.</p>
 
 <p>When <code>CommentListWithSubscription</code> and <code>BlogPostWithSubscription</code> are rendered, <code>CommentList</code> and <code>BlogPost</code> will be passed a <code>data</code> prop with the most current data retrieved from <code>DataSource</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// This function takes a component...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// This function takes a component...</span>
 <span class="kd">function</span> <span class="nx">withSubscription</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">,</span> <span class="nx">selectData</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...and returns another component...</span>
   <span class="k">return</span> <span class="kr">class</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
@@ -237,7 +237,7 @@
 <h2>Don&#39;t Mutate the Original Component. Use Composition.</h2>
 
 <p>Resist the temptation to modify a component&#39;s prototype (or otherwise mutate it) inside an HOC.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">logProps</span><span class="p">(</span><span class="nx">InputComponent</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">logProps</span><span class="p">(</span><span class="nx">InputComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">InputComponent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current props: &#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Next props: &#39;</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">);</span>
@@ -255,7 +255,7 @@
 <p>Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.</p>
 
 <p>Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">logProps</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">logProps</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="kr">class</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
     <span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current props: &#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
@@ -277,7 +277,7 @@
 <p>HOCs add features to a component. They shouldn&#39;t drastically alter its contract. It&#39;s expected that the component returned from an HOC has a similar interface to the wrapped component.</p>
 
 <p>HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Filter out extra props that are specific to this HOC and shouldn&#39;t be</span>
   <span class="c1">// passed through</span>
   <span class="kr">const</span> <span class="p">{</span> <span class="nx">extraProp</span><span class="p">,</span> <span class="p">...</span><span class="nx">passThroughProps</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
@@ -300,17 +300,17 @@
 <h2>Convention: Maximizing Composability</h2>
 
 <p>Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">NavbarWithRouter</span> <span class="o">=</span> <span class="nx">withRouter</span><span class="p">(</span><span class="nx">Navbar</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">NavbarWithRouter</span> <span class="o">=</span> <span class="nx">withRouter</span><span class="p">(</span><span class="nx">Navbar</span><span class="p">);</span>
 </code></pre></div>
 <p>Usually, HOCs accept additional arguments. In this example from Relay, a config object is used to specify a component&#39;s data dependencies:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">CommentWithRelay</span> <span class="o">=</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">createContainer</span><span class="p">(</span><span class="nx">Comment</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">CommentWithRelay</span> <span class="o">=</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">createContainer</span><span class="p">(</span><span class="nx">Comment</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
 </code></pre></div>
 <p>The most common signature for HOCs looks like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// React Redux&#39;s `connect`</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// React Redux&#39;s `connect`</span>
 <span class="kr">const</span> <span class="nx">ConnectedComment</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">commentSelector</span><span class="p">,</span> <span class="nx">commentActions</span><span class="p">)(</span><span class="nx">Comment</span><span class="p">);</span>
 </code></pre></div>
 <p><em>What?!</em> If you break it apart, it&#39;s easier to see what&#39;s going on.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// connect is a function that returns another function</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// connect is a function that returns another function</span>
 <span class="kr">const</span> <span class="nx">enhance</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">commentListSelector</span><span class="p">,</span> <span class="nx">commentListActions</span><span class="p">);</span>
 <span class="c1">// The returned function is an HOC, which returns a component that is connected</span>
 <span class="c1">// to the Redux store</span>
@@ -319,7 +319,7 @@
 <p>In other words, <code>connect</code> is a higher-order function that returns a higher-order component!</p>
 
 <p>This form may seem confusing or unnecessary, but it has a useful property. Single-argument HOCs like the one returned by the <code>connect</code> function have the signature <code>Component =&gt; Component</code>. Functions whose output type is the same as its input type are really easy to compose together.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Instead of doing this...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Instead of doing this...</span>
 <span class="kr">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">commentSelector</span><span class="p">)(</span><span class="nx">withRouter</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">))</span>
 
 <span class="c1">// ... you can use a function composition utility</span>
@@ -340,9 +340,9 @@
 <p>The container components created by HOCs show up in the <a href="https://github.com/facebook/react-devtools">React Developer Tools</a> like any other component. To ease debugging, choose a display name that communicates that it&#39;s the result of an HOC.</p>
 
 <p>The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named <code>withSubscription</code>, and the wrapped component&#39;s display name is <code>CommentList</code>, use the display name <code>WithSubscription(CommentList)</code>:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">withSubscription</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">withSubscription</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">class</span> <span class="nx">WithSubscription</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span><span class="cm">/* ... */</span><span class="p">}</span>
-  <span class="nx">WithSubscription</span><span class="p">.</span><span class="nx">displayName</span> <span class="o">=</span> <span class="err">`</span><span class="nx">WithSubscription</span><span class="p">(</span><span class="nx">$</span><span class="p">{</span><span class="nx">getDisplayName</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)})</span><span class="err">`</span><span class="p">;</span>
+  <span class="nx">WithSubscription</span><span class="p">.</span><span class="nx">displayName</span> <span class="o">=</span> <span class="sb">`WithSubscription(</span><span class="si">${</span><span class="nx">getDisplayName</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span><span class="si">}</span><span class="sb">)`</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">WithSubscription</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -359,7 +359,7 @@
 <p>React&#39;s diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from <code>render</code> is identical (<code>===</code>) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they&#39;re not equal, the previous subtree is unmounted completely.</p>
 
 <p>Normally, you shouldn&#39;t need to think about this. But it matters for HOCs because it means you can&#39;t apply an HOC to a component within the render method of a component:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// A new version of EnhancedComponent is created on every render</span>
   <span class="c1">// EnhancedComponent1 !== EnhancedComponent2</span>
   <span class="kr">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">enhance</span><span class="p">(</span><span class="nx">MyComponent</span><span class="p">);</span>
@@ -378,7 +378,7 @@
 <p>Sometimes it&#39;s useful to define a static method on a React component. For example, Relay containers expose a static method <code>getFragment</code> to facilitate the composition of GraphQL fragments.</p>
 
 <p>When you apply an HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Define a static method</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Define a static method</span>
 <span class="nx">WrappedComponent</span><span class="p">.</span><span class="nx">staticMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="cm">/*...*/</span><span class="p">}</span>
 <span class="c1">// Now apply an HOC</span>
 <span class="kr">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">enhance</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">);</span>
@@ -387,7 +387,7 @@
 <span class="k">typeof</span> <span class="nx">EnhancedComponent</span><span class="p">.</span><span class="nx">staticMethod</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span> <span class="c1">// true</span>
 </code></pre></div>
 <p>To solve this, you could copy the methods onto the container before returning it:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">enhance</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">enhance</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">class</span> <span class="nx">Enhance</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span><span class="cm">/*...*/</span><span class="p">}</span>
   <span class="c1">// Must know exactly which method(s) to copy :(</span>
   <span class="nx">Enhance</span><span class="p">.</span><span class="nx">staticMethod</span> <span class="o">=</span> <span class="nx">WrappedComponent</span><span class="p">.</span><span class="nx">staticMethod</span><span class="p">;</span>
@@ -395,7 +395,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>However, this requires you to know exactly which methods need to be copied. You can use <a href="https://github.com/mridgway/hoist-non-react-statics">hoist-non-react-statics</a> to automatically copy all non-React static methods:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">hoistNonReactStatic</span> <span class="nx">from</span> <span class="s1">&#39;hoist-non-react-statics&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">hoistNonReactStatic</span> <span class="nx">from</span> <span class="s1">&#39;hoist-non-react-statics&#39;</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">enhance</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">class</span> <span class="nx">Enhance</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span><span class="cm">/*...*/</span><span class="p">}</span>
   <span class="nx">hoistNonReactStatic</span><span class="p">(</span><span class="nx">Enhance</span><span class="p">,</span> <span class="nx">WrappedComponent</span><span class="p">);</span>
@@ -403,7 +403,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Another possible solution is to export the static method separately from the component itself.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Instead of...</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Instead of...</span>
 <span class="nx">MyComponent</span><span class="p">.</span><span class="nx">someFunction</span> <span class="o">=</span> <span class="nx">someFunction</span><span class="p">;</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">MyComponent</span><span class="p">;</span>
 
@@ -420,7 +420,7 @@
 <p>If you find yourself facing this problem, the ideal solution is to figure out how to avoid using <code>ref</code> at all. Occasionally, users who are new to the React paradigm rely on refs in situations where a prop would work better.</p>
 
 <p>That said, there are times when refs are a necessary escape hatch — React wouldn&#39;t support them otherwise. Focusing an input field is an example where you may want imperative control of a component. In that case, one solution is to pass a ref callback as a normal prop, by giving it a different name:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Field</span><span class="p">({</span> <span class="nx">inputRef</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">})</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">Field</span><span class="p">({</span> <span class="nx">inputRef</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">})</span> <span class="p">{</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">{...</span><span class="nx">rest</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -433,7 +433,7 @@
     <span class="c1">// This callback gets passed through as a regular prop</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">inputEl</span> <span class="o">=</span> <span class="nx">inputEl</span>
   <span class="p">}}</span>
-<span class="o">/&gt;</span>
+<span class="err">/&gt;</span>
 
 <span class="c1">// Now you can call imperative methods</span>
 <span class="k">this</span><span class="p">.</span><span class="nx">inputEl</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>

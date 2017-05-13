@@ -105,7 +105,7 @@
 <h2>Reference</h2>
 
 <h3><code>render()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
   <span class="nx">element</span><span class="p">,</span>
   <span class="nx">container</span><span class="p">,</span>
   <span class="p">[</span><span class="nx">callback</span><span class="p">]</span>
@@ -132,14 +132,14 @@ and should be avoided because future versions of React may render components asy
 <hr>
 
 <h3><code>unmountComponentAtNode()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">unmountComponentAtNode</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">unmountComponentAtNode</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
 </code></pre></div>
 <p>Remove a mounted React component from the DOM and clean up its event handlers and state. If no component was mounted in the container, calling this function does nothing. Returns <code>true</code> if a component was unmounted and <code>false</code> if there was no component to unmount.</p>
 
 <hr>
 
 <h3><code>findDOMNode()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">findDOMNode</span><span class="p">(</span><span class="nx">component</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">findDOMNode</span><span class="p">(</span><span class="nx">component</span><span class="p">)</span>
 </code></pre></div>
 <p>If this component has been mounted into the DOM, this returns the corresponding native browser DOM element. This method is useful for reading values out of the DOM, such as form field values and performing DOM measurements. <strong>In most cases, you can attach a ref to the DOM node and avoid using <code>findDOMNode</code> at all.</strong> When <code>render</code> returns <code>null</code> or <code>false</code>, <code>findDOMNode</code> returns <code>null</code>.</p>
 

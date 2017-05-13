@@ -86,22 +86,22 @@
 </ul>
 
 <p>For example, the HTML:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;activateLasers()&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;activateLasers()&quot;</span><span class="p">&gt;</span>
   Activate Lasers
-<span class="nt">&lt;/button&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>is slightly different in React:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="hll"><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">activateLasers</span><span class="p">}</span><span class="o">&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll"><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">activateLasers</span><span class="p">}</span><span class="o">&gt;</span>
 </span>  <span class="nx">Activate</span> <span class="nx">Lasers</span>
 <span class="o">&lt;</span><span class="err">/button&gt;</span>
 </code></pre></div>
 <p>Another difference is that you cannot return <code>false</code> to prevent default behavior in React. You must call <code>preventDefault</code> explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick=</span><span class="s">&quot;console.log(&#39;The link was clicked.&#39;); return false&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;The link was clicked.&#39;); return false&quot;</span><span class="p">&gt;</span>
   Click me
-<span class="nt">&lt;/a&gt;</span>
+<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>In React, this could instead be:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">ActionLink</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">ActionLink</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">  <span class="kd">function</span> <span class="nx">handleClick</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hll">    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
 </span><span class="hll">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The link was clicked.&#39;</span><span class="p">);</span>
@@ -119,7 +119,7 @@
 <p>When using React you should generally not need to call <code>addEventListener</code> to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.</p>
 
 <p>When you define a component using an <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 class</a>, a common pattern is for an event handler to be a method on the class. For example, this <code>Toggle</code> component renders a button that lets the user toggle between &quot;ON&quot; and &quot;OFF&quot; states:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Toggle</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Toggle</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">isToggleOn</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
@@ -155,7 +155,7 @@
 <p>This is not React-specific behavior; it is a part of <a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">how functions work in JavaScript</a>. Generally, if you refer to a method without <code>()</code> after it, such as <code>onClick={this.handleClick}</code>, you should bind that method.</p>
 
 <p>If calling <code>bind</code> annoys you, there are two ways you can get around this. If you are using the experimental <a href="https://babeljs.io/docs/plugins/transform-class-properties/">property initializer syntax</a>, you can use property initializers to correctly bind callbacks:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 <span class="hll">  <span class="c1">// This syntax ensures `this` is bound within handleClick.</span>
 </span><span class="hll">  <span class="c1">// Warning: this is *experimental* syntax.</span>
 </span><span class="hll">  <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -174,7 +174,7 @@
 <p>This syntax is enabled by default in <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>.</p>
 
 <p>If you aren&#39;t using property initializer syntax, you can use an <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow function</a> in the callback:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is:&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
   <span class="p">}</span>

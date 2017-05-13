@@ -149,7 +149,7 @@
 
 <blockquote>
 <p>We can check the scroll position before the component has updated with componentWillUpdate and scroll if necessary at componentDidUpdate</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">componentWillUpdate: function() {
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>componentWillUpdate: function() {
   var node = this.getDOMNode();
   this.shouldScrollBottom =
     (node.scrollTop + node.offsetHeight) === node.scrollHeight;
@@ -201,7 +201,7 @@ componentDidUpdate: function() {
 <h2>Hoodie React TodoMVC</h2>
 
 <p><a href="http://svenlito.com/">Sven Lito</a> integrated the React TodoMVC example within an <a href="http://hood.ie/">Hoodie</a> web app environment. This should let you get started using Hoodie and React.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">hoodie new todomvc -t &quot;hoodiehq/hoodie-react-todomvc&quot;
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>hoodie new todomvc -t &quot;hoodiehq/hoodie-react-todomvc&quot;
 </code></pre></div>
 <p><a href="https://github.com/hoodiehq/hoodie-react-todomvc">Check out on GitHub...</a></p>
 
@@ -553,7 +553,7 @@ Is this some sort of template language? Specifically no. This might have been th
 <p>Please don&#39;t take those numbers too seriously, they only reflect one very specific use case and are testing code that wasn&#39;t written with performance in mind.</p>
 
 <p>Even though React scores as one of the fastest frameworks in the benchmark, the React code is simple and idiomatic. The only performance tweak used is the following function:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
 <span class="cm"> * This is a completely optional performance enhancement that you can implement</span>
 <span class="cm"> * on any React component. If you were to delete this method the app would still</span>
 <span class="cm"> * work correctly (and still be very performant!), we just use it as an example</span>

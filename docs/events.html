@@ -85,7 +85,7 @@
 <p>Your event handlers will be passed instances of <code>SyntheticEvent</code>, a cross-browser wrapper around the browser&#39;s native event. It has the same interface as the browser&#39;s native event, including <code>stopPropagation()</code> and <code>preventDefault()</code>, except the events work identically across all browsers.</p>
 
 <p>If you find that you need the underlying browser event for some reason, simply use the <code>nativeEvent</code> attribute to get it. Every <code>SyntheticEvent</code> object has the following attributes:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">boolean</span> <span class="nx">bubbles</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">bubbles</span>
 <span class="kr">boolean</span> <span class="nx">cancelable</span>
 <span class="nx">DOMEventTarget</span> <span class="nx">currentTarget</span>
 <span class="kr">boolean</span> <span class="nx">defaultPrevented</span>
@@ -111,7 +111,7 @@
 <p>The <code>SyntheticEvent</code> is pooled. This means that the <code>SyntheticEvent</code> object will be reused and all properties will be nullified after the event callback has been invoked.
 This is for performance reasons.
 As such, you cannot access the event in an asynchronous way.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span> <span class="c1">// =&gt; nullified object.</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span> <span class="c1">// =&gt; &quot;click&quot;</span>
   <span class="kr">const</span> <span class="nx">eventType</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span> <span class="c1">// =&gt; &quot;click&quot;</span>
@@ -164,30 +164,30 @@ As such, you cannot access the event in an asynchronous way.</p>
 <h3>Clipboard Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onCopy onCut onPaste
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onCopy onCut onPaste
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">DOMDataTransfer</span> <span class="nx">clipboardData</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">DOMDataTransfer</span> <span class="nx">clipboardData</span>
 </code></pre></div>
 <hr>
 
 <h3>Composition Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onCompositionEnd onCompositionStart onCompositionUpdate
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onCompositionEnd onCompositionStart onCompositionUpdate
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">string</span> <span class="nx">data</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">data</span>
 </code></pre></div>
 <hr>
 
 <h3>Keyboard Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onKeyDown onKeyPress onKeyUp
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onKeyDown onKeyPress onKeyUp
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">boolean</span> <span class="nx">altKey</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">number</span> <span class="nx">charCode</span>
 <span class="kr">boolean</span> <span class="nx">ctrlKey</span>
 <span class="kr">boolean</span> <span class="nx">getModifierState</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
@@ -205,19 +205,19 @@ As such, you cannot access the event in an asynchronous way.</p>
 <h3>Focus Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onFocus onBlur
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onFocus onBlur
 </code></pre></div>
 <p>These focus events work on all elements in the React DOM, not just form elements.</p>
 
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">DOMEventTarget</span> <span class="nx">relatedTarget</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">DOMEventTarget</span> <span class="nx">relatedTarget</span>
 </code></pre></div>
 <hr>
 
 <h3>Form Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onChange onInput onSubmit
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onChange onInput onSubmit
 </code></pre></div>
 <p>For more information about the onChange event, see <a href="/react/docs/forms.html">Forms</a>.</p>
 
@@ -226,14 +226,14 @@ As such, you cannot access the event in an asynchronous way.</p>
 <h3>Mouse Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
 onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 </code></pre></div>
 <p>The <code>onMouseEnter</code> and <code>onMouseLeave</code> events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.</p>
 
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">boolean</span> <span class="nx">altKey</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">number</span> <span class="nx">button</span>
 <span class="nx">number</span> <span class="nx">buttons</span>
 <span class="nx">number</span> <span class="nx">clientX</span>
@@ -253,17 +253,17 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 <h3>Selection Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onSelect
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onSelect
 </code></pre></div>
 <hr>
 
 <h3>Touch Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onTouchCancel onTouchEnd onTouchMove onTouchStart
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onTouchCancel onTouchEnd onTouchMove onTouchStart
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">boolean</span> <span class="nx">altKey</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">DOMTouchList</span> <span class="nx">changedTouches</span>
 <span class="kr">boolean</span> <span class="nx">ctrlKey</span>
 <span class="kr">boolean</span> <span class="nx">getModifierState</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
@@ -277,10 +277,10 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 <h3>UI Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onScroll
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onScroll
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">number</span> <span class="nx">detail</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">number</span> <span class="nx">detail</span>
 <span class="nx">DOMAbstractView</span> <span class="nx">view</span>
 </code></pre></div>
 <hr>
@@ -288,10 +288,10 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 <h3>Wheel Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onWheel
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onWheel
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">number</span> <span class="nx">deltaMode</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">number</span> <span class="nx">deltaMode</span>
 <span class="nx">number</span> <span class="nx">deltaX</span>
 <span class="nx">number</span> <span class="nx">deltaY</span>
 <span class="nx">number</span> <span class="nx">deltaZ</span>
@@ -301,7 +301,7 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 <h3>Media Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted 
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted 
 onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay 
 onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend 
 onTimeUpdate onVolumeChange onWaiting
@@ -311,17 +311,17 @@ onTimeUpdate onVolumeChange onWaiting
 <h3>Image Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onLoad onError
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onLoad onError
 </code></pre></div>
 <hr>
 
 <h3>Animation Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onAnimationStart onAnimationEnd onAnimationIteration
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onAnimationStart onAnimationEnd onAnimationIteration
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">string</span> <span class="nx">animationName</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">animationName</span>
 <span class="nx">string</span> <span class="nx">pseudoElement</span>
 <span class="kr">float</span> <span class="nx">elapsedTime</span>
 </code></pre></div>
@@ -330,10 +330,10 @@ onTimeUpdate onVolumeChange onWaiting
 <h3>Transition Events</h3>
 
 <p>Event names:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">onTransitionEnd
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onTransitionEnd
 </code></pre></div>
 <p>Properties:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">string</span> <span class="nx">propertyName</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">propertyName</span>
 <span class="nx">string</span> <span class="nx">pseudoElement</span>
 <span class="kr">float</span> <span class="nx">elapsedTime</span>
 </code></pre></div>

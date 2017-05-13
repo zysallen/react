@@ -99,7 +99,7 @@
 <h3>dangerouslySetInnerHTML</h3>
 
 <p><code>dangerouslySetInnerHTML</code> is React&#39;s replacement for using <code>innerHTML</code> in the browser DOM. In general, setting HTML from code is risky because it&#39;s easy to inadvertently expose your users to a <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">cross-site scripting (XSS)</a> attack. So, you can set HTML directly from React, but you have to type out <code>dangerouslySetInnerHTML</code> and pass an object with a <code>__html</code> key, to remind yourself that it&#39;s dangerous. For example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">createMarkup</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">createMarkup</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span><span class="nx">__html</span><span class="o">:</span> <span class="s1">&#39;First &amp;middot; Second&#39;</span><span class="p">};</span>
 <span class="p">}</span>
 
@@ -122,7 +122,7 @@
 <h3>style</h3>
 
 <p>The <code>style</code> attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM <code>style</code> JavaScript property, is more efficient, and prevents XSS security holes. For example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">divStyle</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">divStyle</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
   <span class="nx">backgroundImage</span><span class="o">:</span> <span class="s1">&#39;url(&#39;</span> <span class="o">+</span> <span class="nx">imgUrl</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">,</span>
 <span class="p">};</span>
@@ -132,7 +132,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">divStyle</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">const</span> <span class="nx">divStyle</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">WebkitTransition</span><span class="o">:</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="c1">// note the capital &#39;W&#39; here</span>
   <span class="nx">msTransition</span><span class="o">:</span> <span class="s1">&#39;all&#39;</span> <span class="c1">// &#39;ms&#39; is the only lowercase vendor prefix</span>
 <span class="p">};</span>
@@ -154,7 +154,7 @@
 <h2>All Supported HTML Attributes</h2>
 
 <p>React supports all <code>data-*</code> and <code>aria-*</code> attributes as well as these attributes:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>accept acceptCharset accessKey action allowFullScreen allowTransparency alt
 async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
 charSet checked cite classID className colSpan cols content contentEditable
 contextMenu controls coords crossOrigin data dateTime default defer dir
@@ -169,7 +169,7 @@ selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
 style summary tabIndex target title type useMap value width wmode wrap
 </code></pre></div>
 <p>These RDFa attributes are supported (several RDFa attributes overlap with standard HTML attributes and thus are excluded from this list):</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">about datatype inlist prefix property resource typeof vocab
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>about datatype inlist prefix property resource typeof vocab
 </code></pre></div>
 <p>In addition, the following non-standard attributes are supported:</p>
 
@@ -185,7 +185,7 @@ style summary tabIndex target title type useMap value width wmode wrap
 <h2>All Supported SVG Attributes</h2>
 
 <p>React supports these SVG attributes:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
 amplitude arabicForm ascent attributeName attributeType autoReverse azimuth
 baseFrequency baseProfile baselineShift bbox begin bias by calcMode capHeight
 clip clipPath clipPathUnits clipRule colorInterpolation

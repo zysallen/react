@@ -136,7 +136,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>JSX Lower-case Convention</h3>
 
 <p>We used to have a whitelist of HTML tags that got special treatment in JSX. However as new HTML tags got added to the spec, or we added support for more SVG tags, we had to go update our whitelist. Additionally, there was ambiguity about the behavior. There was always the chance that something new added to the tag list would result in breaking your code. For example:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">component</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">component</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Is <code>component</code> an existing HTML tag? What if it becomes one?</p>
 
@@ -151,7 +151,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <h3>JSX Spread Attributes</h3>
 
 <p>Previously there wasn&#39;t a way to for you to pass a dynamic or unknown set of properties through JSX. This is now possible using the spread <code>...</code> operator.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">myProps</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">myProps</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
 <span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>This merges the properties of the object onto the props of <code>MyComponent</code>.</p>
@@ -159,10 +159,10 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p><a href="https://gist.github.com/sebmarkbage/07bbe37bc42b6d4aef81">Read More About Spread Attributes</a></p>
 
 <p>If you used to use plain function calls to pass arbitrary props objects...</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="nx">MyComponent</span><span class="p">(</span><span class="nx">myProps</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="nx">MyComponent</span><span class="p">(</span><span class="nx">myProps</span><span class="p">);</span>
 </code></pre></div>
 <p>You can now switch to using Spread Attributes instead:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="p">{...</span><span class="nx">myProps</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <h2>Breaking Change: <code>key</code> and <code>ref</code> Removed From <code>this.props</code></h2>
 
@@ -189,10 +189,10 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.12.0-r
 <p><code>transferPropsTo</code> is deprecated in v0.12 and will be removed in v0.13. This helper function was a bit magical. It auto-merged a certain whitelist of properties and excluded others. It was also transferring too many properties. This meant that we have to keep a whitelist of valid HTML attributes in the React runtime. It also means that we can&#39;t catch typos on props.</p>
 
 <p>Our suggested solution is to use the Spread Attributes.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Or, just if you&#39;re not using JSX:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="nx">div</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="nx">div</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">);</span>
 </code></pre></div>
 <p>Although to avoid passing too many props down, you&#39;ll probably want to use something like ES7 rest properties. <a href="https://gist.github.com/sebmarkbage/a6e220b7097eb3c79ab7">Read more about upgrading from transferPropsTo</a>.</p>
 

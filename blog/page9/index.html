@@ -162,7 +162,7 @@
 <h2>The <code>&lt;Story&gt;</code> Begins</h2>
 
 <p>The first step is a React <code>&lt;Story&gt;</code> component that accepts a <code>story</code> prop with the story&#39;s text and author information. Note that all examples uses ES6 syntax and elide presentation details to focus on the pattern of data access.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Story.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Story.react.js</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Story</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">story</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">story</span><span class="p">;</span>
@@ -181,7 +181,7 @@
 <h2>What&#39;s the <code>&lt;Story&gt;</code>?</h2>
 
 <p>Relay automates the process of fetching data for components by wrapping existing React components in Relay containers (themselves React components):</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Story.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Story.react.js</span>
 <span class="kr">class</span> <span class="nx">Story</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">createContainer</span><span class="p">(</span><span class="nx">Story</span><span class="p">,</span> <span class="p">{</span>
@@ -195,22 +195,22 @@
 <p><img src="/react/img/blog/relay-components/relay-containers.png" width="397" alt="React Container Data Flow" /></p>
 
 <p>Most props will be passed through from the container to the original component. However, Relay will return the query results for a prop whenever a fragment is defined. In this case we&#39;ll add a GraphQL fragment for <code>story</code>:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Story.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Story.react.js</span>
 <span class="kr">class</span> <span class="nx">Story</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">createContainer</span><span class="p">(</span><span class="nx">Story</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">fragments</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">story</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">QL</span><span class="err">`</span>
-      <span class="nx">fragment</span> <span class="nx">on</span> <span class="nx">Story</span> <span class="p">{</span>
-        <span class="nx">author</span> <span class="p">{</span>
-          <span class="nx">name</span>
-          <span class="nx">profilePicture</span> <span class="p">{</span>
-            <span class="nx">uri</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="nx">text</span>
-      <span class="p">}</span>
-    <span class="err">`</span><span class="p">,</span>
+    <span class="nx">story</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">QL</span><span class="sb">`</span>
+<span class="sb">      fragment on Story {</span>
+<span class="sb">        author {</span>
+<span class="sb">          name</span>
+<span class="sb">          profilePicture {</span>
+<span class="sb">            uri</span>
+<span class="sb">          }</span>
+<span class="sb">        }</span>
+<span class="sb">        text</span>
+<span class="sb">      }</span>
+<span class="sb">    `</span><span class="p">,</span>
   <span class="p">},</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -221,7 +221,7 @@
 <h2><code>&lt;Story&gt;</code>s on Demand</h2>
 
 <p>We can render a Relay component by providing Relay with the component (<code>&lt;Story&gt;</code>) and the ID of the data (a story ID). Given this information, Relay will first fetch the results of the query and then <code>render()</code> the component. The value of <code>props.story</code> will be a plain JavaScript object such as the following:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
   <span class="nx">author</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Greg&quot;</span><span class="p">,</span>
     <span class="nx">profilePicture</span><span class="o">:</span> <span class="p">{</span>
@@ -242,7 +242,7 @@
 <h2><code>&lt;NewsFeed&gt;</code> Worthy</h2>
 
 <p>Now that the <code>&lt;Story&gt;</code> is over we can continue with the <code>&lt;NewsFeed&gt;</code> component. Again, we&#39;ll start with a React version:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// NewsFeed.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// NewsFeed.react.js</span>
 <span class="kr">class</span> <span class="nx">NewsFeed</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">stories</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">stories</span><span class="p">;</span> <span class="c1">// `viewer` is the active user</span>
@@ -268,7 +268,7 @@
 <p><code>&lt;NewsFeed&gt;</code> has two new requirements: it composes <code>&lt;Story&gt;</code> and requests more data at runtime.</p>
 
 <p>Just as React views can be nested, Relay components can compose query fragments from child components. Composition in GraphQL uses ES6 template literal substitution: <code>${Component.getFragment(&#39;prop&#39;)}</code>. Pagination can be accomplished with a variable, specified with <code>$variable</code> (as in <code>stories(first: $count)</code>):</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// NewsFeed.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// NewsFeed.react.js</span>
 <span class="kr">class</span> <span class="nx">NewsFeed</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">createContainer</span><span class="p">(</span><span class="nx">NewsFeed</span><span class="p">,</span> <span class="p">{</span>
@@ -276,24 +276,24 @@
     <span class="nx">count</span><span class="o">:</span> <span class="mi">3</span>                                <span class="cm">/* default to 3 stories */</span>
   <span class="p">},</span>
   <span class="nx">fragments</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">viewer</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">QL</span><span class="err">`</span>
-      <span class="nx">fragment</span> <span class="nx">on</span> <span class="nx">Viewer</span> <span class="p">{</span>
-        <span class="nx">stories</span><span class="p">(</span><span class="nx">first</span><span class="o">:</span> <span class="nx">$count</span><span class="p">)</span> <span class="p">{</span>            <span class="cm">/* fetch viewer&#39;s stories */</span>
-          <span class="nx">edges</span> <span class="p">{</span>                           <span class="cm">/* traverse the graph */</span>
-            <span class="nx">node</span> <span class="p">{</span>
-              <span class="nx">$</span><span class="p">{</span><span class="nx">Story</span><span class="p">.</span><span class="nx">getFragment</span><span class="p">(</span><span class="s1">&#39;story&#39;</span><span class="p">)}</span> <span class="cm">/* compose child fragment */</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="err">`</span><span class="p">,</span>
+    <span class="nx">viewer</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Relay</span><span class="p">.</span><span class="nx">QL</span><span class="sb">`</span>
+<span class="sb">      fragment on Viewer {</span>
+<span class="sb">        stories(first: $count) {            /* fetch viewer&#39;s stories */</span>
+<span class="sb">          edges {                           /* traverse the graph */</span>
+<span class="sb">            node {</span>
+<span class="sb">              </span><span class="si">${</span><span class="nx">Story</span><span class="p">.</span><span class="nx">getFragment</span><span class="p">(</span><span class="s1">&#39;story&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb"> /* compose child fragment */</span>
+<span class="sb">            }</span>
+<span class="sb">          }</span>
+<span class="sb">        }</span>
+<span class="sb">      }</span>
+<span class="sb">    `</span><span class="p">,</span>
   <span class="p">},</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>Whenever <code>&lt;NewsFeed&gt;</code> is rendered, Relay will recursively expand all the composed fragments and fetch the queries in a single trip to the server. In this case, the <code>text</code> and <code>author</code> data will be fetched for each of the 3 story nodes.</p>
 
 <p>Query variables are available to components as <code>props.relay.variables</code> and can be modified with <code>props.relay.setVariables(nextVariables)</code>. We can use these to implement pagination:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// NewsFeed.react.js</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// NewsFeed.react.js</span>
 <span class="kr">class</span> <span class="nx">NewsFeed</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
@@ -683,17 +683,17 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.13.0-r
 <h2>React.cloneElement</h2>
 
 <p>In React v0.13 RC2 we will introduce a new API, similar to <code>React.addons.cloneWithProps</code>, with this signature:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">React</span><span class="p">.</span><span class="nx">cloneElement</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="p">...</span><span class="nx">children</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">cloneElement</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="p">...</span><span class="nx">children</span><span class="p">);</span>
 </code></pre></div>
 <p>Unlike <code>cloneWithProps</code>, this new function does not have any magic built-in behavior for merging <code>style</code> and <code>className</code> for the same reason we don&#39;t have that feature from <code>transferPropsTo</code>. Nobody is sure what exactly the complete list of magic things are, which makes it difficult to reason about the code and difficult to reuse when <code>style</code> has a different signature (e.g. in the upcoming React Native).</p>
 
 <p><code>React.cloneElement</code> is <em>almost</em> equivalent to:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">{...</span><span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/element.type&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">{...</span><span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/element.type&gt;</span>
 </code></pre></div>
 <p>However, unlike JSX and <code>cloneWithProps</code>, it also preserves <code>ref</code>s. This means that if you get a child with a <code>ref</code> on it, you won&#39;t accidentally steal it from your ancestor. You will get the same <code>ref</code> attached to your new element.</p>
 
 <p>One common pattern is to map over your children and add a new prop. There were many issues reported about <code>cloneWithProps</code> losing the ref, making it harder to reason about your code. Now following the same pattern with <code>cloneElement</code> will work as expected. For example:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">newChildren</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">newChildren</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">cloneElement</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
 <span class="p">});</span>
 </code></pre></div>

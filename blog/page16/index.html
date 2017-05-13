@@ -152,7 +152,7 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.10.0-r
 <p>In 0.10, we’re adding more warnings to catch a similar set of patterns. When a component is mounted we clone it and use that object for our internal representation. This allows us to capture calls you think you’re making to a mounted component. We’ll forward them on to the right object, but also warn you that this is breaking. See “Access to the Mounted Instance” on <a href="https://fb.me/react-warning-descriptors">this page</a>. Most of the time you can solve your pattern by using refs.</p>
 
 <p>Storing a reference to your top level component is a pattern touched upon on that page, but another examples that demonstrates what we see a lot of:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// This is a common pattern. However instance here really refers to a</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// This is a common pattern. However instance here really refers to a</span>
 <span class="c1">// &quot;descriptor&quot;, not necessarily the mounted instance.</span>
 <span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">MyComponent</span><span class="o">/&gt;</span><span class="p">;</span>
 <span class="nx">React</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
@@ -514,19 +514,19 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.9.0.mi
 <h2>JSX Whitespace</h2>
 
 <p>In addition to the changes to React core listed below, we&#39;ve made a small change to the way JSX interprets whitespace to make things more consistent. With this release, space between two components on the same line will be preserved, while a newline separating a text node from a tag will be eliminated in the output. Consider the code:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   Monkeys:
   {listOfMonkeys} {submitButton}
-<span class="nt">&lt;/div&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>In v0.8 and below, it was transformed to the following:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
   <span class="s2">&quot; Monkeys: &quot;</span><span class="p">,</span>
   <span class="nx">listOfMonkeys</span><span class="p">,</span> <span class="nx">submitButton</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>In v0.9, it will be transformed to this JS instead:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
 <span class="hll">  <span class="s2">&quot;Monkeys:&quot;</span><span class="p">,</span>
 </span><span class="hll">  <span class="nx">listOfMonkeys</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="nx">submitButton</span>
 </span><span class="p">)</span>
@@ -681,19 +681,19 @@ Minified build for production: <a href="https://fb.me/react-with-addons-0.9.0-rc
 <h2>Upgrade Notes</h2>
 
 <p>In addition to the changes to React core listed below, we&#39;ve made a small change to the way JSX interprets whitespace to make things more consistent. With this release, space between two components on the same line will be preserved, while a newline separating a text node from a tag will be eliminated in the output. Consider the code:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
   Monkeys:
   {listOfMonkeys} {submitButton}
-<span class="nt">&lt;/div&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>In v0.8 and below, it was transformed to the following:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
   <span class="s2">&quot; Monkeys: &quot;</span><span class="p">,</span>
   <span class="nx">listOfMonkeys</span><span class="p">,</span> <span class="nx">submitButton</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>In v0.9, it will be transformed to this JS instead:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">div</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span>
 <span class="hll">  <span class="s2">&quot;Monkeys:&quot;</span><span class="p">,</span>
 </span><span class="hll">  <span class="nx">listOfMonkeys</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="nx">submitButton</span>
 </span><span class="p">)</span>

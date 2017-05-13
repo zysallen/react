@@ -121,7 +121,7 @@
 <h3><code>React.Component</code></h3>
 
 <p><code>React.Component</code> is the base class for React components when they are defined using <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 classes</a>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
   <span class="p">}</span>
@@ -148,7 +148,7 @@
 <hr>
 
 <h3><code>createElement()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
   <span class="nx">type</span><span class="p">,</span>
   <span class="p">[</span><span class="nx">props</span><span class="p">],</span>
   <span class="p">[...</span><span class="nx">children</span><span class="p">]</span>
@@ -163,7 +163,7 @@
 <hr>
 
 <h3><code>cloneElement()</code></h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">React.cloneElement(
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>React.cloneElement(
   element,
   [props],
   [...children]
@@ -172,7 +172,7 @@
 <p>Clone and return a new React element using <code>element</code> as the starting point. The resulting element will have the original element&#39;s props with the new props merged in shallowly. New children will replace existing children. <code>key</code> and <code>ref</code> from the original element will be preserved.</p>
 
 <p><code>React.cloneElement()</code> is almost equivalent to:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">{...</span><span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/element.type&gt;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">{...</span><span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/element.type&gt;</span>
 </code></pre></div>
 <p>However, it also preserves <code>ref</code>s. This means that if you get a child with a <code>ref</code> on it, you won&#39;t accidentally steal it from your ancestor. You will get the same <code>ref</code> attached to your new element.</p>
 
@@ -181,7 +181,7 @@
 <hr>
 
 <h3><code>createFactory()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
 </code></pre></div>
 <p>Return a function that produces React elements of a given type. Like <a href="#createElement"><code>React.createElement()</code></a>, the type argument can be either a tag name string (such as <code>&#39;div&#39;</code> or <code>&#39;span&#39;</code>), or a <a href="/react/docs/components-and-props.html">React component</a> type (a class or a function).</p>
 
@@ -192,7 +192,7 @@
 <hr>
 
 <h3><code>isValidElement()</code></h3>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">isValidElement</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">isValidElement</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span>
 </code></pre></div>
 <p>Verifies the object is a React element. Returns <code>true</code> or <code>false</code>.</p>
 
@@ -203,27 +203,27 @@
 <p><code>React.Children</code> provides utilities for dealing with the <code>this.props.children</code> opaque data structure.</p>
 
 <h4><code>React.Children.map</code></h4>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
 </code></pre></div>
 <p>Invokes a function on every immediate child contained within <code>children</code> with <code>this</code> set to <code>thisArg</code>. If <code>children</code> is a keyed fragment or array it will be traversed: the function will never be passed the container objects. If children is <code>null</code> or <code>undefined</code>, returns <code>null</code> or <code>undefined</code> rather than an array.</p>
 
 <h4><code>React.Children.forEach</code></h4>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
 </code></pre></div>
 <p>Like <a href="#react.children.map"><code>React.Children.map()</code></a> but does not return an array.</p>
 
 <h4><code>React.Children.count</code></h4>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns the total number of components in <code>children</code>, equal to the number of times that a callback passed to <code>map</code> or <code>forEach</code> would be invoked.</p>
 
 <h4><code>React.Children.only</code></h4>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns the only child in <code>children</code>. Throws otherwise.</p>
 
 <h4><code>React.Children.toArray</code></h4>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
 <p>Returns the <code>children</code> opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice <code>this.props.children</code> before passing it down.</p>
 
