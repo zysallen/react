@@ -6,9 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Handling Events - React</title>
+  <title>事件处理 - React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Handling Events - React">
+  <meta property="og:title" content="事件处理 - React">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://facebook.github.io/react/docs/handling-events.html">
   <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
@@ -74,33 +74,33 @@
   <div class="inner-content">
     <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/handling-events.md" target="_blank">Edit on GitHub</a>
     <h1>
-      Handling Events
+      事件处理
     </h1>
     <div class="subHeader"></div>
 
-    <p>Handling events with React elements is very similar to handling events on DOM elements. There are some syntactic differences:</p>
+    <p>React 元素的事件处理和 DOM元素的很相似。但是有一点语法上的不同:</p>
 
 <ul>
-<li>React events are named using camelCase, rather than lowercase.</li>
-<li>With JSX you pass a function as the event handler, rather than a string.</li>
+<li>React时间的命名采用驼峰式写法，而不是小写。</li>
+<li>如果采用 JSX 的语法你需要传入一个函数作为时间处理器，而不是一个字符串(DOM元素的写法)</li>
 </ul>
 
-<p>For example, the HTML:</p>
+<p>例如，传统的 HTML：</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;activateLasers()&quot;</span><span class="p">&gt;</span>
   Activate Lasers
 <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>is slightly different in React:</p>
+<p>React 中稍稍有点不同：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll"><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">activateLasers</span><span class="p">}</span><span class="o">&gt;</span>
 </span>  <span class="nx">Activate</span> <span class="nx">Lasers</span>
 <span class="o">&lt;</span><span class="err">/button&gt;</span>
 </code></pre></div>
-<p>Another difference is that you cannot return <code>false</code> to prevent default behavior in React. You must call <code>preventDefault</code> explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:</p>
+<p>在 React 中另一个不同是你不能使用返回 <code>false</code> 的方式阻止默认行为。你必须明确的使用 <code>preventDefault</code>。例如，传统的 HTML 中阻止链接默认打开一个新页面，你可以这样写：</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;The link was clicked.&#39;); return false&quot;</span><span class="p">&gt;</span>
   Click me
 <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>In React, this could instead be:</p>
+<p>在 React，应该这样来写：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">ActionLink</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">  <span class="kd">function</span> <span class="nx">handleClick</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hll">    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
@@ -114,11 +114,11 @@
   <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Here, <code>e</code> is a synthetic event. React defines these synthetic events according to the <a href="https://www.w3.org/TR/DOM-Level-3-Events/">W3C spec</a>, so you don&#39;t need to worry about cross-browser compatibility. See the <a href="/react/docs/events.html"><code>SyntheticEvent</code></a> reference guide to learn more.</p>
+<p>在这里，<code>e</code> 是一个合成事件。React 根据 <a href="https://www.w3.org/TR/DOM-Level-3-Events/">W3C spec</a> 来定义这些合成事件，所以你不需要担心跨浏览器的兼容性问题。查看 <a href="/react/docs/events.html">SyntheticEvent</a> 参考指南来了解更多。</p>
 
-<p>When using React you should generally not need to call <code>addEventListener</code> to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.</p>
+<p>使用 React 的时候通常你不需要使用 <code>addEventListener</code> 为一个已创建的 DOM 元素添加监听器。你仅仅需要在这个元素初始渲染的时候提供一个监听器。</p>
 
-<p>When you define a component using an <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 class</a>, a common pattern is for an event handler to be a method on the class. For example, this <code>Toggle</code> component renders a button that lets the user toggle between &quot;ON&quot; and &quot;OFF&quot; states:</p>
+<p>当你使用 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 class</a> 语法来定义一个组件的时候，事件处理器会成为类的一个方法。例如，下面的 <code>Toggle</code> 组件渲染一个让用户切换开关状态的按钮：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Toggle</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -148,13 +148,13 @@
   <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
-<p><a href="http://codepen.io/gaearon/pen/xEmzGg?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/gaearon/pen/xEmzGg?editors=0010">在 CodePen 上尝试</a></p>
 
-<p>You have to be careful about the meaning of <code>this</code> in JSX callbacks. In JavaScript, class methods are not <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind">bound</a> by default. If you forget to bind <code>this.handleClick</code> and pass it to <code>onClick</code>, <code>this</code> will be <code>undefined</code> when the function is actually called.</p>
+<p>你必须谨慎对待 JSX 回调函数中的 <code>this</code>，类的方法默认是不会<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind">绑定</a> <code>this</code> 的。如果你忘记绑定 <code>this.handleClick</code> 并把它传入 <code>onClick</code>, 当你调用这个函数的时候 <code>this</code> 的值会是 <code>undefined</code>。</p>
 
-<p>This is not React-specific behavior; it is a part of <a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">how functions work in JavaScript</a>. Generally, if you refer to a method without <code>()</code> after it, such as <code>onClick={this.handleClick}</code>, you should bind that method.</p>
+<p>这并不是 React 的特殊行为；它是<a href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">函数如何在 JavaScript 中运行</a>的一部分。通常情况下，如果你没有在方法后面添加 <code>()</code> ，例如 <code>onClick={this.handleClick}</code>，你应该为这个方法绑定 <code>this</code>.</p>
 
-<p>If calling <code>bind</code> annoys you, there are two ways you can get around this. If you are using the experimental <a href="https://babeljs.io/docs/plugins/transform-class-properties/">property initializer syntax</a>, you can use property initializers to correctly bind callbacks:</p>
+<p>如果使用 <code>bind</code> 让你很困惑，这里有两种方式可以解决。如果你正在使用实验性的<a href="https://babeljs.io/docs/plugins/transform-class-properties/">属性初始化器语法</a>，你可以使用属性初始化器来正确的绑定回调函数：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 <span class="hll">  <span class="c1">// This syntax ensures `this` is bound within handleClick.</span>
 </span><span class="hll">  <span class="c1">// Warning: this is *experimental* syntax.</span>
@@ -171,9 +171,9 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This syntax is enabled by default in <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>.</p>
+<p>这个语法在 <a href="https://github.com/facebookincubator/create-react-app">Create React App</a> 中默认开启。</p>
 
-<p>If you aren&#39;t using property initializer syntax, you can use an <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow function</a> in the callback:</p>
+<p>如果你没有使用属性初始化器语法，你可以在回调函数中使用 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">箭头函数</a>：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">LoggingButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is:&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
@@ -189,7 +189,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The problem with this syntax is that a different callback is created each time the <code>LoggingButton</code> renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the property initializer syntax, to avoid this sort of performance problem.</p>
+<p>使用这个语法有个问题就是每次 <code>LoggingButton</code> 渲染的时候都会创建一个不同的回调函数。在大多数情况下，这没有问题。然而如果这个回调函数作为一个属性值传入低阶组件，这些组件可能会进行额外的重新渲染。我们通常建议在构造函数中绑定或使用属性初始化器语法来避免这类性能问题。</p>
 
 
     <div class="docs-prevnext">
