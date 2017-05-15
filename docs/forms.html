@@ -6,9 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Forms - React</title>
+  <title>表单 - React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Forms - React">
+  <meta property="og:title" content="表单 - React">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://facebook.github.io/react/docs/forms.html">
   <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
@@ -74,11 +74,11 @@
   <div class="inner-content">
     <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/forms.md" target="_blank">Edit on GitHub</a>
     <h1>
-      Forms
+      表单
     </h1>
     <div class="subHeader"></div>
 
-    <p>HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:</p>
+    <p>HTML表单元素与React中的其他DOM元素有所不同,因为表单元素生来就保留一些内部状态。例如，下面这个表单只接受一个唯一的name。</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
     Name:
@@ -87,15 +87,15 @@
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span> <span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it&#39;s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called &quot;controlled components&quot;.</p>
+<p>当用户提交表单时，HTML的默认行为会使这个表单会跳转到一个新页面。在React中亦是如此。但大多数情况下，我们都会构造一个处理提交表单并可访问用户输入表单数据的函数。实现这一点的标准方法是使用一种称为“受控组件”的技术。</p>
 
-<h2>Controlled Components</h2>
+<h2>受控组件</h2>
 
-<p>In HTML, form elements such as <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;select&gt;</code> typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with <a href="/react/docs/react-component.html#setstate"><code>setState()</code></a>.</p>
+<p>在HTML当中，像<code>&lt;input&gt;</code>,<code>&lt;textarea&gt;</code>, 和 <code>&lt;select&gt;</code>这类表单元素会维持自身状态，并根据用户输入进行更新。但在React中，可变的状态通常保存在组件的状态属性中，并且只能用 <a href="/react/docs/react-component.html#setstate"><code>setState()</code></a>. 方法进行更新.</p>
 
-<p>We can combine the two by making the React state be the &quot;single source of truth&quot;. Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a &quot;controlled component&quot;.</p>
+<p>我们通过使react变成一种单一数据源的状态来结合二者。React负责渲染表单的组件仍然控制用户后续输入时所发生的变化。相应的，其值由React控制的输入表单元素称为“受控组件”。</p>
 
-<p>For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:</p>
+<p>例如，我们想要使上个例子中在提交表单时输出name,我们可以写成“受控组件”的形式:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">NameForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -127,23 +127,23 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/VmmPgp?editors=0010">Try it on CodePen.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/VmmPgp?editors=0010">在 CodePen 上尝试.</a></p>
 
-<p>Since the <code>value</code> attribute is set on our form element, the displayed value will always be <code>this.state.value</code>, making the React state the source of truth. Since <code>handleChange</code> runs on every keystroke to update the React state, the displayed value will update as the user types.</p>
+<p>由于 <code>value</code> 属性是在我们的表单元素上设置的，因此显示的值将始终为 React数据源上<code>this.state.value</code> 的值。由于每次按键都会触发 <code>handleChange</code> 来更新当前React的state，所展示的值也会随着不同用户的输入而更新。</p>
 
-<p>With a controlled component, every state mutation will have an associated handler function. This makes it straightforward to modify or validate user input. For example, if we wanted to enforce that names are written with all uppercase letters, we could write <code>handleChange</code> as:</p>
+<p>使用&quot;受控组件&quot;,每个状态的改变都有一个与之相关的处理函数。这样就可以直接修改或验证用户输入。例如，我们如果想限制输入全部是大写字母，我们可以将<code>handleChange</code> 写为如下：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">handleChange</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">value</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()});</span>
 </span><span class="p">}</span>
 </code></pre></div>
-<h2>The textarea Tag</h2>
+<h2>textarea标签</h2>
 
-<p>In HTML, a <code>&lt;textarea&gt;</code> element defines its text by its children:</p>
+<p>在HTML当中，<code>&lt;textarea&gt;</code> 元素通过子节点来定义它的文本内容</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">textarea</span><span class="p">&gt;</span>
   Hello there, this is some text in a text area
 <span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>In React, a <code>&lt;textarea&gt;</code> uses a <code>value</code> attribute instead. This way, a form using a <code>&lt;textarea&gt;</code> can be written very similarly to a form that uses a single-line input:</p>
+<p>在React中，<code>&lt;textarea&gt;</code>会用<code>value</code>属性来代替。这样的话，表单中的<code>&lt;textarea&gt;</code> 非常类似于使用单行输入的表单：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">EssayForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -177,11 +177,11 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Notice that <code>this.state.value</code> is initialized in the constructor, so that the text area starts off with some text in it.</p>
+<p>注意<code>this.state.value</code>是在构造函数中初始化，这样文本区域就能获取到其中的文本。</p>
 
-<h2>The select Tag</h2>
+<h2>select标签</h2>
 
-<p>In HTML, <code>&lt;select&gt;</code> creates a drop-down list. For example, this HTML creates a drop-down list of flavors:</p>
+<p>在HTML当中，<code>&lt;select&gt;</code>会创建一个下拉列表。例如这个HTML就创建了一个下拉列表的原型。</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">select</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;grapefruit&quot;</span><span class="p">&gt;</span>Grapefruit<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;lime&quot;</span><span class="p">&gt;</span>Lime<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
@@ -189,7 +189,7 @@
   <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;mango&quot;</span><span class="p">&gt;</span>Mango<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>Note that the Coconut option is initially selected, because of the <code>selected</code> attribute. React, instead of using this <code>selected</code> attribute, uses a <code>value</code> attribute on the root <code>select</code> tag. This is more convenient in a controlled component because you only need to update it in one place. For example:</p>
+<p>请注意，Coconut选项最初由于<code>selected</code>属性是被选中的。在React中，会在根<code>select</code>标签上而不是在当前的<code>selected</code>属性上使用<code>value</code>属性。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">FlavorForm</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -226,15 +226,15 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/JbbEzX?editors=0010">Try it on CodePen.</a></p>
+<p>[<a href="https://codepen.io/gaearon/pen/JbbEzX?editors=0010">在 CodePen 上尝试.</a></p>
 
-<p>Overall, this makes it so that <code>&lt;input type=&quot;text&quot;&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;select&gt;</code> all work very similarly - they all accept a <code>value</code> attribute that you can use to implement a controlled component.</p>
+<p>总之，<code>&lt;input type=&quot;text&quot;&gt;</code>, <code>&lt;textarea&gt;</code>, 和 <code>&lt;select&gt;</code> 都十分类似 - 他们都通过传入一个<code>value</code>属性来实现对组件的控制。</p>
 
-<h2>Handling Multiple Inputs</h2>
+<h2>多个输入的解决方法</h2>
 
-<p>When you need to handle multiple controlled <code>input</code> elements, you can add a <code>name</code> attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>.</p>
+<p>当你有处理多个受控的<code>input</code>元素时，你可以通过给每个元素添加一个<code>name</code>属性，来让处理函数根据 <code>event.target.name</code>的值来选择做什么。</p>
 
-<p>For example:</p>
+<p>例如:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Reservation</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -281,23 +281,23 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/wgedvV?editors=0010">Try it on CodePen.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/wgedvV?editors=0010">在 CodePen 上尝试.</a></p>
 
-<p>Note how we used the ES6 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">computed property name</a> syntax to update the state key corresponding to the given input name:</p>
+<p>还要注意的是如果我们想要使用ES6当中的<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">computed property name</a>语法来更新与给定输入名称相对应的状态键：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
 <span class="hll">  <span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">:</span> <span class="nx">value</span>
 </span><span class="p">});</span>
 </code></pre></div>
-<p>It is equivalent to this ES5 code:</p>
+<p>相当于如下ES5语法</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">var</span> <span class="nx">partialState</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="hll"><span class="nx">partialState</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
 </span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">partialState</span><span class="p">);</span>
 </code></pre></div>
-<p>Also, since <code>setState()</code> automatically <a href="/react/docs/state-and-lifecycle.html#state-updates-are-merged">merges a partial state into the current state</a>, we only needed to call it with the changed parts.</p>
+<p>同样由于setState()自动将部分状态合并到当前状态<a href="/react/docs/state-and-lifecycle.html#state-updates-are-merged">merges a partial state into the current state</a>，因此我们只需要在已经更改的部分调用它。</p>
 
-<h2>Alternatives to Controlled Components</h2>
+<h2>受控组件的替代方法</h2>
 
-<p>It can sometimes be tedious to use controlled components, because you need to write an event handler for every way your data can change and pipe all of the input state through a React component. This can become particularly annoying when you are converting a preexisting codebase to React, or integrating a React application with a non-React library. In these situations, you might want to check out <a href="/react/docs/uncontrolled-components.html">uncontrolled components</a>, an alternative technique for implementing input forms.</p>
+<p>有时使用受控组件可能很繁琐，因为您要为数据可能发生变化的每一种方式都编写一个事件处理程序，并通过一个组件来管理全部的状态。当您将预先存在的代码库转换为React或将React应用程序与非React库集成时，这可能变得特别烦人。在以上情况下，你或许应该看看<a href="/react/docs/uncontrolled-components.html">非受控组件</a>，这是一种表单的替代技术。</p>
 
 
     <div class="docs-prevnext">
