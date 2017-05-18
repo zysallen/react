@@ -6,9 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Lifting State Up - React</title>
+  <title>状态提升 - React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Lifting State Up - React">
+  <meta property="og:title" content="状态提升 - React">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://facebook.github.io/react/docs/lifting-state-up.html">
   <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
@@ -74,25 +74,25 @@
   <div class="inner-content">
     <a class="edit-page-link" href="https://github.com/facebook/react/tree/master/docs/docs/lifting-state-up.md" target="_blank">Edit on GitHub</a>
     <h1>
-      Lifting State Up
+      状态提升
     </h1>
     <div class="subHeader"></div>
 
-    <p>Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let&#39;s see how this works in action.</p>
+    <p>使用 react 经常会遇到几个组件需要共用状态数据的情况。这种情况下，我们最好将这部分共享的状态提升至他们最近的父组件当中进行管理。我们来看一下具体如何操作吧。</p>
 
-<p>In this section, we will create a temperature calculator that calculates whether the water would boil at a given temperature.</p>
+<p>这部分内容当中，我们会创建一个温度计算器来计算水是否会在给定的温度下烧开。</p>
 
-<p>We will start with a component called <code>BoilingVerdict</code>. It accepts the <code>celsius</code> temperature as a prop, and prints whether it is enough to boil the water:</p>
+<p>开始呢，我们先创建一个名为 <code>BoilingVerdict</code> 的组件。它会接受 <code>celsius</code> 这个温度变量最为它的 prop 属性，最后根据温度判断返回内容：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">BoilingVerdict</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">celsius</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
-<span class="hll">    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">The</span> <span class="nx">water</span> <span class="nx">would</span> <span class="nx">boil</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="hll">    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">水会烧开</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
 </span>  <span class="p">}</span>
-<span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">The</span> <span class="nx">water</span> <span class="nx">would</span> <span class="nx">not</span> <span class="nx">boil</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">水不会烧开</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
 </span><span class="p">}</span>
 </code></pre></div>
-<p>Next, we will create a component called <code>Calculator</code>. It renders an <code>&lt;input&gt;</code> that lets you enter the temperature, and keeps its value in <code>this.state.temperature</code>.</p>
+<p>接下来，我们写一个名为 <code>Calculator</code> 的组件。它会渲染一个 <code>&lt;input&gt;</code> 来接受用户输入，然后将输入的温度值保存在 <code>this.state.temperature</code> 当中。</p>
 
-<p>Additionally, it renders the <code>BoilingVerdict</code> for the current input value.</p>
+<p>之后呢，它会根据输入的值渲染出 <code>BoilingVerdict</code> 组件。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Calculator</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -108,7 +108,7 @@
 <span class="hll">    <span class="kr">const</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">temperature</span><span class="p">;</span>
 </span>    <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">fieldset</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">legend</span><span class="o">&gt;</span><span class="nx">Enter</span> <span class="nx">temperature</span> <span class="k">in</span> <span class="nx">Celsius</span><span class="o">:&lt;</span><span class="err">/legend&gt;</span>
+        <span class="o">&lt;</span><span class="nx">legend</span><span class="o">&gt;</span><span class="nx">输入一个摄氏温度</span><span class="o">&lt;</span><span class="err">/legend&gt;</span>
 <span class="hll">        <span class="o">&lt;</span><span class="nx">input</span>
 </span><span class="hll">          <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}</span>
 </span><span class="hll">          <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
@@ -119,13 +119,13 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/valscion/pen/VpZJRZ?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/valscion/pen/VpZJRZ?editors=0010">在 CodePen 上试试。</a></p>
 
-<h2>Adding a Second Input</h2>
+<h2>添加第二个输入框</h2>
 
-<p>Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.</p>
+<p>现在我们有了一个新的需求，在提供摄氏度输入的基础之上，再提供一个华氏温度输入，并且它们能保持同步。</p>
 
-<p>We can start by extracting a <code>TemperatureInput</code> component from <code>Calculator</code>. We will add a new <code>scale</code> prop to it that can either be <code>&quot;c&quot;</code> or <code>&quot;f&quot;</code>:</p>
+<p>我们可以通过从 <code>Calculator</code> 组件中抽离一个 <code>TemperatureInput</code> 组件出来。我们也会给它添加一个值为 <code>c</code> 或 <code>f</code> 的表示温度单位的 <code>scale</code> 属性。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll"><span class="kr">const</span> <span class="nx">scaleNames</span> <span class="o">=</span> <span class="p">{</span>
 </span><span class="hll">  <span class="nx">c</span><span class="o">:</span> <span class="s1">&#39;Celsius&#39;</span><span class="p">,</span>
 </span><span class="hll">  <span class="nx">f</span><span class="o">:</span> <span class="s1">&#39;Fahrenheit&#39;</span>
@@ -155,7 +155,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We can now change the <code>Calculator</code> to render two separate temperature inputs:</p>
+<p>我们现在可以对<code>Calculator</code>稍作修改，来渲染两个不同的温度输入框。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Calculator</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
@@ -167,15 +167,15 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/valscion/pen/GWKbao?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/valscion/pen/GWKbao?editors=0010">在 CodePen 上试试。</a></p>
 
-<p>We have two inputs now, but when you enter the temperature in one of them, the other doesn&#39;t update. This contradicts our requirement: we want to keep them in sync.</p>
+<p>我们现在有了两个输入框，但是当你在其中一个输入时，另一个并不会更新。这显然是不符合我们的需求的。</p>
 
-<p>We also can&#39;t display the <code>BoilingVerdict</code> from <code>Calculator</code>. The <code>Calculator</code> doesn&#39;t know the current temperature because it is hidden inside the <code>TemperatureInput</code>.</p>
+<p>另外，我们此时也不能从 <code>Calculator</code> 组件中展示 <code>BoilingVerdict</code> 的渲染结果。因为现在表示温度的状态数据只存在于 <code>TemperatureInput</code> 组件当中。</p>
 
-<h2>Writing Conversion Functions</h2>
+<h2>写出转换函数</h2>
 
-<p>First, we will write two functions to convert from Celsius to Fahrenheit and back:</p>
+<p>首先，我们写两个可以将摄氏度和华氏度互相转换的函数。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">toCelsius</span><span class="p">(</span><span class="nx">fahrenheit</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nx">fahrenheit</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span><span class="p">;</span>
 <span class="p">}</span>
@@ -184,9 +184,9 @@
   <span class="k">return</span> <span class="p">(</span><span class="nx">celsius</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>These two functions convert numbers. We will write another function that takes a string <code>temperature</code> and a converter function as arguments and returns a string. We will use it to calculate the value of one input based on the other input.</p>
+<p>这两个函数只是单纯转换数字。我们还需要另外一个函数，它接受两个参数，第一个接受字符串 <code>temperature</code> 变量，第二个参数则是上面编写的单位转换函数。最后会返回一个字符串。我们会使用它来根据一个输入框的输入计算出另一个输入框的值。</p>
 
-<p>It returns an empty string on an invalid <code>temperature</code>, and it keeps the output rounded to the third decimal place:</p>
+<p>我们最后取到输出的小数点后三位，而 <code>temperature</code> 输入不合法的时候，这个函数则会返回空字符串。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">tryConvert</span><span class="p">(</span><span class="nx">temperature</span><span class="p">,</span> <span class="nx">convert</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">temperature</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">input</span><span class="p">))</span> <span class="p">{</span>
@@ -197,11 +197,11 @@
   <span class="k">return</span> <span class="nx">rounded</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>For example, <code>tryConvert(&#39;abc&#39;, toCelsius)</code> returns an empty string, and <code>tryConvert(&#39;10.22&#39;, toFahrenheit)</code> returns <code>&#39;50.396&#39;</code>.</p>
+<p>举两个例子，<code>tryConvert(&#39;abc&#39;, toCelsius)</code> 会返回空字符串，而 <code>tryConvert(&#39;10.22&#39;, toFahrenheit)</code> 会返回 <code>&#39;50.396&#39;</code>。</p>
 
-<h2>Lifting State Up</h2>
+<h2>状态提升</h2>
 
-<p>Currently, both <code>TemperatureInput</code> components independently keep their values in the local state:</p>
+<p>到这一步为止，两个<code>TemperatureInput</code>组件都是在自己的 state 中独立保存数据。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">TemperatureInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -216,33 +216,34 @@
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">temperature</span><span class="p">;</span>
 </span></code></pre></div>
-<p>However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.</p>
+<p>但是，我们想要的是这两个输入能保持同步。当我们更新摄氏输入（Celsius）时，华氏度（Fahrenheit ）这个框应该能显示转换后的的温度数值，反之亦然。</p>
 
-<p>In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called &quot;lifting state up&quot;. We will remove the local state from the <code>TemperatureInput</code> and move it into the <code>Calculator</code> instead.</p>
+<p>在React中，状态分享是通过将state数据提升至离需要这些数据的组件最近的父组件来完成的。这就是所谓的<strong>状态提升</strong>。我们会将 <code>TemperatureInput</code> 组件自身保存的 state 移到 <code>Calculator</code> 中。</p>
 
-<p>If the <code>Calculator</code> owns the shared state, it becomes the &quot;source of truth&quot; for the current temperature in both inputs. It can instruct them both to have values that are consistent with each other. Since the props of both <code>TemperatureInput</code> components are coming from the same parent <code>Calculator</code> component, the two inputs will always be in sync.</p>
+<p>如果 <code>Calculator</code> 组件拥有了提升上来共享的状态数据，那它就会成为两个温度输入组件的“数据源”。它会传递给下面温度输入组件一致的数据。由于两个 <code>TemperatureInput</code> 温度组件的props属性都是来源于共同的父组件 <code>Calculator</code>，它们的数据也会保持同步。</p>
 
-<p>Let&#39;s see how this works step by step.</p>
+<p>让我们一步一步来分析如何操作。</p>
 
-<p>First, we will replace <code>this.state.temperature</code> with <code>this.props.temperature</code> in the <code>TemperatureInput</code> component. For now, let&#39;s pretend <code>this.props.temperature</code> already exists, although we will need to pass it from the <code>Calculator</code> in the future:</p>
+<p>首先，我们在 <code>TemperatureInput</code> 组件中将 <code>this.state.temperature</code> 替换为 <code>this.props.temperature</code> 。从现在开始，我们假定 <code>this.props.temperature</code> 属性已经存在了，不过之后仍然需要将数据从 <code>Calculator</code> 组件中传进去。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Before: const temperature = this.state.temperature;</span>
+    <span class="c1">// 之前的代码: const temperature = this.state.temperature;</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">temperature</span><span class="p">;</span>
 </span></code></pre></div>
-<p>We know that <a href="/react/docs/components-and-props.html#props-are-read-only">props are read-only</a>. When the <code>temperature</code> was in the local state, the <code>TemperatureInput</code> could just call <code>this.setState()</code> to change it. However, now that the <code>temperature</code> is coming from the parent as a prop, the <code>TemperatureInput</code> has no control over it.</p>
+<p>我们首先知道<a href="/react/docs/components-and-props.html#props-are-read-only">props是只读的</a>
+这么一个事实。而之前<code>temperature</code>变量是被保存在其自身的 state 中的，<code>TemperatureInput</code> 组件只需要调用 <code>this.setState()</code> 就能改变它。但现在，<code>temperature</code> 是作为 prop 从父组件传递下来的，<code>TemperatureInput</code> 组件是没有控制权的。</p>
 
-<p>In React, this is usually solved by making a component &quot;controlled&quot;. Just like the DOM <code>&lt;input&gt;</code> accepts both a <code>value</code> and an <code>onChange</code> prop, so can the custom <code>TemperatureInput</code> accept both <code>temperature</code> and <code>onTemperatureChange</code> props from its parent <code>Calculator</code>.</p>
+<p>在React中，这个问题通常是通过让组件“受控”来解决。就像 <code>&lt;input&gt;</code> 能够接受 <code>value</code> 和 <code>onChange</code> 这两个prop属性值，自定义组件 <code>TemperatureInput</code> 也能接受来自 <code>Calculator</code> 父组件的 <code>temperature</code> 变量和 <code>onTemperatureChange</code> 方法作为props属性值。</p>
 
-<p>Now, when the <code>TemperatureInput</code> wants to update its temperature, it calls <code>this.props.onTemperatureChange</code>:</p>
+<p>做完这些，当 <code>TemperatureInput</code> 组件更新它的温度数值时，就会调用 <code>this.props.onTemperatureChange</code> 方法。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Before: this.setState({temperature: e.target.value});</span>
+    <span class="c1">// 之前的代码: this.setState({temperature: e.target.value});</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onTemperatureChange</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 </span></code></pre></div>
-<p>Note that there is no special meaning to either <code>temperature</code> or <code>onTemperatureChange</code> prop names in custom components. We could have called them anything else, like name them <code>value</code> and <code>onChange</code> which is a common convention.</p>
+<p>需要指出的是，我们现在定义的 <code>temperature</code> 和 <code>onTemperatureChange</code> 这些prop属性的命名没有特殊含义，我们也可以起个其他任何的名字，像是<code>value</code>和<code>onChange</code>这些只是命名习惯罢了。</p>
 
-<p>The <code>onTemperatureChange</code> prop will be provided together with the <code>temperature</code> prop by the parent <code>Calculator</code> component. It will handle the change by modifying its own local state, thus re-rendering both inputs with the new values. We will look at the new <code>Calculator</code> implementation very soon.</p>
+<p><code>onTemperatureChange</code> 和 <code>temperature</code> 两个 props 属性均由父组件 <code>Calculator</code> 提供。父组件可以通过自身的方法来响应状态数据的改变，从而使用新的值来重新渲染两个输入框组件。不过我们先放着，最后再来修改它。</p>
 
-<p>Before diving into the changes in the <code>Calculator</code>, let&#39;s recap our changes to the <code>TemperatureInput</code> component. We have removed the local state from it, and instead of reading <code>this.state.temperature</code>, we now read <code>this.props.temperature</code>. Instead of calling <code>this.setState()</code> when we want to make a change, we now call <code>this.props.onTemperatureChange()</code>, which will be provided by the <code>Calculator</code>:</p>
+<p>在我们改写 <code>Calculator</code> 组件之前，我们先花点时间总结下 <code>TemperatureInput</code> 组件的改变。我们将其自身的 state 从组件中移除，使用 <code>this.props.temperature</code> 替代 <code>this.state.temperature</code> ，当我们想要响应数据改变时，使用父组件提供的 <code>this.props.onTemperatureChange()</code> 而不是<code>this.setState()</code> 方法：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">TemperatureInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -258,7 +259,7 @@
 </span>    <span class="kr">const</span> <span class="nx">scale</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">scale</span><span class="p">;</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">fieldset</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">legend</span><span class="o">&gt;</span><span class="nx">Enter</span> <span class="nx">temperature</span> <span class="k">in</span> <span class="p">{</span><span class="nx">scaleNames</span><span class="p">[</span><span class="nx">scale</span><span class="p">]}</span><span class="o">:&lt;</span><span class="err">/legend&gt;</span>
+        <span class="o">&lt;</span><span class="nx">legend</span><span class="o">&gt;</span><span class="nx">在</span><span class="p">{</span><span class="nx">scaleNames</span><span class="p">[</span><span class="nx">scale</span><span class="p">]}</span><span class="o">:</span><span class="nx">中输入温度数值</span><span class="o">&lt;</span><span class="err">/legend&gt;</span>
         <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}</span>
                <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span> <span class="o">/&gt;</span>
       <span class="o">&lt;</span><span class="err">/fieldset&gt;</span>
@@ -266,25 +267,26 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Now let&#39;s turn to the <code>Calculator</code> component.</p>
+<p>现在让我们来看看 <code>Calculator</code> 组件。</p>
 
-<p>We will store the current input&#39;s <code>temperature</code> and <code>scale</code> in its local state. This is the state we &quot;lifted up&quot; from the inputs, and it will serve as the &quot;source of truth&quot; for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.</p>
+<p>我们将会在它的 state 中存储之前输入框组件的 <code>temperature</code> 和 <code>scale</code> 值，这是从输入框组件中“提升”上来的 state，它将会成为两个输入框组件的“数据源”。这是我们所需要的能够重新渲染并且表示两个不同输入组件的最基本的数据。</p>
 
-<p>For example, if we enter 37 into the Celsius input, the state of the <code>Calculator</code> component will be:</p>
+<p>举个例子，假如我们在摄氏度输入框中输入37，那么 <code>Calculator</code> 的 state 就是：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">temperature</span><span class="o">:</span> <span class="s1">&#39;37&#39;</span><span class="p">,</span>
   <span class="nx">scale</span><span class="o">:</span> <span class="s1">&#39;c&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If we later edit the Fahrenheit field to be 212, the state of the <code>Calculator</code> will be:</p>
+<p>如果我们之后在华氏度输入框输入212，那么 <code>Calculator</code> 的状态数据就会是：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="p">{</span>
   <span class="nx">temperature</span><span class="o">:</span> <span class="s1">&#39;212&#39;</span><span class="p">,</span>
   <span class="nx">scale</span><span class="o">:</span> <span class="s1">&#39;f&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We could have stored the value of both inputs but it turns out to be unnecessary. It is enough to store the value of the most recently changed input, and the scale that it represents. We can then infer the value of the other input based on the current <code>temperature</code> and <code>scale</code> alone.</p>
+<p>其实我们可以一起保存两个输入的值，但这么做似乎没有必要。保存最近
+改变的值和所需标识的温标单位就足够了。我们可以只需基于当前的 <code>temperature</code> 和 <code>scale</code> 计算出另一个输入框中的值。</p>
 
-<p>The inputs stay in sync because their values are computed from the same state:</p>
+<p>现在这两个输入框中的值能保持同步了，因为它们使用的是通过同一个 state 计算出来的值。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Calculator</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -324,43 +326,43 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="http://codepen.io/valscion/pen/jBNjja?editors=0010">Try it on CodePen.</a></p>
+<p><a href="http://codepen.io/valscion/pen/jBNjja?editors=0010">在 Codepen 上试试。</a></p>
 
-<p>Now, no matter which input you edit, <code>this.state.temperature</code> and <code>this.state.scale</code> in the <code>Calculator</code> get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.</p>
+<p>现在，无论你编辑哪一个输入框，<code>Calculator</code> 组件中 <code>this.state.temperature</code> 和 <code>this.state.scale</code> 都会更新。其中之一的输入框得到用户原样输入的值，另一个输入框总是显示基于这个值计算出的结果。</p>
 
-<p>Let&#39;s recap what happens when you edit an input:</p>
+<p>让我们梳理下编辑输入框时所发生的一系列活动：</p>
 
 <ul>
-<li>React calls the function specified as <code>onChange</code> on the DOM <code>&lt;input&gt;</code>. In our case, this is the <code>handleChange</code> method in <code>TemperatureInput</code> component.</li>
-<li>The <code>handleChange</code> method in the <code>TemperatureInput</code> component calls <code>this.props.onTemperatureChange()</code> with the new desired value. Its props, including <code>onTemperatureChange</code>, were provided by its parent component, the <code>Calculator</code>.</li>
-<li>When it previously rendered, the <code>Calculator</code> has specified that <code>onTemperatureChange</code> of the Celsius <code>TemperatureInput</code> is the <code>Calculator</code>&#39;s <code>handleCelsiusChange</code> method, and <code>onTemperatureChange</code> of the Fahrenheit <code>TemperatureInput</code> is the <code>Calculator</code>&#39;s <code>handleFahrenheitChange</code> method. So either of these two <code>Calculator</code> methods gets called depending on which input we edited.</li>
-<li>Inside these methods, the <code>Calculator</code> component asks React to re-render itself by calling <code>this.setState()</code> with the new input value and the current scale of the input we just edited.</li>
-<li>React calls the <code>Calculator</code> component&#39;s <code>render</code> method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.</li>
-<li>React calls the <code>render</code> methods of the individual <code>TemperatureInput</code> components with their new props specified by the <code>Calculator</code>. It learns what their UI should look like.</li>
-<li>React DOM updates the DOM to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.</li>
+<li>React在DOM原生组件<code>&lt;input&gt;</code>上调用指定的<code>onChange</code>函数。在本例中，指的是<code>TemperatureInput</code>组件上的<code>handleChange</code>函数。</li>
+<li><code>TemperatureInput</code>组件的<code>handleChange</code>函数会在值发生变化时调用<code>this.props.onTemperatureChange()</code>函数。这些props属性，像<code>onTemperatureChange</code>都是由父组件<code>Calculator</code>提供的。</li>
+<li>当最开始渲染时，<code>Calculator</code>组件把内部的<code>handleCelsiusChange</code>方法指定给摄氏输入组件<code>TemperatureInput</code>的<code>onTemperatureChange</code>方法，并且把<code>handleFahrenheitChange</code>方法指定给华氏输入组件<code>TemperatureInput</code>的<code>onTemperatureChange</code>。两个<code>Calculator</code>内部的方法都会在相应输入框被编辑时被调用。</li>
+<li>在这些方法内部，<code>Calculator</code>组件会让React使用编辑输入的新值和当前输入框的温标来调用<code>this.setState()</code>方法来重渲染自身。</li>
+<li>React会调用<code>Calculator</code>组件的<code>render</code>方法来识别UI界面的样子。基于当前温度和温标，两个输入框的值会被重新计算。温度转换就是在这里被执行的。</li>
+<li>接着React会使用<code>Calculator</code>指定的新props来分别调用<code>TemperatureInput</code>组件.React也会识别出子组件的UI界面。</li>
+<li>React DOM 会更新DOM来匹配对应的值。我们编辑的输入框获取新值，而另一个输入框则更新经过转换的温度值。</li>
 </ul>
 
-<p>Every update goes through the same steps so the inputs stay in sync.</p>
+<p>一切更新都是经过同样的步骤，因而输入框能保持同步的。</p>
 
-<h2>Lessons Learned</h2>
+<h2>经验教训</h2>
 
-<p>There should be a single &quot;source of truth&quot; for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the <a href="/react/docs/state-and-lifecycle.html#the-data-flows-down">top-down data flow</a>.</p>
+<p>在React应用中，对应任何可变数据理应只有一个单一“数据源”。通常，状态都是首先添加在需要渲染数据的组件中。此时，如果另一个组件也需要这些数据，你可以将数据提升至离它们最近的父组件中。你应该在应用中保持 <a href="/react/docs/state-and-lifecycle.html#the-data-flows-down">自上而下的数据流</a>，而不是尝试在不同组件中同步状态。</p>
 
-<p>Lifting state involves writing more &quot;boilerplate&quot; code than two-way binding approaches, but as a benefit, it takes less work to find and isolate bugs. Since any state &quot;lives&quot; in some component and that component alone can change it, the surface area for bugs is greatly reduced. Additionally, you can implement any custom logic to reject or transform user input.</p>
+<p>状态提升比双向绑定方式要写更多的“模版代码”，但带来的好处是，你也可以更快地寻找和定位bug的工作。因为哪个组件保有状态数据，也只有它自己能够操作这些数据，发生bug的范围就被大大地减小了。此外，你也可以使用自定义逻辑来拒绝或者更改用户的输入。</p>
 
-<p>If something can be derived from either props or state, it probably shouldn&#39;t be in the state. For example, instead of storing both <code>celsiusValue</code> and <code>fahrenheitValue</code>, we store just the last edited <code>temperature</code> and its <code>scale</code>. The value of the other input can always be calculated from them in the <code>render()</code> method. This lets us clear or apply rounding to the other field without losing any precision in the user input.</p>
+<p>如果某些数据可以由props或者state提供，那么它很有可能不应该在state中出现。举个例子，我们仅仅保存最新的编辑过的<code>temperature</code>和<code>scale</code>值，而不是同时保存 <code>celsiusValue</code> 和 <code>fahrenheitValue</code> 。另一个输入框中的值总是可以在 <code>render()</code> 函数中由这些保存的数据计算出来。这样我们可以根据同一个用户输入精准计算出两个需要使用的数据。</p>
 
-<p>When you see something wrong in the UI, you can use <a href="https://github.com/facebook/react-devtools">React Developer Tools</a> to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:</p>
+<p>当你在开发UI界面遇到问题时，你可以使用 <a href="https://github.com/facebook/react-devtools">React 开发者工具</a>来检查props属性，并且可以点击查看组件树，直到你找到负责目前状态更新的组件。这能让你到追踪到产生 bug 的源头。</p>
 
 <p><img src="/react/img/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" width="100%"></p>
 
 
     <div class="docs-prevnext">
       
-        <a class="docs-prev" href="/react/docs/state-and-lifecycle.html">&larr; Prev</a>
+        <a class="docs-prev" href="/react/docs/state-and-lifecycle.html">&larr; 上一页</a>
       
       
-        <a class="docs-next" href="/react/docs/composition-vs-inheritance.html">Next &rarr;</a>
+        <a class="docs-next" href="/react/docs/composition-vs-inheritance.html">下一页 &rarr;</a>
       
     </div>
   </div>
