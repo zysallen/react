@@ -207,14 +207,12 @@
 </code></pre></div>
 <p>类组件应始终使用<code>props</code>调用基础构造函数。</p>
 
-<p>3) 从 <code>&lt;Clock /&gt;</code> 元素移除 <code>date</code> 属性：
-<code>js{2}
-ReactDOM.render(
-  &lt;Clock /&gt;,
-  document.getElementById(&#39;root&#39;)
-);
-</code></p>
-
+<p>3) 从 <code>&lt;Clock /&gt;</code> 元素移除 <code>date</code> 属性：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<span class="hll">  <span class="o">&lt;</span><span class="nx">Clock</span> <span class="o">/&gt;</span><span class="p">,</span>
+</span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
 <p>稍后将定时器代码添加回组件本身。</p>
 
 <p>结果如下：</p>
@@ -247,9 +245,9 @@ ReactDOM.render(
 
 <p>在具有许多组件的应用程序中，在销毁时释放组件所占用的资源非常重要。</p>
 
-<p>We want to <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval">set up a timer</a> whenever the <code>Clock</code> is rendered to the DOM for the first time. 这在 React 中被称为<code>挂载</code>。</p>
+<p>每当<code>Clock</code>组件第一次加载到DOM中的时候，我们都想<a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval">生成定时器</a>，这在React中被称为<code>挂载</code></p>
 
-<p>We also want to <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval">clear that timer</a> whenever the DOM produced by the <code>Clock</code> is removed. 这在 React 中被称为<code>卸载</code>。</p>
+<p>同样，每当<code>Clock</code>生成的这个DOM被移除的时候，我们也会想要<a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval">清除定时器</a>，这在React中被称为<code>卸载</code>。</p>
 
 <p>我们可以在组件类上声明特殊的方法，当组件挂载或卸载时，来运行一些代码：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Clock</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
@@ -352,7 +350,7 @@ ReactDOM.render(
 
 <p>4) 浏览器每秒钟调用 <code>tick()</code> 方法。 在其中，<code>Clock</code> 组件通过使用包含当前时间的对象调用 <code>setState()</code> 来调度UI更新。 通过调用 <code>setState()</code> ，React 知道状态已经改变，并再次调用 <code>render()</code> 方法来确定屏幕上应当显示什么。 这一次，<code>render()</code> 方法中的 <code>this.state.date</code> 将不同，所以渲染输出将包含更新的时间，并相应地更新DOM。</p>
 
-<p>5) If the <code>Clock</code> component is ever removed from the DOM, React calls the <code>componentWillUnmount()</code> lifecycle hook so the timer is stopped.</p>
+<p>5) 一旦<code>Clock</code>组件被从DOM中移除，React会调用<code>componentWillUnmount()</code>这个钩子函数，定时器也就会被清除。</p>
 
 <h2>正确地使用状态</h2>
 
@@ -424,7 +422,7 @@ ReactDOM.render(
     <span class="p">});</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>The merging is shallow, so <code>this.setState({comments})</code> leaves <code>this.state.posts</code> intact, but completely replaces <code>this.state.comments</code>.</p>
+<p>这里的合并是浅合并，也就是说<code>this.setState({comments})</code>完整保留了<code>this.state.posts</code>，但完全替换了<code>this.state.comments</code>。</p>
 
 <h2>数据自顶向下流动</h2>
 
