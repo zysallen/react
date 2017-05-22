@@ -118,7 +118,7 @@
 </span><span class="hll"><span class="kr">import</span> <span class="nx">CustomButton</span> <span class="nx">from</span> <span class="s1">&#39;./CustomButton&#39;</span><span class="p">;</span>
 </span>
 <span class="kd">function</span> <span class="nx">WarningButton</span><span class="p">()</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// return React.createElement(CustomButton, {color: &#39;red&#39;}, null);</span>
+<span class="hll">  <span class="c1">// 返回 React.createElement(CustomButton, {color: &#39;red&#39;}, null);</span>
 </span>  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">CustomButton</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -148,28 +148,28 @@
 <p>例如，下面的代码将无法按预期运行：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 
-<span class="hll"><span class="c1">// Wrong! This is a component and should have been capitalized:</span>
+<span class="hll"><span class="c1">// 错误！组件名应该首字母大写:</span>
 </span><span class="hll"><span class="kd">function</span> <span class="nx">hello</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-</span>  <span class="c1">// Correct! This use of &lt;div&gt; is legitimate because div is a valid HTML tag:</span>
+</span>  <span class="c1">// 正确！div 是有效的 HTML 标签:</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">toWhat</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">HelloWorld</span><span class="p">()</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// Wrong! React thinks &lt;hello /&gt; is an HTML tag because it&#39;s not capitalized:</span>
+<span class="hll">  <span class="c1">// 错误！React 会将小写开头的标签名认为是 HTML 原生标签:</span>
 </span><span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">hello</span> <span class="nx">toWhat</span><span class="o">=</span><span class="s2">&quot;World&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span><span class="p">}</span>
 </code></pre></div>
 <p>为了解决这个问题，我们将 <code>hello</code> 重命名为 <code>Hello</code>，然后使用 <code>&lt;Hello /&gt;</code> 引用：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 
-<span class="hll"><span class="c1">// Correct! This is a component and should be capitalized:</span>
+<span class="hll"><span class="c1">// 正确！组件名应该首字母大写:</span>
 </span><span class="hll"><span class="kd">function</span> <span class="nx">Hello</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-</span>  <span class="c1">// Correct! This use of &lt;div&gt; is legitimate because div is a valid HTML tag:</span>
+</span>  <span class="c1">// 正确！div 是有效的 HTML 标签:</span>
   <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">toWhat</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">HelloWorld</span><span class="p">()</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// Correct! React knows &lt;Hello /&gt; is a component because it&#39;s capitalized.</span>
+<span class="hll">  <span class="c1">// 正确！React 能够将大写开头的标签名认为是 React 组件。</span>
 </span><span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Hello</span> <span class="nx">toWhat</span><span class="o">=</span><span class="s2">&quot;World&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span><span class="p">}</span>
 </code></pre></div>
@@ -185,7 +185,7 @@
 <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">Story</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// Wrong! JSX type can&#39;t be an expression.</span>
+<span class="hll">  <span class="c1">// 错误！JSX 标签名不能为一个表达式。</span>
 </span><span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">components</span><span class="p">[</span><span class="nx">props</span><span class="p">.</span><span class="nx">storyType</span><span class="p">]</span> <span class="nx">story</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">story</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span><span class="p">}</span>
 </code></pre></div>
@@ -199,7 +199,7 @@
 <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">Story</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// Correct! JSX type can be a capitalized variable.</span>
+<span class="hll">  <span class="c1">// 正确！JSX 标签名可以为大写开头的变量。</span>
 </span><span class="hll">  <span class="kr">const</span> <span class="nx">SpecificStory</span> <span class="o">=</span> <span class="nx">components</span><span class="p">[</span><span class="nx">props</span><span class="p">.</span><span class="nx">storyType</span><span class="p">];</span>
 </span><span class="hll">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">SpecificStory</span> <span class="nx">story</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">story</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span><span class="p">}</span>
