@@ -80,34 +80,32 @@
     <div class="subHeader"></div>
 
     <blockquote>
-<p>Note:
-As of React v15.5 the <code>React.PropTypes</code> helper is deprecated, and we recommend using the <a href="https://www.npmjs.com/package/prop-types"><code>prop-types</code> library</a> to define <code>contextTypes</code>.</p>
+<p>注释：由于React v15.5开始 <code>React.PropTypes</code>已经废弃，我们推荐使用<a href="https://www.npmjs.com/package/prop-types"><code>prop-types</code></a>来定义<code>contextTypes</code>。</p>
 </blockquote>
 
-<p>With React, it&#39;s easy to track the flow of data through your React components. When you look at a component, you can see which props are being passed, which makes your apps easy to reason about.</p>
+<p>使用React可以非常轻松地追踪通过React组件的数据流。在React组件中，你可以看到哪些props被传递，这使得你的应用容易理解。</p>
 
-<p>In some cases, you want to pass data through the component tree without having to pass the props down manually at every level.
-You can do this directly in React with the powerful &quot;context&quot; API.</p>
+<p>在有些场景中，你不想要向下每层都手动地传递你需要的 props. 这就需要强大的 <code>context</code> API了。</p>
 
-<h2>Why Not To Use Context</h2>
+<h2>为什么不要使用Context</h2>
 
-<p>The vast majority of applications do not need to use context.</p>
+<p>绝大多数应用程序不需要使用 context</p>
 
-<p>If you want your application to be stable, don&#39;t use context. It is an experimental API and it is likely to break in future releases of React.</p>
+<p>如果你想让你的应用更稳定，别使用context。因为这是一个实验性的API，在未来的React版本中可能会被更改。</p>
 
-<p>If you aren&#39;t familiar with state management libraries like <a href="https://github.com/reactjs/redux">Redux</a> or <a href="https://github.com/mobxjs/mobx">MobX</a>, don&#39;t use context. For many practical applications, these libraries and their React bindings are a good choice for managing state that is relevant to many components. It is far more likely that Redux is the right solution to your problem than that context is the right solution.</p>
+<p>如果你对状态管理库如<a href="https://github.com/reactjs/redux">Redux</a>或<a href="https://github.com/mobxjs/mobx">Mobx</a>不太熟悉，那就别用context了。在很多实际应用中，这些库及其React绑定是管理与许多组件相关的state的不错选择。Redux可能是你更好的选择，而不是context。</p>
 
-<p>If you aren&#39;t an experienced React developer, don&#39;t use context. There is usually a better way to implement functionality just using props and state.</p>
+<p>如果你不是一个有经验的React的开发者，不要使用context，通常仅使用props和state来实现功能是更好的一种方式。</p>
 
-<p>If you insist on using context despite these warnings, try to isolate your use of context to a small area and avoid using the context API directly when possible so that it&#39;s easier to upgrade when the API changes.</p>
+<p>尽管有这些警告，如果你还是坚持要使用context，那么尽量将使用context的代码隔离到一小块地方并避免直接使用context API，这样以后API变更的时候更容易升级。</p>
 
-<h2>How To Use Context</h2>
+<h2>如何使用Context</h2>
 
-<p>Suppose you have a structure like:</p>
+<p>假设你有如下代码：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="nx">background</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">color</span><span class="p">}}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=&gt;</span>
         <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
       <span class="o">&lt;</span><span class="err">/button&gt;</span>
     <span class="p">);</span>
@@ -134,38 +132,38 @@ You can do this directly in React with the powerful &quot;context&quot; API.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>In this example, we manually thread through a <code>color</code> prop in order to style the <code>Button</code> and <code>Message</code> components appropriately. Using context, we can pass this through the tree automatically:</p>
+<p>在这个例子中，我们手动传递color这个prop，以适当地设置<code>Button</code>和<code>Message</code>组件的样式。使用context，我们可以自动地在组件树中传递参数。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">const</span> <span class="nx">PropTypes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;prop-types&#39;</span><span class="p">);</span>
 
 <span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
-<span class="hll">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="nx">background</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">color</span><span class="p">}}</span><span class="o">&gt;</span>
-</span>        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
       <span class="o">&lt;</span><span class="err">/button&gt;</span>
     <span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="hll"><span class="nx">Button</span><span class="p">.</span><span class="nx">contextTypes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="hll">  <span class="nx">color</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
-</span><span class="hll"><span class="p">};</span>
-</span>
+<span class="nx">Button</span><span class="p">.</span><span class="nx">contextTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">color</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
+<span class="p">};</span>
+
 <span class="kr">class</span> <span class="nx">Message</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-<span class="hll">        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span> <span class="o">&lt;</span><span class="nx">Button</span><span class="o">&gt;</span><span class="nx">Delete</span><span class="o">&lt;</span><span class="err">/Button&gt;</span>
-</span>      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span> <span class="o">&lt;</span><span class="nx">Button</span><span class="o">&gt;</span><span class="nx">Delete</span><span class="o">&lt;</span><span class="err">/Button&gt;</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
     <span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kr">class</span> <span class="nx">MessageList</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-<span class="hll">  <span class="nx">getChildContext</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">};</span>
-</span><span class="hll">  <span class="p">}</span>
-</span>
+  <span class="nx">getChildContext</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span><span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">};</span>
+  <span class="p">}</span>
+
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">children</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">message</span><span class="p">)</span> <span class="o">=&gt;</span>
       <span class="o">&lt;</span><span class="nx">Message</span> <span class="nx">text</span><span class="o">=</span><span class="p">{</span><span class="nx">message</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span> <span class="o">/&gt;</span>
@@ -174,17 +172,17 @@ You can do this directly in React with the powerful &quot;context&quot; API.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="hll"><span class="nx">MessageList</span><span class="p">.</span><span class="nx">childContextTypes</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="hll">  <span class="nx">color</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
-</span><span class="hll"><span class="p">};</span>
-</span></code></pre></div>
-<p>By adding <code>childContextTypes</code> and <code>getChildContext</code> to <code>MessageList</code> (the context provider), React passes the information down automatically and any component in the subtree (in this case, <code>Button</code>) can access it by defining <code>contextTypes</code>.</p>
+<span class="nx">MessageList</span><span class="p">.</span><span class="nx">childContextTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">color</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>通过在<code>MessageList</code>（context提供者）中添加<code>childContextTypes</code>和<code>getChildContext</code>，React会向下自动传递参数，任何组件只要在它的子组件中（这个例子中是<code>Button</code>），就能通过定义<code>contextTypes</code>来获取参数。</p>
 
-<p>If <code>contextTypes</code> is not defined, then <code>context</code> will be an empty object.</p>
+<p>如果<code>contextTypes</code>没有定义，那么<code>context</code>将会是个空对象。</p>
 
-<h2>Parent-Child Coupling</h2>
+<h2>父子组件耦合</h2>
 
-<p>Context can also let you build an API where parents and children communicate. For example, one library that works this way is <a href="https://reacttraining.com/react-router">React Router V4</a>:</p>
+<p>Context还能让你构建一个父子组件通讯的API。例如<a href="https://reacttraining.com/react-router">React Router V4</a>就是这么实现的。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="nx">as</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
 
 <span class="kr">const</span> <span class="nx">BasicExample</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
@@ -205,13 +203,13 @@ You can do this directly in React with the powerful &quot;context&quot; API.</p>
   <span class="o">&lt;</span><span class="err">/Router&gt;</span>
 <span class="p">);</span>
 </code></pre></div>
-<p>By passing down some information from the <code>Router</code> component, each <code>Link</code> and <code>Route</code> can communicate back to the containing <code>Router</code>.</p>
+<p>通过<code>Router</code>组件向下传递参数，每个<code>Link</code>和<code>Route</code>组件就能回传到包含的<code>Router</code>组件中。</p>
 
-<p>Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React component as props if you&#39;d like to.</p>
+<p>在使用与此类似的API构建你的组件之前，请考虑下是否有更好的选择。例如，如果你乐意的话，可以将整个React组件当做参数来传递。</p>
 
-<h2>Referencing Context in Lifecycle Methods</h2>
+<h2>在生命周期函数中引用Context</h2>
 
-<p>If <code>contextTypes</code> is defined within a component, the following <a href="/react/docs/react-component.html#the-component-lifecycle">lifecycle methods</a> will receive an additional parameter, the <code>context</code> object:</p>
+<p>如果在一个组件中定义了<code>contextTypes</code>，那么下面这些<a href="/react/docs/react-component.html#the-component-lifecycle">生命周期函数</a>中将会接收到额外的参数，即<code>context</code>对象:</p>
 
 <ul>
 <li><a href="/react/docs/react-component.html#constructor"><code>constructor(props, context)</code></a></li>
@@ -221,25 +219,25 @@ You can do this directly in React with the powerful &quot;context&quot; API.</p>
 <li><a href="/react/docs/react-component.html#componentdidupdate"><code>componentDidUpdate(prevProps, prevState, prevContext)</code></a></li>
 </ul>
 
-<h2>Referencing Context in Stateless Functional Components</h2>
+<h2>在无状态函数组件中引用Context</h2>
 
-<p>Stateless functional components are also able to reference <code>context</code> if <code>contextTypes</code> is defined as a property of the function. The following code shows a <code>Button</code> component written as a stateless functional component.</p>
+<p>如果<code>contextTypes</code>作为函数参数被定义的话，无状态函数组件也是可以引用<code>context</code>。以下代码展示了用无状态函数组件写法的<code>Button</code>组件。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">const</span> <span class="nx">PropTypes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;prop-types&#39;</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="p">({</span><span class="nx">children</span><span class="p">},</span> <span class="nx">context</span><span class="p">)</span> <span class="o">=&gt;</span>
-  <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="nx">background</span><span class="o">:</span> <span class="nx">context</span><span class="p">.</span><span class="nx">color</span><span class="p">}}</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=&gt;</span>
     <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
   <span class="o">&lt;</span><span class="err">/button&gt;;</span>
 
 <span class="nx">Button</span><span class="p">.</span><span class="nx">contextTypes</span> <span class="o">=</span> <span class="p">{</span><span class="nx">color</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span><span class="p">};</span>
 </code></pre></div>
-<h2>Updating Context</h2>
+<h2>更新Context</h2>
 
-<p>Don&#39;t do it.</p>
+<p>千万别这么做。</p>
 
-<p>React has an API to update context, but it is fundamentally broken and you should not use it.</p>
+<p>React有更新context的API，但是基本已经被废除了，你不应该使用。</p>
 
-<p>The <code>getChildContext</code> function will be called when the state or props changes. In order to update data in the context, trigger a local state update with <code>this.setState</code>. This will trigger a new context and changes will be received by the children.</p>
+<p>当state或者props更新时<code>getChildContext</code>方法会被调用。为了在context中更新数据，使用 <code>this.setState</code>来更新本地state。这将会生成一个新的context，所有的子组件会接收到更新。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">const</span> <span class="nx">PropTypes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;prop-types&#39;</span><span class="p">);</span>
 
 <span class="kr">class</span> <span class="nx">MediaQuery</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
@@ -273,7 +271,8 @@ You can do this directly in React with the powerful &quot;context&quot; API.</p>
   <span class="nx">type</span><span class="o">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>The problem is, if a context value provided by component changes, descendants that use that value won&#39;t update if an intermediate parent returns <code>false</code> from <code>shouldComponentUpdate</code>. This is totally out of control of the components using context, so there&#39;s basically no way to reliably update the context. <a href="https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076">This blog post</a> has a good explanation of why this is a problem and how you might get around it.</p>
+<p>那么问题来了，由于组件更新产生的新的context，如果有一个中间的父组件
+的<code>shouldComponentUpdate</code>返回了<code>false</code>,那么接下来的子组件中的context是不会被更新的。这么使用context的话，组件就失控了，所以没有一种可靠的方式来更新context。<a href="https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076">这篇博客</a>很好地解释了为什么这是一个问题，以及如何规避它。</p>
 
 
     <div class="docs-prevnext">
