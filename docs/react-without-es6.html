@@ -79,14 +79,14 @@
     </h1>
     <div class="subHeader"></div>
 
-    <p>Normally you would define a React component as a plain JavaScript class:</p>
+    <p>通常我们会用 JavaScript 的 <code>class</code> 关键字来创建 React 组件：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If you don&#39;t use ES6 yet, you may use the <code>create-react-class</code> module instead:</p>
+<p>如果你不打算使用 ES6，你也可以使用 <code>create-react-class</code> 模块来创建：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">createReactClass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;create-react-class&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Greeting</span> <span class="o">=</span> <span class="nx">createReactClass</span><span class="p">({</span>
   <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -94,11 +94,11 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>The API of ES6 classes is similar to <code>createReactClass()</code> with a few exceptions.</p>
+<p>ES6 中 <code>class</code> 相关的接口与 <code>createReactClass</code> 方法十分相似，但有以下几个区别值得注意。</p>
 
-<h2>Declaring Default Props</h2>
+<h2>声明默认属性</h2>
 
-<p>With functions and ES6 classes <code>defaultProps</code> is defined as a property on the component itself:</p>
+<p>如果使用 <code>class</code> 关键字创建组件，可以直接把自定义属性对象写到类的 <code>defaultProps</code> 属性中：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span>
@@ -107,7 +107,7 @@
   <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Mary&#39;</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>With <code>createReactClass()</code>, you need to define <code>getDefaultProps()</code> as a function on the passed object:</p>
+<p>如果使用 <code>createReactClass</code> 方法创建组件，那就需要在参数对象中定义 <code>getDefaultProps</code> 方法，并且在这个方法中返回包含自定义属性的对象：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">Greeting</span> <span class="o">=</span> <span class="nx">createReactClass</span><span class="p">({</span>
   <span class="nx">getDefaultProps</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
@@ -119,9 +119,9 @@
 
 <span class="p">});</span>
 </code></pre></div>
-<h2>Setting the Initial State</h2>
+<h2>设置初始状态</h2>
 
-<p>In ES6 classes, you can define the initial state by assigning <code>this.state</code> in the constructor:</p>
+<p>如果使用 <code>class</code> 关键字创建组件，你可以通过在 <code>constructor</code> 中给 <code>this.state</code> 赋值的方式来定义组件的初始状态：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Counter</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -130,7 +130,7 @@
   <span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>With <code>createReactClass()</code>, you have to provide a separate <code>getInitialState</code> method that returns the initial state:</p>
+<p>如果使用 <code>createReactClass</code> 方法创建组件，你就需要多写一个 <code>getInitialState</code> 方法，并让这个方法返回你要定义的初始属性：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="nx">createReactClass</span><span class="p">({</span>
   <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span><span class="nx">count</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">initialCount</span><span class="p">};</span>
@@ -138,14 +138,14 @@
   <span class="c1">// ...</span>
 <span class="p">});</span>
 </code></pre></div>
-<h2>Autobinding</h2>
+<h2>自动绑定</h2>
 
-<p>In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes. This means that they don&#39;t automatically bind <code>this</code> to the instance. You&#39;ll have to explicitly use <code>.bind(this)</code> in the constructor:</p>
+<p>对于使用 <code>class</code> 关键字创建的 React 组件，组件中的方法是不会自动绑定 <code>this</code> 的。类似地，通过 ES6 <code>class</code> 生成的实例，实例上的方法也不会绑定 <code>this</code>。因此，你需要在 <code>constructor</code> 中为方法手动添加 <code>.bind(this)</code>：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">SayHello</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello!&#39;</span><span class="p">};</span>
-    <span class="c1">// This line is important!</span>
+    <span class="c1">// 这一行很关键</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
   <span class="p">}</span>
 
@@ -154,7 +154,7 @@
   <span class="p">}</span>
 
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Because `this.handleClick` is bound, we can use it as an event handler.</span>
+    <span class="c1">// 由于 `this.handleClick` 已经绑定至实例，因此我们才可以用它来处理点击事件</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
         <span class="nx">Say</span> <span class="nx">hello</span>
@@ -163,7 +163,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>With <code>createReactClass()</code>, this is not necessary because it binds all methods:</p>
+<p>如果使用 <code>createReactClass</code> 方法创建组件，组件中的方法会自动绑定至实例，不需要像上面那样加 <code>.bind(this)</code>：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">SayHello</span> <span class="o">=</span> <span class="nx">createReactClass</span><span class="p">({</span>
   <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span><span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello!&#39;</span><span class="p">};</span>
@@ -182,16 +182,16 @@
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>This means writing ES6 classes comes with a little more boilerplate code for event handlers, but the upside is slightly better performance in large applications.</p>
+<p>这就意味着，如果使用 <code>class</code> 关键字创建组件，那在处理事件回调的时候就要多写一点点代码。但对于大型项目来说，这样做可以提升运行效率。</p>
 
-<p>If the boilerplate code is too unattractive to you, you may enable the <strong>experimental</strong> <a href="https://babeljs.io/docs/plugins/transform-class-properties/">Class Properties</a> syntax proposal with Babel:</p>
+<p>如果你觉得上面这个写法很麻烦，那么可以尝试一下<strong>目前还处于实验性阶段</strong>的 Babel 插件 <a href="https://babeljs.io/docs/plugins/transform-class-properties/">Class Properties</a>。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">SayHello</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello!&#39;</span><span class="p">};</span>
   <span class="p">}</span>
-  <span class="c1">// WARNING: this syntax is experimental!</span>
-  <span class="c1">// Using an arrow here binds the method:</span>
+  <span class="c1">// 警告：这种语法还处于实验性阶段</span>
+  <span class="c1">// 在这里使用箭头函数就可以把方法绑定给实例：</span>
   <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
   <span class="p">}</span>
@@ -205,31 +205,31 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Please note that the syntax above is <strong>experimental</strong> and the syntax may change, or the proposal might not make it into the language.</p>
+<p>请注意，这种语法<strong>目前还处于实验性阶段</strong>。也就意味着，语法随时都可能改变。当然，也存在最终没有被官方批准的可能。</p>
 
-<p>If you&#39;d rather play it safe, you have a few options:</p>
+<p>为了保险起见，以下三种做法都是可以的：</p>
 
 <ul>
-<li>Bind methods in the constructor.</li>
-<li>Use arrow functions, e.g. <code>onClick={(e) =&gt; this.handleClick(e)}</code>.</li>
-<li>Keep using <code>createReactClass</code>.</li>
+<li>把方法绑定给构造器 (constructor)</li>
+<li>使用箭头函数，比如这样写：<code>onClick={(e) =&gt; this.handleClick(e)}</code>.</li>
+<li>使用 <code>createReactClass</code>.</li>
 </ul>
 
-<h2>Mixins</h2>
+<h2>Mixin(混入)</h2>
 
 <blockquote>
-<p><strong>Note:</strong></p>
+<p><strong>注：</strong></p>
 
-<p>ES6 launched without any mixin support. Therefore, there is no support for mixins when you use React with ES6 classes.</p>
+<p>ES6 本身是不包含混入支持的。因此，如果你使用 <code>class</code> 关键字创建组件，那就不能使用混入功能了。</p>
 
-<p><strong>We also found numerous issues in codebases using mixins, <a href="/react/blog/2016/07/13/mixins-considered-harmful.html">and don&#39;t recommend using them in the new code</a>.</strong></p>
+<p><strong>我们也发现了很多使用混入然后出现了问题的代码库。<a href="/react/blog/2016/07/13/mixins-considered-harmful.html">因此，我们并不推荐在 ES6 中使用混入</a>.</strong></p>
 
-<p>This section exists only for the reference.</p>
+<p>以下内容仅作为参考</p>
 </blockquote>
 
-<p>Sometimes very different components may share some common functionality. These are sometimes called <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">cross-cutting concerns</a>. <a href="/react/docs/top-level-api.html#react.createclass"><code>createReactClass</code></a> lets you use a legacy <code>mixins</code> system for that.</p>
+<p>如果完全不同的组件有相似的功能，这就会产生 <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">&quot;横切关注点&quot;问题</a>。针对这个问题，在使用 <a href="/react/docs/top-level-api.html#react.createclass"><code>createReactClass</code></a> 创建 React 组件的时候，引入<code>混入</code>功能会是一个很好的解决方案。</p>
 
-<p>One common use case is a component wanting to update itself on a time interval. It&#39;s easy to use <code>setInterval()</code>, but it&#39;s important to cancel your interval when you don&#39;t need it anymore to save memory. React provides <a href="/react/docs/working-with-the-browser.html#component-lifecycle">lifecycle methods</a> that let you know when a component is about to be created or destroyed. Let&#39;s create a simple mixin that uses these methods to provide an easy <code>setInterval()</code> function that will automatically get cleaned up when your component is destroyed.</p>
+<p>一个常见的使用情景是，当一个组件想要每隔一段时间更新，那么最简单的方法就是使用 <code>setInterval()</code>。但更重要的是，如果后续代码中不需要这个功能，为了节省内存，你应该把它删除。React 提供了 <a href="/react/docs/working-with-the-browser.html#component-lifecycle">生命周期方法</a>，这样你就可以知道某一个组件什么时候要被创建或者什么时候会被销毁。我们先来创建一个使用 <code>setInterval()</code> 的混入，它会在组件销毁的时候也销毁。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">SetIntervalMixin</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">componentWillMount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">intervals</span> <span class="o">=</span> <span class="p">[];</span>
@@ -245,12 +245,12 @@
 <span class="kd">var</span> <span class="nx">createReactClass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;create-react-class&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">TickTock</span> <span class="o">=</span> <span class="nx">createReactClass</span><span class="p">({</span>
-  <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">SetIntervalMixin</span><span class="p">],</span> <span class="c1">// Use the mixin</span>
+  <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">SetIntervalMixin</span><span class="p">],</span> <span class="c1">// 使用混入</span>
   <span class="nx">getInitialState</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span><span class="nx">seconds</span><span class="o">:</span> <span class="mi">0</span><span class="p">};</span>
   <span class="p">},</span>
   <span class="nx">componentDidMount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">// Call a method on the mixin</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">// 调用混入的方法</span>
   <span class="p">},</span>
   <span class="nx">tick</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">seconds</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">seconds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">});</span>
@@ -269,7 +269,7 @@
   <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
-<p>If a component is using multiple mixins and several mixins define the same lifecycle method (i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.</p>
+<p>如果一个组件有多个混入，且其中几个混入中定义了相同的生命周期方法（比如都会在组件被摧毁的时候执行），那么这些生命周期方法是一定会被调用的。通过混入定义的方法，执行顺序也与定义时的顺序一致，且会在组件上的方法执行之后再执行。</p>
 
 
     <div class="docs-prevnext">
