@@ -6,9 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>React Top-Level API - React</title>
+  <title>React 高阶 API - React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="React Top-Level API - React">
+  <meta property="og:title" content="React 高阶 API - React">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://facebook.github.io/react/docs/react-api.html">
   <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
@@ -75,39 +75,39 @@
   <div class="inner-content">
     <a class="edit-page-link" href="https://github.com/discountry/react/tree/master/docs/docs/reference-react.md" target="_blank">纠错</a>
     <h1>
-      React Top-Level API
+      React 高阶 API
     </h1>
     <div class="subHeader"></div>
 
-    <p><code>React</code> is the entry point to the React library. If you load React from a <code>&lt;script&gt;</code> tag, these top-level APIs are available on the <code>React</code> global. If you use ES6 with npm, you can write <code>import React from &#39;react&#39;</code>. If you use ES5 with npm, you can write <code>var React = require(&#39;react&#39;)</code>.</p>
+    <p><code>react</code> 是React库的入口点。如果你通过 <code>&lt;script&gt;</code> 标签加载React，这些高阶API可用于 <code>React</code> 全局。如果你使用ES6，你可以使用 <code>import React from &#39;react&#39;</code> 。如果你使用ES5，你可以使用 <code>var React = require(&#39;react&#39;)</code> 。</p>
 
-<h2>Overview</h2>
+<h2>概览</h2>
 
 <h3>Components</h3>
 
-<p>React components let you split the UI into independent, reusable pieces, and think about each piece in isolation. React components can be defined by subclassing <code>React.Component</code> or <code>React.PureComponent</code>.</p>
+<p>React 组件可以让你把UI分割为独立、可复用的片段，并将每一片段视为相互独立的部分。React组件可以通过继承 <code>React.Component</code> 或 <code>React.PureComponent</code> 来定义。</p>
 
 <ul>
 <li><a href="#react.component"><code>React.Component</code></a></li>
 <li><a href="#react.purecomponent"><code>React.PureComponent</code></a></li>
 </ul>
 
-<p>If you don&#39;t use ES6 classes, you may use the <code>create-react-class</code> module instead. See <a href="/react/docs/react-without-es6.html">Using React without ES6</a> for more information.</p>
+<p>如果不用ES6类，你可以使用 <code>create-react-class</code> 模块。参阅 <a href="/react/docs/react-without-es6.html">Using React without JSX</a> 了解更多信息。</p>
 
 <h3>Creating React Elements</h3>
 
-<p>We recommend <a href="/react/docs/introducing-jsx.html">using JSX</a> to describe what your UI should look like. Each JSX element is just syntactic sugar for calling <a href="#createelement"><code>React.createElement()</code></a>. You will not typically invoke the following methods directly if you are using JSX.</p>
+<p>推荐 <a href="/react/docs/introducing-jsx.html">使用JSX</a> 描述你的UI外观。每个JSX元素仅是调用 <a href="#createelement"><code>React.createElement</code></a> 的语法糖。如果使用了JSX，你通常不会直接调用以下方法。</p>
 
 <ul>
 <li><a href="#createelement"><code>createElement()</code></a></li>
 <li><a href="#createfactory"><code>createFactory()</code></a></li>
 </ul>
 
-<p>See <a href="/react/docs/react-without-jsx.html">Using React without JSX</a> for more information.</p>
+<p>参阅 <a href="/react/docs/react-without-jsx.html">Using React without JSX</a> 了解更多。</p>
 
 <h3>Transforming Elements</h3>
 
-<p><code>React</code> also provides some other APIs:</p>
+<p><code>React</code> 同时也提供了其他API：</p>
 
 <ul>
 <li><a href="#cloneelement"><code>cloneElement()</code></a></li>
@@ -121,29 +121,29 @@
 
 <h3><code>React.Component</code></h3>
 
-<p><code>React.Component</code> is the base class for React components when they are defined using <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 classes</a>.</p>
+<p>用 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 类</a> 定义时，<code>React.Component</code>是React组件的基类。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>See the <a href="/react/docs/react-component.html">React.Component API Reference</a> for a list of methods and properties related to the base <code>React.Component</code> class.</p>
+<p>有关 <code>React.Component</code> 的方法和属性列表，请参阅 <a href="/react/docs/react-component.html"><code>React.Component API Reference</code></a>。</p>
 
 <hr>
 
 <h3><code>React.PureComponent</code></h3>
 
-<p><code>React.PureComponent</code> is exactly like <a href="#react.component"><code>React.Component</code></a> but implements <a href="/react/docs/react-component.html#shouldcomponentupdate"><code>shouldComponentUpdate()</code></a> with a shallow prop and state comparison.</p>
+<p><code>React.PureComponent</code> 与 <a href="#react.component"><code>React.Component</code></a> 几乎完全相同，但 <code>React.PureComponent</code> 通过prop和state的浅对比来实现 <a href="/react/docs/react-component.html#shouldcomponentupdate"><code>shouldComponentUpate()</code></a>。</p>
 
-<p>If your React component&#39;s <code>render()</code> function renders the same result given the same props and state, you can use <code>React.PureComponent</code> for a performance boost in some cases.</p>
+<p>如果React组件的 <code>render()</code> 函数在给定相同的props和state下渲染为相同的结果，在某些场景下你可以使用 <code>React.PureComponent</code> 来提升性能。</p>
 
 <blockquote>
 <p>Note</p>
 
-<p><code>React.PureComponent</code>&#39;s <code>shouldComponentUpdate()</code> only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend <code>PureComponent</code> when you expect to have simple props and state, or use <a href="/react/docs/react-component.html#forceupdate"><code>forceUpdate()</code></a> when you know deep data structures have changed. Or, consider using <a href="https://facebook.github.io/immutable-js/">immutable objects</a> to facilitate fast comparisons of nested data.</p>
+<p><code>React.PureComponent</code> 的 <code>shouldComponentUpdate()</code> 只会对对象进行浅对比。如果对象包含复杂的数据结构，它可能会因深层的数据不一致而产生错误的否定判断(表现为对象深层的数据已改变视图却没有更新, 原文：false-negatives)。当你期望只拥有简单的props和state时，才去继承 <code>PureComponent</code> ，或者在你知道深层的数据结构已经发生改变时使用 <a href="/react/docs/react-component.html#forceupdate"><code>forceUpate()</code></a> 。或者，考虑使用 <a href="https://facebook.github.io/immutable-js/">不可变对象</a> 来促进嵌套数据的快速比较。</p>
 
-<p>Furthermore, <code>React.PureComponent</code>&#39;s <code>shouldComponentUpdate()</code> skips prop updates for the whole component subtree. Make sure all the children components are also &quot;pure&quot;.</p>
+<p>此外,<code>React.PureComponent</code> 的 <code>shouldComponentUpate()</code> 会忽略整个组件的子级。请确保所有的子级组件也是&quot;Pure&quot;的。</p>
 </blockquote>
 
 <hr>
@@ -155,11 +155,11 @@
   <span class="p">[...</span><span class="nx">children</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
-<p>Create and return a new <a href="/react/docs/rendering-elements.html">React element</a> of the given type. The type argument can be either a tag name string (such as <code>&#39;div&#39;</code> or <code>&#39;span&#39;</code>), or a <a href="/react/docs/components-and-props.html">React component</a> type (a class or a function).</p>
+<p>根据给定的类型创建并返回新的 <a href="/react/docs/rendering-elements.html"><code>React element</code></a> 。参数type既可以是一个html标签名称字符串(例如<code>&#39;div&#39;</code> 或 <code>&#39;span&#39;</code> )，也可以是一个 <a href="/react/docs/components-and-props.html"><code>React component</code></a> 类型(一个类或一个函数)。</p>
 
-<p>Convenience wrappers around <code>React.createElement()</code> for DOM components are provided by <code>React.DOM</code>. For example, <code>React.DOM.a(...)</code> is a convenience wrapper for <code>React.createElement(&#39;a&#39;, ...)</code>. They are considered legacy, and we encourage you to either use JSX or use <code>React.createElement()</code> directly instead.</p>
+<p><code>React.DOM</code> 提供了DOM组件的 <code>React.createElement()</code> 的便捷包装。举个例子，<code>React.DOM.a(...)</code> 是 <code>React.createELement(&#39;a&#39;, ...)</code> 的一个便捷包装。这个用法被认为是过时的，我们推荐您使用JSX，或者直接使用 <code>React.createElement()</code> 。</p>
 
-<p>Code written with <a href="/react/docs/introducing-jsx.html">JSX</a> will be converted to use <code>React.createElement()</code>. You will not typically invoke <code>React.createElement()</code> directly if you are using JSX. See <a href="/react/docs/react-without-jsx.html">React Without JSX</a> to learn more.</p>
+<p>用 <a href="/react/docs/introducing-jsx.html"><code>JSX</code></a> 编写的代码会被转换成用 <code>React.createElement()</code> 实现。如果使用了JSX，你通常不会直接调用 <code>React.createElement()</code> 。参阅 <a href="/react/docs/react-without-jsx.html"><code>React Without JSX</code></a> 了解更多。</p>
 
 <hr>
 
@@ -170,68 +170,68 @@
   [...children]
 )
 </code></pre></div>
-<p>Clone and return a new React element using <code>element</code> as the starting point. The resulting element will have the original element&#39;s props with the new props merged in shallowly. New children will replace existing children. <code>key</code> and <code>ref</code> from the original element will be preserved.</p>
+<p>以 <code>element</code> 作为起点，克隆并返回一个新的React元素(React Element)。生成的元素将会拥有原始元素props与新props的浅合并。新的子级会替换现有的子级。来自原始元素的 <code>key</code> 和 <code>ref</code> 将会保留。</p>
 
-<p><code>React.cloneElement()</code> is almost equivalent to:</p>
+<p><code>React.cloneElement()</code> 几乎相当于：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="o">&lt;</span><span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">{...</span><span class="nx">element</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/element.type&gt;</span>
 </code></pre></div>
-<p>However, it also preserves <code>ref</code>s. This means that if you get a child with a <code>ref</code> on it, you won&#39;t accidentally steal it from your ancestor. You will get the same <code>ref</code> attached to your new element.</p>
+<p>然而，它也保留了 <code>ref</code>。这意味着，如果你通过 <code>ref</code> 获取到子级组件时，不会一不小心从祖先组件里窃取了它。你将获得与你新元素相同的 <code>ref</code> 。</p>
 
-<p>This API was introduced as a replacement of the deprecated <code>React.addons.cloneWithProps()</code>.</p>
+<p>这个API是一个替换已弃用的 <code>React.addons.cloneWithProps()</code> 的方案。</p>
 
 <hr>
 
 <h3><code>createFactory()</code></h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">createFactory</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
 </code></pre></div>
-<p>Return a function that produces React elements of a given type. Like <a href="#createElement"><code>React.createElement()</code></a>, the type argument can be either a tag name string (such as <code>&#39;div&#39;</code> or <code>&#39;span&#39;</code>), or a <a href="/react/docs/components-and-props.html">React component</a> type (a class or a function).</p>
+<p>根据给定的类型返回一个创建React元素的函数。类似 <a href="#createElement"><code>React.createElement</code></a> ，参数type既可以一个html标签名称字符串，也可以是一个 <a href="/react/docs/components-and-props.html"><code>React component</code></a> 类型(一个类或时一个函数)。</p>
 
-<p>This helper is considered legacy, and we encourage you to either use JSX or use <code>React.createElement()</code> directly instead.</p>
+<p>这个方法过时了，我们推荐你使用JSX或直接使用 <code>React.createElement()</code> 来替代它。</p>
 
-<p>You will not typically invoke <code>React.createFactory()</code> directly if you are using JSX. See <a href="/react/docs/react-without-jsx.html">React Without JSX</a> to learn more.</p>
+<p>如果使用了JSX，你通常不会直接调用 <code>React.createFactory()</code> 。参阅 <a href="/react/docs/react-without-jsx.html"><code>React Without JSX</code></a>了解更多 。</p>
 
 <hr>
 
 <h3><code>isValidElement()</code></h3>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">isValidElement</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span>
 </code></pre></div>
-<p>Verifies the object is a React element. Returns <code>true</code> or <code>false</code>.</p>
+<p>验证对象是否是一个React元素。返回 <code>true</code> 或 <code>false</code> 。</p>
 
 <hr>
 
 <h3><code>React.Children</code></h3>
 
-<p><code>React.Children</code> provides utilities for dealing with the <code>this.props.children</code> opaque data structure.</p>
+<p><code>React.Children</code> 提供了处理 <code>this.props.children</code> 这个不透明数据结构的工具。</p>
 
 <h4><code>React.Children.map</code></h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
 </code></pre></div>
-<p>Invokes a function on every immediate child contained within <code>children</code> with <code>this</code> set to <code>thisArg</code>. If <code>children</code> is a keyed fragment or array it will be traversed: the function will never be passed the container objects. If children is <code>null</code> or <code>undefined</code>, returns <code>null</code> or <code>undefined</code> rather than an array.</p>
+<p>在包含在 <code>children</code> 里的每个子级上调用函数，调用的函数的 <code>this</code> 设置为 <code>thisArg</code> 。如果 <code>children</code> 是一个嵌套的对象或数组，它将被遍历。如果 <code>children</code> 是 <code>null</code> 或 <code>undefined</code> ，返回 <code>null</code> 或 <code>undefined</code> 而不是一个空数组。</p>
 
 <h4><code>React.Children.forEach</code></h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="kd">function</span><span class="p">[(</span><span class="nx">thisArg</span><span class="p">)])</span>
 </code></pre></div>
-<p>Like <a href="#react.children.map"><code>React.Children.map()</code></a> but does not return an array.</p>
+<p>类似 <a href="#react.children.map"><code>React.Children.map()</code></a> ，但是不返回数组。</p>
 
 <h4><code>React.Children.count</code></h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
-<p>Returns the total number of components in <code>children</code>, equal to the number of times that a callback passed to <code>map</code> or <code>forEach</code> would be invoked.</p>
+<p>返回 <code>children</code> 中的组件总数，相等于传给 <code>map</code> 或 <code>forEach</code> 时，回调函数被调用次数。</p>
 
 <h4><code>React.Children.only</code></h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
-<p>Returns the only child in <code>children</code>. Throws otherwise.</p>
+<p>返回<code>children</code>里仅有的子级。否则抛出异常。</p>
 
 <h4><code>React.Children.toArray</code></h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">React</span><span class="p">.</span><span class="nx">Children</span><span class="p">.</span><span class="nx">toArray</span><span class="p">(</span><span class="nx">children</span><span class="p">)</span>
 </code></pre></div>
-<p>Returns the <code>children</code> opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice <code>this.props.children</code> before passing it down.</p>
+<p>返回以赋key给每个子级 <code>child</code> 的扁平数组形式来组成不透明的 <code>children</code> 数据结构。如果你打算在你的渲染方法里操纵子级集合这很有用，特别是你想在 <code>this.props.children</code> 传下之前对它重新排序或切割。</p>
 
 <blockquote>
 <p>Note:</p>
 
-<p><code>React.Children.toArray()</code> changes keys to preserve the semantics of nested arrays when flattening lists of children. That is, <code>toArray</code> prefixes each key in the returned array so that each element&#39;s key is scoped to the input array containing it.</p>
+<p>当children是扁平列表时，<code>React.Children.toArray()</code> 改变key来保留嵌套数组的语义。也就是说，为了在展开时保留嵌套数组的语义，<code>toArray</code> 会自动的给数组中每个 key 加了上前缀，以便将每个元素的key被限定到包含它的输入数组。</p>
 </blockquote>
 
 
