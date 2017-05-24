@@ -79,13 +79,13 @@
     </h1>
     <div class="subHeader"></div>
 
-    <p>This reference guide documents the <code>SyntheticEvent</code> wrapper that forms part of React&#39;s Event System. See the <a href="/react/docs/handling-events.html">Handling Events</a> guide to learn more.</p>
+    <p>此参考指南记录了构成React一部分事件系统的<code>SyntheticEvent</code>封装器。请参阅<a href="/react/docs/handling-events.html">事件处理</a>指南了解更多。</p>
 
-<h2>Overview</h2>
+<h2>概述</h2>
 
-<p>Your event handlers will be passed instances of <code>SyntheticEvent</code>, a cross-browser wrapper around the browser&#39;s native event. It has the same interface as the browser&#39;s native event, including <code>stopPropagation()</code> and <code>preventDefault()</code>, except the events work identically across all browsers.</p>
+<p>您的事件处理函数将会接收<code>SyntheticEvent</code>的实例，一个基于浏览器原生事件的跨浏览器实现。它拥有和浏览器原生事件一样的接口，包括<code>stopPropagation()</code>和<code>preventDefault()</code>，除了那些所有浏览器功能一样的事件。</p>
 
-<p>If you find that you need the underlying browser event for some reason, simply use the <code>nativeEvent</code> attribute to get it. Every <code>SyntheticEvent</code> object has the following attributes:</p>
+<p>出于某些原因，你得使用一些底层的浏览器事件，只需用<code>nativeEnvent</code>的属性就能找到。每个<code>SyntheicEvent</code>对象都有如下属性：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">bubbles</span>
 <span class="kr">boolean</span> <span class="nx">cancelable</span>
 <span class="nx">DOMEventTarget</span> <span class="nx">currentTarget</span>
@@ -102,16 +102,14 @@
 <span class="nx">string</span> <span class="nx">type</span>
 </code></pre></div>
 <blockquote>
-<p>Note:</p>
-
-<p>As of v0.14, returning <code>false</code> from an event handler will no longer stop event propagation. Instead, <code>e.stopPropagation()</code> or <code>e.preventDefault()</code> should be triggered manually, as appropriate.</p>
+<p>敲黑板：
+由于在v0.14版本中，事件处理函数返回<code>false</code>不会再阻止事件传播, 所以必须得手动触发<code>e.stopPropagation()</code>和<code>e.preventDefault()</code> 方法。</p>
 </blockquote>
 
-<h3>Event Pooling</h3>
+<h3>事件池</h3>
 
-<p>The <code>SyntheticEvent</code> is pooled. This means that the <code>SyntheticEvent</code> object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.</p>
+<p><code>SyntheticEvent</code>是共享的。那就意味着在调用事件回调之后，<code>SyntheticEvent</code>对象将会被重用，并且所有属性会被置空。这是出于性能因素考虑的。
+因此，您无法以异步方式访问事件。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span> <span class="c1">// =&gt; nullified object.</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span> <span class="c1">// =&gt; &quot;click&quot;</span>
@@ -130,16 +128,16 @@ As such, you cannot access the event in an asynchronous way.</p>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>Note:</p>
+<p>敲黑板：</p>
 
-<p>If you want to access the event properties in an asynchronous way, you should call <code>event.persist()</code> on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.</p>
+<p>如果您想以异步的方式访问事件的属性值，你必须在事件回调中调用<code>event.persist()</code>方法，这样会在池中删除合成事件，并且在用户代码中保留对事件的引用。</p>
 </blockquote>
 
-<h2>Supported Events</h2>
+<h2>支持的事件</h2>
 
-<p>React normalizes events so that they have consistent properties across different browsers.</p>
+<p>React标准化了事件，使其在不同的浏览器中拥有一致的属性。</p>
 
-<p>The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append <code>Capture</code> to the event name; for example, instead of using <code>onClick</code>, you would use <code>onClickCapture</code> to handle the click event in the capture phase.</p>
+<p>下面的事件处理函数由冒泡阶段的事件触发。在事件名后面加<code>Capture</code>就能在事件捕获阶段注册事件处理函数。举个例子，你可以使用<code>onClickCapture</code>代替<code>onClick</code>在事件捕获阶段来处理点击事件。</p>
 
 <ul>
 <li><a href="#clipboard-events">Clipboard Events</a></li>
@@ -160,34 +158,34 @@ As such, you cannot access the event in an asynchronous way.</p>
 
 <hr>
 
-<h2>Reference</h2>
+<h2>参考</h2>
 
 <h3>Clipboard Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onCopy onCut onPaste
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">DOMDataTransfer</span> <span class="nx">clipboardData</span>
 </code></pre></div>
 <hr>
 
 <h3>Composition Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onCompositionEnd onCompositionStart onCompositionUpdate
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">data</span>
 </code></pre></div>
 <hr>
 
 <h3>Keyboard Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onKeyDown onKeyPress onKeyUp
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">number</span> <span class="nx">charCode</span>
 <span class="kr">boolean</span> <span class="nx">ctrlKey</span>
@@ -205,35 +203,35 @@ As such, you cannot access the event in an asynchronous way.</p>
 
 <h3>Focus Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onFocus onBlur
 </code></pre></div>
-<p>These focus events work on all elements in the React DOM, not just form elements.</p>
+<p>这些焦点事件适用于React DOM中的所有元素，而不仅仅是表单元素。</p>
 
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">DOMEventTarget</span> <span class="nx">relatedTarget</span>
 </code></pre></div>
 <hr>
 
 <h3>Form Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onChange onInput onSubmit
 </code></pre></div>
-<p>For more information about the onChange event, see <a href="/react/docs/forms.html">Forms</a>.</p>
+<p>查阅<a href="/react/docs/forms.html">表单</a>了解关于onChange事件的更多细节.</p>
 
 <hr>
 
 <h3>Mouse Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
 onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 </code></pre></div>
-<p>The <code>onMouseEnter</code> and <code>onMouseLeave</code> events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.</p>
+<p><code>onMouseEnter</code> 和 <code>onMouseLeave</code> 事件由失去焦点的元素到正在输入的元素传播，并不是普通的冒泡，也没有捕获阶段。</p>
 
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">number</span> <span class="nx">button</span>
 <span class="nx">number</span> <span class="nx">buttons</span>
@@ -253,17 +251,17 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 
 <h3>Selection Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onSelect
 </code></pre></div>
 <hr>
 
 <h3>Touch Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onTouchCancel onTouchEnd onTouchMove onTouchStart
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">boolean</span> <span class="nx">altKey</span>
 <span class="nx">DOMTouchList</span> <span class="nx">changedTouches</span>
 <span class="kr">boolean</span> <span class="nx">ctrlKey</span>
@@ -277,10 +275,10 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 
 <h3>UI Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onScroll
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">number</span> <span class="nx">detail</span>
 <span class="nx">DOMAbstractView</span> <span class="nx">view</span>
 </code></pre></div>
@@ -288,10 +286,10 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 
 <h3>Wheel Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onWheel
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">number</span> <span class="nx">deltaMode</span>
 <span class="nx">number</span> <span class="nx">deltaX</span>
 <span class="nx">number</span> <span class="nx">deltaY</span>
@@ -301,7 +299,7 @@ onMouseMove onMouseOut onMouseOver onMouseUp
 
 <h3>Media Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted 
 onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay 
 onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend 
@@ -311,17 +309,17 @@ onTimeUpdate onVolumeChange onWaiting
 
 <h3>Image Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onLoad onError
 </code></pre></div>
 <hr>
 
 <h3>Animation Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onAnimationStart onAnimationEnd onAnimationIteration
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">animationName</span>
 <span class="nx">string</span> <span class="nx">pseudoElement</span>
 <span class="kr">float</span> <span class="nx">elapsedTime</span>
@@ -330,10 +328,10 @@ onTimeUpdate onVolumeChange onWaiting
 
 <h3>Transition Events</h3>
 
-<p>Event names:</p>
+<p>事件名:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>onTransitionEnd
 </code></pre></div>
-<p>Properties:</p>
+<p>属性:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">string</span> <span class="nx">propertyName</span>
 <span class="nx">string</span> <span class="nx">pseudoElement</span>
 <span class="kr">float</span> <span class="nx">elapsedTime</span>
