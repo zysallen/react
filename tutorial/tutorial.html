@@ -202,71 +202,80 @@
 
 <h3>教程简介</h3>
 
-<p>Today, we&#39;re going to build an interactive tic-tac-toe game.</p>
+<p>接下来，我们会一起开发一个 <a href="https://zh.wikipedia.org/wiki/%E4%BA%95%E5%AD%97%E6%A3%8B">tic-tac-toe</a> 井字棋游戏。</p>
 
-<p>If you like, you can check out the final result here: <a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">Final Result</a>. Don&#39;t worry if the code doesn&#39;t make sense to you yet, or if it uses an unfamiliar syntax. We will be learning how to build this game step by step throughout this tutorial.</p>
+<p>在开始教程之前如果你想预览一下这个游戏会是什么样子的话可以点击 <a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">效果预览</a> 查看。 如果里面的代码你现在一点也看不懂，很多语法都不熟悉也不需要着急，接下来教程会一步一步教你编写出这个小游戏所有的代码。</p>
 
-<p>Try playing the game. You can also click on a link in the move list to go &quot;back in time&quot; and see what the board looked like just after that move was made.</p>
+<p>你可以先试着玩一下这个游戏。除了下棋之外，还可以通过点击旁边的列表，返回到某一步棋时候的棋局状态。</p>
 
-<p>Once you get a little familiar with the game, feel free to close that tab, as we&#39;ll start from a simpler template in the next sections.</p>
+<p>等到你玩得差不多了，大概了解了我们要实现什么样的功能，关掉它准备开始学习编码吧！我们会在一个简单的模板上开始写起。</p>
 
 <h3>前置知识</h3>
 
-<p>We&#39;ll assume some familiarity with HTML and JavaScript but you should be able to follow along even if you haven&#39;t used them before.</p>
+<p>在这里我们已经假设你对 HTML 和 JavaScript 都比较熟悉了，不过即使你之前都没有了解过也可以接着跟着教程试试看。</p>
 
-<p>If you need a refresher on JavaScript, we recommend reading <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript">this guide</a>. Note that we&#39;re also using some features from ES6, a recent version of JavaScript. In this tutorial, we&#39;re using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"><code>let</code></a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"><code>const</code></a> statements. You can use <a href="http://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact&experimental=false&loose=false&spec=false&code=const%20element%20%3D%20%3Ch1%3EHello%2C%20world!%3C%2Fh1%3E%3B%0Aconst%20container%20%3D%20document.getElementById('root')%3B%0AReactDOM.render(element%2C%20container)%3B%0A">Babel REPL</a> to check what ES6 code compiles to.</p>
+<p>如果你想重新了解一下 JavaScript 的新特性，我们推荐你阅读 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript">这篇教程</a>。要注意我们在编码的时候已经开始使用 ES6 最新版本的 JavaScript, 在这篇教程里我们主要使用了 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a>, <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes">classes</a>, <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let"><code>let</code></a>, and <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const"><code>const</code></a> 几个新的语法和关键字。你也可以使用 <a href="http://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact&experimental=false&loose=false&spec=false&code=const%20element%20%3D%20%3Ch1%3EHello%2C%20world!%3C%2Fh1%3E%3B%0Aconst%20container%20%3D%20document.getElementById('root')%3B%0AReactDOM.render(element%2C%20container)%3B%0A">Babel REPL</a> 在线预览一下这些ES6的代码被编译后的效果。</p>
 
 <h3>如何编写代码</h3>
 
-<p>There are two ways to complete this tutorial: you could either write the code right in the browser, or you could set up a local development environment on your machine. You can choose either option depending on what you feel comfortable with.</p>
+<p>你可以选择在本地的代码编辑器软件里或者是直接在浏览器里跟着编写本教程的代码，你甚至可以试着在本地配置一下开发运行环境。选择你开心的一种方式就好。</p>
 
 <h4>在浏览器中编写本教程代码</h4>
 
-<p>This is the quickest way to get started!</p>
+<p>这是上手最快的一种方式了！</p>
 
-<p>First, open this <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">starter code</a> in a new tab. It should display an empty tic-tac-toe field. We will be editing that code during this tutorial.</p>
+<p>首先在新的浏览器选项卡中打开这个 <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">初始模板</a>。 你可以看到一个井字棋的棋盘。我们接下来会在这一基础上进行游戏交互功能的开发。</p>
 
-<p>You can now skip the next section about setting up a local development environment and head straight to the <a href="#overview">overview</a>.</p>
+<p>如果你选择这种方式，就可以直接从 <a href="#%E6%80%BB%E8%A7%88">总览</a> 开始阅读教程啦。</p>
 
 <h4>在代码编辑器中编写本教程代码</h4>
 
-<p>Alternatively, you can set up a project on your computer.</p>
+<p>同样，你也可以试着在自己的电脑上搭建起开发运行环境来。</p>
 
-<p>Note: <strong>this is completely optional and not required for this tutorial!</strong></p>
+<p>注意： <strong>本地搭建React的开发运行环境并不是本教程强制要求的，根据你的实际情况自行考量。</strong></p>
 
-<p>This is more work, but lets you work from the comfort of your editor.</p>
+<p>虽然在本地搭建环境要费一些功夫，但好处是你可以任意选择你惯用的编辑器来完成开发。</p>
 
-<p>If you want to do it, here are the steps to follow:</p>
+<p>如果你已经决定了，那么跟着下面的步骤开始搭建吧：</p>
 
 <ol>
-<li>Make sure you have a recent version of <a href="https://nodejs.org/en/">Node.js</a> installed.</li>
-<li>Follow the <a href="/react/docs/installation.html#creating-a-new-application">installation instructions</a> to create a new project.</li>
-<li>Delete all files in the <code>src/</code> folder of the new project.</li>
-<li>Add a file named <code>index.css</code> in the <code>src/</code> folder with <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0100">this CSS code</a>.</li>
-<li><p>Add a file named <code>index.js</code> in the <code>src/</code> folder with <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">this JS code</a>, and then add three lines to the top of it:</p>
+<li>确保你电脑上安装了最新版本的 <a href="https://nodejs.org/zh-cn/">Node.js</a>.</li>
+<li>跟着 <a href="/react/docs/installation.html#creating-a-new-application">安装指南</a> 创建一个新的 React 项目。</li>
+<li>删除掉生成项目中 <code>src/</code> 文件夹下的所有文件。</li>
+<li>在 <code>src/</code> 文件夹下新建一个名为 <code>index.css</code> 的文件并拷贝 <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0100">这里的 CSS 代码</a> 到文件中。</li>
+<li><p>在 <code>src/</code> 文件夹下新建一个名为 <code>index.js</code> 的文件并拷贝 <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">这里的 JS 代码</a> 到文件中, 并在此文件的最开头加上下面几行代码：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="s1">&#39;./index.css&#39;</span><span class="p">;</span>
 </code></pre></div></li>
 </ol>
 
-<p>Now if you run <code>npm start</code> in the project folder and open <code>http://localhost:3000</code> in the browser, you should see an empty tic-tac-toe field.</p>
+<p>接下来通过命令行在你的项目目录下运行 <code>npm start</code> 命令并在浏览器中打开 <code>http://localhost:3000</code> 你就能够看到空的井字棋棋盘了。</p>
 
-<p>We recommend following <a href="http://babeljs.io/docs/editors">these instructions</a> to configure syntax highlighting for your editor.</p>
+<p>我们推荐根据 <a href="http://babeljs.io/docs/editors">这篇教程</a> 配置你代码编辑器的代码高亮指示。</p>
 
 <h3>寻求帮助</h3>
 
-<p>If you get stuck, check out the <a href="https://facebook.github.io/react/community/support.html">community support resources</a>. In particular, <a href="/react/community/support.html#reactiflux-chat">Reactiflux chat</a> is a great way to get quick help. If you don&#39;t get a good answer anywhere, please file an issue, and we&#39;ll help you out.</p>
+<p>如果你遇到了任何困难，可以在 <a href="https://facebook.github.io/react/community/support.html">community support resources</a> 寻求帮助。 加入我们的 <a href="/react/community/support.html#reactiflux-chat">Reactiflux chat</a> 也是一个很不错的选择。如果通过上述方式还是解决不了你的问题，你也可以给我们提一个 issue.</p>
 
-<p>With this out of the way, let&#39;s get started!</p>
+<blockquote>
+<p><strong>译者补充资源：</strong></p>
+
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/reactjs">从零学习React技术栈</a> </li>
+<li><a href="http://react-china.org/">React China</a></li>
+</ul>
+</blockquote>
+
+<p>废话不多说，我们开始动手编码吧！</p>
 
 <h2>总览</h2>
 
 <h3>React 是什么？</h3>
 
-<p>React is a declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
+<p>React 是一个采用声明式，高效而且灵活的用来构建用户界面的框架。</p>
 
-<p>React has a few different kinds of components, but we&#39;ll start with <code>React.Component</code> subclasses:</p>
+<p>React 当中包含了一些不同的组件，我们从使用 <code>React.Component</code> 开始：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">ShoppingList</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
@@ -282,33 +291,33 @@
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// Example usage: &lt;ShoppingList name=&quot;Mark&quot; /&gt;</span>
+<span class="c1">// 通过这种标签语法来使用我们上面声明的组件: &lt;ShoppingList name=&quot;Mark&quot; /&gt;</span>
 </code></pre></div>
-<p>We&#39;ll get to the funny XML-like tags in a second. Your components tell React what you want to render – then React will efficiently update and render just the right components when your data changes.</p>
+<p>这样我们就拿到了一个很有趣的看起来像 XML/HTML 的标签。你的组件向 React 描述了你想要渲染的内容。之后 React 会根据你开发应用数据的变化自动渲染和更新组件。</p>
 
-<p>Here, ShoppingList is a <strong>React component class</strong>, or <strong>React component type</strong>. A component takes in parameters, called <code>props</code>, and returns a hierarchy of views to display via the <code>render</code> method.</p>
+<p>这里的 ShoppingList 是一种 <strong>React 组件类</strong>，或者叫 <strong>React 组件类型</strong> 之类的。一个组件会接受名为 <code>props</code> 的参数，并通过名为 <code>render</code> 的方法返回一个嵌套结构的视图。</p>
 
-<p>The <code>render</code> method returns a <em>description</em> of what you want to render, and then React takes that description and renders it to the screen. In particular, <code>render</code> returns a <strong>React element</strong>, which is a lightweight description of what to render. Most React developers use a special syntax called JSX which makes it easier to write these structures. The <code>&lt;div /&gt;</code> syntax is transformed at build time to <code>React.createElement(&#39;div&#39;)</code>. The example above is equivalent to:</p>
+<p><code>render</code> 返回的是你对你想要渲染内容的<strong>描述</strong>。React 会根据你的描述将对应的内容在屏幕上渲染出来。讲得更具体一点，<code>render</code> 返回的是一个 <strong>React 元素</strong>，是一种对渲染内容比较简洁的描述。大部分 React 开发者都会使用一种名为 JSX 的语法扩展来跟方便地书写这种描述。比方说里面的 <code>&lt;div /&gt;</code> 会被编译为 <code>React.createElement(&#39;div&#39;)</code> .上面的那个例子就等同于：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;shopping-list&#39;</span><span class="p">},</span>
   <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="cm">/* ... h1 children ... */</span><span class="p">),</span>
   <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="cm">/* ... ul children ... */</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
-<p><a href="https://babeljs.io/repl/#?babili=false&evaluate=false&lineWrap=false&presets=react&targets=&browsers=&builtIns=false&debug=false&experimental=false&loose=false&spec=false&playground=true&code=%3Cdiv%20className%3D%22shopping-list%22%3E%0A%20%20%3Ch1%3EShopping%20List%20for%20%7Bprops.name%7D%3C%2Fh1%3E%0A%20%20%3Cul%3E%0A%20%20%20%20%3Cli%3EInstagram%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EWhatsApp%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EOculus%3C%2Fli%3E%0A%20%20%3C%2Ful%3E%0A%3C%2Fdiv%3E">See full expanded version.</a></p>
+<p><a href="https://babeljs.io/repl/#?babili=false&evaluate=false&lineWrap=false&presets=react&targets=&browsers=&builtIns=false&debug=false&experimental=false&loose=false&spec=false&playground=true&code=%3Cdiv%20className%3D%22shopping-list%22%3E%0A%20%20%3Ch1%3EShopping%20List%20for%20%7Bprops.name%7D%3C%2Fh1%3E%0A%20%20%3Cul%3E%0A%20%20%20%20%3Cli%3EInstagram%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EWhatsApp%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EOculus%3C%2Fli%3E%0A%20%20%3C%2Ful%3E%0A%3C%2Fdiv%3E">查看完整代码。</a></p>
 
-<p>If you&#39;re curious, <code>createElement()</code> is described in more detail in the <a href="/react/docs/react-api.html#createelement">API reference</a>, but we won&#39;t be using it directly in this tutorial. Instead, we will keep using JSX.</p>
+<p>如果你对这个比较感兴趣，可以在 <a href="/react/docs/react-api.html#createelement">API 参考</a> 查阅对 <code>createElement()</code> 方法更详细的介绍。但在我们接下来的教程中，并不会直接使用这个方法，而是继续使用 JSX.</p>
 
-<p>You can put any JavaScript expression within braces inside JSX. Each React element is a real JavaScript object that you can store in a variable or pass around your program.</p>
+<p>在 JSX 中你可以任意使用 JavaScript 表达式，只需要用一个大括号把表达式括起来。每一个 React 元素事实上都一个 JavaScript 对象，你可以在你的应用中把它当保存在变量中或者作为参数传递。</p>
 
-<p>The <code>ShoppingList</code> component only renders built-in DOM components, but you can compose custom React components just as easily, by writing <code>&lt;ShoppingList /&gt;</code>. Each component is encapsulated so it can operate independently, which allows you to build complex UIs out of simple components.</p>
+<p>我们定义的 <code>ShoppingList</code> 组件只会渲染一些内置的 DOM 组件（<code>&lt;div&gt;</code>等），但是使用自定义的 React 组件也很简单，通过 <code>&lt;ShoppingList /&gt;</code> 这样的标签你就可以在 React 当中调用整个 <code>ShoppingList</code> 组件。每个组件都是独立包装好的，这样也就方便你像搭积木一样组合各种组件来构建复杂的UI界面。</p>
 
-<h3>Getting Started</h3>
+<h3>开始编码</h3>
 
-<p>Start with this example: <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">Starter Code</a>.</p>
+<p>你可以从这个 <a href="https://codepen.io/gaearon/pen/oWWQNa?editors=0010">模板代码</a> 开始尝试本教程代码的编写。</p>
 
-<p>It contains the shell of what we&#39;re building today. We&#39;ve provided the styles so you only need to worry about the JavaScript.</p>
+<p>模板已经包含了我们要开发的井字棋游戏的基本骨架，而且已经定义好了样式，所以你需要关注的就只有编写 JavaScript 代码。</p>
 
-<p>In particular, we have three components:</p>
+<p>讲得更具体一点，我们现在有3个组件：</p>
 
 <ul>
 <li>Square</li>
@@ -316,9 +325,9 @@
 <li>Game</li>
 </ul>
 
-<p>The Square component renders a single <code>&lt;button&gt;</code>, the Board renders 9 squares, and the Game component renders a board with some placeholders that we&#39;ll fill in later. None of the components are interactive at this point.</p>
+<p>Square 组件代表一个单独的 <code>&lt;button&gt;</code>，Board 组件包含了9个squares，也就是棋盘的9个格子。Game 组件则为我们即将要编写的代码预留了一些位置。现在这几个组件都是不具备任何的交互功能的。</p>
 
-<h3>Passing Data Through Props</h3>
+<h3>通过 Props 传递数据</h3>
 
 <p>Just to get our feet wet, let&#39;s try passing some data from the Board component to the Square component.</p>
 
