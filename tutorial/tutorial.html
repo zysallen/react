@@ -658,9 +658,9 @@
 
 <h3>函数定义组件</h3>
 
-<p>We&#39;ve removed the constructor, and in fact, React supports a simpler syntax called <strong>functional components</strong> for component types like Square that only consist of a <code>render</code> method. Rather than define a class extending <code>React.Component</code>, simply write a function that takes props and returns what should be rendered.</p>
+<p>我们刚才已经去掉了 Square 的构造函数，事实上，更进一步的，React 专门为像 Square 组件这种只有 <code>render</code> 方法的组件提供了一种更简便的定义组件的方法： <strong>函数定义组件</strong> 。只需要简单写一个以 <code>props</code> 为参数的 <code>function</code> 返回 JSX 元素就搞定了。</p>
 
-<p>Replace the whole Square class with this function:</p>
+<p>下面我们以函数定义的方式重写 Square 组件：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Square</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;square&quot;</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
@@ -669,17 +669,17 @@
   <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>You&#39;ll need to change <code>this.props</code> to <code>props</code> both times it appears. Many components in your apps will be able to be written as functional components: these components tend to be easier to write and React will optimize them more in the future.</p>
+<p>记得把所有的 <code>this.props</code> 替换成参数 <code>props</code>. 我们应用中的大部分简单组件都可以通过函数定义的方式来编写，并且 React 在将来还会对函数定义组件做出更多优化。</p>
 
-<p>While we&#39;re cleaning up the code, we also changed <code>onClick={() =&gt; props.onClick()}</code> to just <code>onClick={props.onClick}</code>, as passing the function down is enough for our example. Note that <code>onClick={props.onClick()}</code> would not work because it would call <code>props.onClick</code> immediately instead of passing it down.</p>
+<p>另外一部分简化的内容则是事件处理函数的写法，这里我们把 <code>onClick={() =&gt; props.onClick()}</code> 直接修改为 <code>onClick={props.onClick}</code> , 注意不能写成 <code>onClick={props.onClick()}</code> 否则 <code>props.onClick</code> 方法会被直接触发而不是传递到 Square 组件中。</p>
 
 <p><a href="https://codepen.io/gaearon/pen/QvvJOv?editors=0010">查看此步完整代码示例。</a></p>
 
-<h3>Taking Turns</h3>
+<h3>轮流落子</h3>
 
-<p>An obvious defect in our game is that only X can play. Let&#39;s fix that.</p>
+<p>很明显现在我们点击棋盘只后落子的只有 X . 下面我们要开发出 X 和 O 轮流落子的功能。</p>
 
-<p>Let&#39;s default the first move to be by &#39;X&#39;. Modify our starting state in our Board constructor.</p>
+<p>我们将 X 默认设置为先手棋：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
@@ -689,7 +689,7 @@
 </span>    <span class="p">};</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Each time we move we shall toggle <code>xIsNext</code> by flipping the boolean value and saving the state. Now update Board&#39;s <code>handleClick</code> function to flip the value of <code>xIsNext</code>.</p>
+<p>接下来，我们每走一步棋，都需要切换 <code>xIsNext</code> 的值以此来实现轮流落子的功能，接下来在 <code>handleClick</code> 方法中添加修改 <code>xIsNext</code> 的语句。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">squares</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">squares</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
 <span class="hll">    <span class="nx">squares</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xIsNext</span> <span class="o">?</span> <span class="s1">&#39;X&#39;</span> <span class="o">:</span> <span class="s1">&#39;O&#39;</span><span class="p">;</span>
@@ -699,14 +699,14 @@
 </span>    <span class="p">});</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Now X and O take turns. Next, change the &quot;status&quot; text in Board&#39;s <code>render</code> so that it also displays who is next.</p>
+<p>到这里我们就实现了 X 和 O 轮流落子的效果了。我们再到 <code>render</code> 方法里添加一点内容来显示当前执子的一方：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;Next player: &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xIsNext</span> <span class="o">?</span> <span class="s1">&#39;X&#39;</span> <span class="o">:</span> <span class="s1">&#39;O&#39;</span><span class="p">);</span>
 </span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="c1">// the rest has not changed</span>
 </code></pre></div>
-<p>After these changes you should have this Board component:</p>
+<p>现在你整个的 Board 组件的代码应该是下面这样的：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
@@ -762,9 +762,9 @@
 </code></pre></div>
 <p><a href="https://codepen.io/gaearon/pen/KmmrBy?editors=0010">查看此步完整代码示例。</a></p>
 
-<h3>Declaring a Winner</h3>
+<h3>判断赢家</h3>
 
-<p>Let&#39;s show when a game is won. Add this helper function to the end of the file:</p>
+<p>接下来我们来编写判断游戏获胜方的代码，首先在你的代码里添加下面这个判断获胜方的算法函数：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">calculateWinner</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">lines</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -785,9 +785,9 @@
   <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>You can call it in Board&#39;s <code>render</code> function to check if anyone has won the game and make the status text show &quot;Winner: [X/O]&quot; when someone wins.</p>
+<p>然后你就可以在 Board 组件的 <code>render</code> 方法里调用它，来检查是否有人获胜并根据判断显示出  &quot;Winner: [X/O]&quot; 来表示获胜方。</p>
 
-<p>Replace the <code>status</code> declaration in Board&#39;s <code>render</code> with this code:</p>
+<p>将 <code>render</code> 中的 <code>status</code> 替换为如下内容：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">winner</span> <span class="o">=</span> <span class="nx">calculateWinner</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">squares</span><span class="p">);</span>
 </span><span class="hll">    <span class="kd">let</span> <span class="nx">status</span><span class="p">;</span>
@@ -800,7 +800,7 @@
     <span class="k">return</span> <span class="p">(</span>
       <span class="c1">// the rest has not changed</span>
 </code></pre></div>
-<p>You can now change <code>handleClick</code> in Board to return early and ignore the click if someone has already won the game or if a square is already filled:</p>
+<p>继续完善游戏规则，我们在 <code>handleClick</code> 里添加当前方格内已经落子/有一方获胜就就无法继续落子的判断逻辑：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">squares</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">squares</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
 <span class="hll">    <span class="k">if</span> <span class="p">(</span><span class="nx">calculateWinner</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span> <span class="o">||</span> <span class="nx">squares</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
@@ -813,15 +813,15 @@
     <span class="p">});</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Congratulations! You now have a working tic-tac-toe game. And now you know the basics of React. So <em>you&#39;re</em> probably the real winner here.</p>
+<p>可喜可贺！现在你已经编写好了一个游戏规则逻辑完整的井字棋游戏了。并且你也已经掌握了一些基本的 React 知识。所以坚持到这一步的你才是真正的赢家呀！</p>
 
 <p><a href="https://codepen.io/gaearon/pen/LyyXgK?editors=0010">查看此步完整代码示例。</a></p>
 
-<h2>Storing a History</h2>
+<h2>保存历史纪录</h2>
 
-<p>Let&#39;s make it possible to revisit old states of the board so we can see what it looked like after any of the previous moves. We&#39;re already creating a new <code>squares</code> array each time a move is made, which means we can easily store the past board states simultaneously.</p>
+<p>接下来我们一起来实现保存棋局每一步的历史记录的功能。在现有的代码逻辑中，我们已经是在每走一步棋之后就返回一个新的 <code>squares</code> 数组了，所以想要保存历史纪录也非常简单。</p>
 
-<p>Let&#39;s plan to store an object like this in state:</p>
+<p>我们计划通过一个数组对象来保存每一步的状态数据：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">history</span> <span class="o">=</span> <span class="p">[</span>
   <span class="p">{</span>
     <span class="nx">squares</span><span class="o">:</span> <span class="p">[</span>
@@ -840,9 +840,9 @@
   <span class="c1">// ...</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>We&#39;ll want the top-level Game component to be responsible for displaying the list of moves. So just as we pulled the state up before from Square into Board, let&#39;s now pull it up again from Board into Game – so that we have all the information we need at the top level.</p>
+<p>我们期望在顶层的 Game 组件中展示一个链接每一步历史纪录的列表。所以就像我们之前将 state 从 Square 组件提升到 Board 中一样，现在我们把 Board 中的状态数据再提升到 Game 组件中来。</p>
 
-<p>First, set up the initial state for Game by adding a constructor to it:</p>
+<p>首先在 Game 组件的构造函数中初始化我们需要的状态数据：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Game</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 <span class="hll">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
 </span><span class="hll">    <span class="kr">super</span><span class="p">();</span>
@@ -869,15 +869,15 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Then change Board so that it takes <code>squares</code> via props and has its own <code>onClick</code> prop specified by Game, like the transformation we made for Square earlier. You can pass the location of each square into the click handler so that we still know which square was clicked. Here is a list of steps you need to do:</p>
+<p>接下来，就好像我们之前对 Square 组件的操作一样。我们将 Board 中的状态数据全都移动到 Game 组件当中。Board 现在通过 <code>props</code> 获取从 Game 传递下来的数据和事件处理函数。</p>
 
 <ul>
-<li>Delete the <code>constructor</code> in Board.</li>
-<li>Replace <code>this.state.squares[i]</code> with <code>this.props.squares[i]</code> in Board&#39;s <code>renderSquare</code>.</li>
-<li>Replace <code>this.handleClick(i)</code> with <code>this.props.onClick(i)</code> in Board&#39;s <code>renderSquare</code>.</li>
+<li>删除 Board 的构造方法 <code>constructor</code> .</li>
+<li>把 Board 的 <code>renderSquare</code> 方法中的 <code>this.state.squares[i]</code> 替换为 <code>this.props.squares[i]</code> .</li>
+<li>把 Board 的 <code>renderSquare</code> 方法中的 <code>this.handleClick(i)</code> 替换为 <code>this.props.onClick(i)</code> .</li>
 </ul>
 
-<p>Now the whole Board component looks like this:</p>
+<p>现在我们的 Board 组件变成了下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">squares</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">squares</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
@@ -932,7 +932,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Game&#39;s <code>render</code> should look at the most recent history entry and can take over calculating the game status:</p>
+<p>Game 组件的 <code>render</code> 方法现在则要负责获取最近一步的历史纪录（当前棋局状态），以及计算出游戏进行的状态（是否有人获胜）。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">;</span>
 </span><span class="hll">    <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="nx">history</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
@@ -961,7 +961,7 @@
     <span class="p">);</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Since Game is now rendering the status, we can delete <code>&lt;div className=&quot;status&quot;&gt;{status}&lt;/div&gt;</code> and the code calculating the status from the Board&#39;s <code>render</code> function:</p>
+<p>既然现在由 Game 组件负责渲染游戏状态，我们可以直接把 Board 组件的 <code>render</code> 方法里的 <code>&lt;div className=&quot;status&quot;&gt;{status}&lt;/div&gt;</code> 删掉：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 </span><span class="hll">    <span class="k">return</span> <span class="p">(</span>
 </span><span class="hll">      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
@@ -984,9 +984,9 @@
     <span class="p">);</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Next, we need to move the <code>handleClick</code> method implementation from Board to Game. You can cut it from the Board class, and paste it into the Game class.</p>
+<p>之后，我们需要将 Board 组件里的 <code>handleClick</code> 移动到 Game 组件当中。你可以直接把它剪切粘贴过来。</p>
 
-<p>We also need to change it a little, since Game state is structured differently. Game&#39;s <code>handleClick</code> can push a new entry onto the stack by concatenating the new history entry to make a new history array.</p>
+<p>不过为了实现我们新的历史纪录的功能，还需要稍微修改一下我们的代码，让 <code>handleClick</code> 在每次触发时，添加当前的棋局状态数据到 <code>histroy</code> 当中。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">;</span>
 </span><span class="hll">    <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="nx">history</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
@@ -1003,13 +1003,13 @@
     <span class="p">});</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>At this point, Board only needs <code>renderSquare</code> and <code>render</code>; the state initialization and click handler should both live in Game.</p>
+<p>代码编写到这一步，Board 组件当中现在应该只有 <code>renderSquare</code> 和 <code>render</code> 两个方法；应用状态 state 以及事件处理函数现在都定义在 Game 组件当中。</p>
 
 <p><a href="https://codepen.io/gaearon/pen/EmmOqJ?editors=0010">查看此步完整代码示例。</a></p>
 
-<h3>Showing the Moves</h3>
+<h3>展示每步历史纪录链接</h3>
 
-<p>Let&#39;s show the previous moves made in the game so far. We learned earlier that React elements are first-class JS objects and we can store them or pass them around. To render multiple items in React, we pass an array of React elements. The most common way to build that array is to map over your array of data. Let&#39;s do that in the <code>render</code> method of Game:</p>
+<p>现在我们来试着展示每一步棋的历史纪录链接。在教程的开始我们提到过，React 元素事实上都是 JS 当中的对象，我们可以把元素当作参数或定义到变量中使用。在 React 当中渲染多个重复的项目时，我们一般都以数组的方式传递 React 元素。最基本的方法是使用数组的 map 方法，我们试着来修改 Game 组件的 <code>render</code> 方法吧：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">;</span>
     <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="nx">history</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
@@ -1051,46 +1051,46 @@
 </code></pre></div>
 <p><a href="https://codepen.io/gaearon/pen/EmmGEa?editors=0010">查看此步完整代码示例。</a></p>
 
-<p>For each step in the history, we create a list item <code>&lt;li&gt;</code> with a link <code>&lt;a&gt;</code> inside it that goes nowhere (<code>href=&quot;#&quot;</code>) but has a click handler which we&#39;ll implement shortly. With this code, you should see a list of the moves that have been made in the game, along with a warning that says:</p>
+<p>对于每一步的历史纪录，我们都创建了一个带 <code>&lt;a&gt;</code> 链接的 <code>&lt;li&gt;</code> 列表项。目前链接还没指向任何地方，别着急我们后面会继续实现切换至对应棋步的功能。有了我们现有的代码，已经能渲染出一个列表了，不过你留心的话，就会在控制台看到警告：</p>
 
 <blockquote>
 <p>Warning:
  Each child in an array or iterator should have a unique &quot;key&quot; prop. Check the render method of &quot;Game&quot;.</p>
 </blockquote>
 
-<p>Let&#39;s talk about what that warning means.</p>
+<p>我们先来了解一下这条警告是什么情况。</p>
 
 <h3>Keys</h3>
 
-<p>When you render a list of items, React always stores some info about each item in the list. If you render a component that has state, that state needs to be stored – and regardless of how you implement your components, React stores a reference to the backing native views.</p>
+<p>当你在 React 当中渲染列表项时，React 都会试着存储对应每个单独项的相关信息。如果你的组件包含 state 状态数据，那么这些状态数据必须被排序，不管你组件是怎么编写实现的。</p>
 
-<p>When you update that list, React needs to determine what has changed. You could&#39;ve added, removed, rearranged, or updated items in the list.</p>
+<p>当你想要更新这些列表项时，React 必须能够知道是那一项改变了。这样你才能够在列表中增删改查项目。</p>
 
-<p>Imagine transitioning from</p>
+<p>比方说下面这个例子，从前一个表单</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Alexa: 7 tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Ben: 5 tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>to</p>
+<p>变成下面这个表单</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Ben: 9 tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Claudia: 8 tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Alexa: 5 tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>To a human eye, it looks likely that Alexa and Ben swapped places and Claudia was added – but React is just a computer program and doesn&#39;t know what you intended it to do. As a result, React asks you to specify a <em>key</em> property on each element in a list, a string to differentiate each component from its siblings. In this case, <code>alexa</code>, <code>ben</code>, <code>claudia</code> might be sensible keys; if the items correspond to objects in a database, the database ID is usually a good choice:</p>
+<p>你用肉眼可以很轻易地分辨，Alexa 被移到了最后，多出来一个 Claudia。可是 React 只是电脑里运行地程序，它无从知晓这些改变。所以我们必须为列表中的每一项添加一个 <em>key</em> 作为唯一的标识符。标识符必须是唯一的，比方说刚才这个例子中的 <code>alexa</code>, <code>ben</code>, <code>claudia</code> 就可以用来做标识符。更普遍的一种情况，假如我们的数据是从数据库获取的电话，表单每一项的 ID 就很适合当作它的 <em>key</em> ：</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="s">{user.id}</span><span class="p">&gt;</span>{user.name}: {user.taskCount} tasks left<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </code></pre></div>
-<p><code>key</code> is a special property that&#39;s reserved by React (along with <code>ref</code>, a more advanced feature). When an element is created, React pulls off the <code>key</code> property and stores the key directly on the returned element. Even though it may look like it is part of props, it cannot be referenced with <code>this.props.key</code>. React uses the key automatically while deciding which children to update; there is no way for a component to inquire about its own key.</p>
+<p><code>key</code> 是 React 当中使用的一种特殊的属性（除此之外还有 <code>ref</code> 属性）。当元素被创建时，React 会将元素的 <code>key</code> 值和对应元素绑定存储起来。尽管 <code>key</code> 看起来像是 props 的一部分，可是事实上我们无法通过 <code>this.props.key</code> 获取到 <code>key</code> 的值。React 会自动的在判断元素更新时使用 <code>key</code> ，而组件自己是无法获取到 <code>key</code> 的。 </p>
 
-<p>When a list is rerendered, React takes each element in the new version and looks for one with a matching key in the previous list. When a key is added to the set, a component is created; when a key is removed, a component is destroyed. Keys tell React about the identity of each component, so that it can maintain the state across rerenders. If you change the key of a component, it will be completely destroyed and recreated with a new state.</p>
+<p>当一个列表背重新渲染时，React 会根据较新的元素内容依据相应的 key 值来匹配之前的元素内容。当一个新的 key 值添加到列表当中时，表示有一个组件被创建；被删除时表示有一个组件被销毁。Key 值可以让 React 明确标识每个组件，这样它才能在每次重新渲染时保有对应的状态数据。假如你去改变某个组件的 key 值的话，它会在下次渲染时被销毁并当作新的组件重新渲染进来。</p>
 
-<p><strong>It&#39;s strongly recommended that you assign proper keys whenever you build dynamic lists.</strong> If you don&#39;t have an appropriate key handy, you may want to consider restructuring your data so that you do.</p>
+<p><strong>强烈建议你在渲染列表项时添加 keys 值。</strong> 假如你没有现成可以作为唯一 key 值的数据使用的话，你可能需要考虑重新组织设计你的数据了。</p>
 
-<p>If you don&#39;t specify any key, React will warn you and fall back to using the array index as a key – which is not the correct choice if you ever reorder elements in the list or add/remove items anywhere but the bottom of the list. Explicitly passing <code>key={i}</code> silences the warning but has the same problem so isn&#39;t recommended in most cases.</p>
+<p>假如你不提供任何 key 值，React 会提示警告，并且默认使用数组的索引作为默认的 key ，但这样你想在列表的中间添加或删除项目，对应的键值都会改变（也就会出现我们上面提到的组件key值被改变就会被当作新创建的组件处理那种情况）。手动添加列表索引值 <code>key={i}</code> 可以消除警告，但也会存在相同的问题。</p>
 
-<p>Component keys don&#39;t need to be globally unique, only unique relative to the immediate siblings.</p>
+<p>组件的 keys 值并不需要在全局都保证唯一，只需要在当前的节点里保证唯一即可。</p>
 
-<h3>Implementing Time Travel</h3>
+<h3>实现时间旅行</h3>
 
-<p>For our move list, we already have a unique ID for each step: the number of the move when it happened. In the Game&#39;s <code>render</code> method, add the key as <code>&lt;li key={move}&gt;</code> and the key warning should disappear:</p>
+<p>在我们的棋步的列表中，已经有了现成的唯一 key 值，也就是每一次 move 的记录值。我们通过  <code>&lt;li key={move}&gt;</code> 来添加一下。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span>    <span class="kr">const</span> <span class="nx">moves</span> <span class="o">=</span> <span class="nx">history</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">step</span><span class="p">,</span> <span class="nx">move</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="kr">const</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nx">move</span> <span class="o">?</span>
         <span class="s1">&#39;Move #&#39;</span> <span class="o">+</span> <span class="nx">move</span> <span class="o">:</span>
@@ -1104,9 +1104,9 @@
 </code></pre></div>
 <p><a href="https://codepen.io/gaearon/pen/PmmXRE?editors=0010">查看此步完整代码示例。</a></p>
 
-<p>Clicking any of the move links throws an error because <code>jumpTo</code> is undefined. Let&#39;s add a new key to Game&#39;s state to indicate which step we&#39;re currently viewing.</p>
+<p>在上面的代码中，我们同样为每一个 <code>&lt;a&gt;</code> 添加了一个 <code>jumpTo</code> 方法，用来将棋盘的状态切换至对应的棋步时的状态。接下来我们来着手实现这个方法： </p>
 
-<p>First, add <code>stepNumber: 0</code> to the initial state in Game&#39;s <code>constructor</code>:</p>
+<p>首先在 Game 组件的初始状态中多设置一项 <code>stepNumber: 0</code> ：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Game</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
@@ -1119,9 +1119,9 @@
     <span class="p">};</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Next, we&#39;ll define the <code>jumpTo</code> method in Game to update that state. We also want to update <code>xIsNext</code>. We set <code>xIsNext</code> to true if the index of the move number is an even number.</p>
+<p>接下来，我们正是编写 <code>jumpTo</code> 来切换 <code>stepNumber</code> 的值。根据游戏的逻辑，与此同时我们还需要修改 <code>xIsNext</code> 来保证对应棋步时，执子的一方是能对应上的。我们可以根据棋步计算出是谁在执子。</p>
 
-<p>Add a method called <code>jumpTo</code> to the Game class:</p>
+<p>我们把 <code>jumpTo</code> 编写在 Game 组件中： </p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// this method has not changed</span>
   <span class="p">}</span>
@@ -1137,7 +1137,7 @@
     <span class="c1">// this method has not changed</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Then update <code>stepNumber</code> when a new move is made by adding <code>stepNumber: history.length</code> to the state update in Game&#39;s <code>handleClick</code>:</p>
+<p>接下来，我们在 <code>handleClick</code> 方法中对 <code>stepNumber</code> 进行更新，添加 <code>stepNumber: history.length</code> 保证每走一步 <code>stepNumber</code> 会跟着改变：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stepNumber</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 </span>    <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="nx">history</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
@@ -1155,7 +1155,7 @@
     <span class="p">});</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Now you can modify Game&#39;s <code>render</code> to read from that step in the history:</p>
+<p>现在你可以直接在 Game 组件的 <code>render</code> 方法里根据当前的棋步获取对应的棋局状态了：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">;</span>
 <span class="hll">    <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stepNumber</span><span class="p">];</span>
@@ -1165,36 +1165,42 @@
 </code></pre></div>
 <p><a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">查看此步完整代码示例。</a></p>
 
-<p>If you click any move link now, the board should immediately update to show what the game looked like at that time.</p>
+<p>现在你试着点击每一步棋记录的列表中的一项，棋盘会自动更新到对应项时的棋局状态。</p>
 
-<p>You may also want to update <code>handleClick</code> to be aware of <code>stepNumber</code> when reading the current board state so that you can go back in time then click in the board to create a new entry. (Hint: It&#39;s easiest to <code>.slice()</code> off the extra elements from <code>history</code> at the very top of <code>handleClick</code>.)</p>
+<p>为了实现“悔棋”的功能，也就是说在切换至某一步之后我们能够继续下，我们需要在 <code>handleClick</code> 事件触发时去除掉切回棋步后面的所有记录，最简单的办法就是在 <code>handleClick</code> 事件的开头使用 <code>.slice()</code> 方法去除。</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+<span class="hll">    <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stepNumber</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span>    <span class="kr">const</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">history</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">stepNumber</span><span class="p">];</span>
+    <span class="kr">const</span> <span class="nx">winner</span> <span class="o">=</span> <span class="nx">calculateWinner</span><span class="p">(</span><span class="nx">current</span><span class="p">.</span><span class="nx">squares</span><span class="p">);</span>
 
-<h3>Wrapping Up</h3>
+    <span class="c1">// the rest has not changed</span>
+</code></pre></div>
+<h3>总结</h3>
 
-<p>Now, you&#39;ve made a tic-tac-toe game that:</p>
+<p>现在你已经有了一个功能相当丰富的井字棋游戏：</p>
 
 <ul>
-<li>lets you play tic-tac-toe,</li>
-<li>indicates when one player has won the game,</li>
-<li>stores the history of moves during the game,</li>
-<li>allows players to jump back in time to see older versions of the game board.</li>
+<li>实现了井字棋游戏的基本规则并可以进行游戏，</li>
+<li>能够判断一方获胜，</li>
+<li>能够存储每一步时的棋局状态，</li>
+<li>允许玩家切换至之前的某一步“悔棋”。</li>
 </ul>
 
-<p>Nice work! We hope you now feel like you have a decent grasp on how React works.</p>
+<p>干得不错！我们希望你至此已经基本掌握了 React 的使用。</p>
 
-<p>Check out the final result here: <a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">Final Result</a>.</p>
+<p>在这里你可以查看游戏代码 <a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">最终的成果</a>。</p>
 
-<p>If you have extra time or want to practice your new skills, here are some ideas for improvements you could make, listed in order of increasing difficulty:</p>
+<p>如果你之后还会有充裕的时间并且想练习你刚掌握的新技能的话，这里有一些可以完善的游戏功能实现供你参考，列表是由易到难排序的：</p>
 
 <ol>
-<li>Display the move locations in the format &quot;(1, 3)&quot; instead of &quot;6&quot;.</li>
-<li>Bold the currently-selected item in the move list.</li>
-<li>Rewrite Board to use two loops to make the squares instead of hardcoding them.</li>
-<li>Add a toggle button that lets you sort the moves in either ascending or descending order.</li>
-<li>When someone wins, highlight the three squares that caused the win.</li>
+<li>以 &quot;(1, 3)&quot; 坐标的方式记录每一步，而不是格子序号 &quot;6&quot;。</li>
+<li>在棋步记录列表里加粗显示当前选中的项目。</li>
+<li>在 Board 组件中用两个循环渲染出 9 个 Square 格子组件。</li>
+<li>添加一个切换按钮来升序或降序显示棋步记录列表。</li>
+<li>当一方获胜时，高亮显示连成一线的3颗棋子。</li>
 </ol>
 
-<p>Throughout this tutorial, we have touched on a number of React concepts including elements, components, props, and state. For a more in-depth explanation for each of these topics, check out <a href="/react/docs/hello-world.html">the rest of the documentation</a>. To learn more about defining components, check out the <a href="/react/docs/react-component.html"><code>React.Component</code> API reference</a>.</p>
+<p>通过这一篇教程，我们大概了解了 React 当中包含 元素、组件、props、state 在内的一些概念。想要更深入地了解每一个关键概念，你可以继续阅读 <a href="/react/docs/hello-world.html">文档</a>。想要更详细地了解 React 组件，可以查阅 <a href="/react/docs/react-component.html"><code>React.Component</code> API 参考</a>。</p>
 
 
     <div class="docs-prevnext">
