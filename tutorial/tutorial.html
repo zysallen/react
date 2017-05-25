@@ -329,15 +329,15 @@
 
 <h3>通过 Props 传递数据</h3>
 
-<p>Just to get our feet wet, let&#39;s try passing some data from the Board component to the Square component.</p>
+<p>我们先来试着从 Board 组件传递一些数据到 Square 组件。</p>
 
-<p>In Board&#39;s <code>renderSquare</code> method, change the code to pass a <code>value</code> prop to the Square:</p>
+<p>在 Board 组件的 <code>renderSquare</code> 方法中，我们将代码改写成下面这样，传递一个名为 <code>value</code> 的 prop 到 Square 当中：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">renderSquare</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Square</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">i</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span>  <span class="p">}</span>
 </code></pre></div>
-<p>Then change Square&#39;s <code>render</code> method to show that value by replacing <code>{/* TODO */}</code> with <code>{this.props.value}</code>:</p>
+<p>之后再修改 Square 组件的 <code>render</code> 方法，把其中的 <code>{/* TODO */}</code> 注释替换为 <code>{this.props.value}</code>:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">Square</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
@@ -348,19 +348,19 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Before:</p>
+<p>修改前：</p>
 
 <p><img src="/react/img/tutorial/tictac-empty.png" alt="React Devtools"></p>
 
-<p>After: You should see a number in each square in the rendered output.</p>
+<p>修改后： 在每个格子当中你都能看到一个渲染出来的数字。</p>
 
 <p><img src="/react/img/tutorial/tictac-numbers.png" alt="React Devtools"></p>
 
-<p><a href="https://codepen.io/gaearon/pen/aWWQOG?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/aWWQOG?editors=0010">查看此步完整代码示例。</a></p>
 
-<h3>An Interactive Component</h3>
+<h3>给组件添加交互功能</h3>
 
-<p>Let&#39;s make the Square component fill in an &quot;X&quot; when you click it. Try changing the button tag returned in the <code>render()</code> function of the Square like this:</p>
+<p>接下来我们试着让棋盘的每一个格子在点击之后能落下一颗 &quot;X&quot; 作为棋子。我们试着把 <code>render()</code> 方法修改为如下内容：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Square</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
@@ -371,13 +371,13 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If you click on a square now, you should get an alert in your browser.</p>
+<p>现在你试着点击一下某个格子，在浏览器里就会弹出一个警示框。</p>
 
-<p>This uses the new JavaScript <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow function</a> syntax. Note that we&#39;re passing a function as the <code>onClick</code> prop. Doing <code>onClick={alert(&#39;click&#39;)}</code> would alert immediately instead of when the button is clicked.</p>
+<p>在这里呢，我们使用了 JavaScript 当中一种新的名为 箭头函数 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow function</a> 的语法。注意到这里我们传给 <code>onClick</code>属性的是一个函数方法，假如我们写的是 <code>onClick={alert(&#39;click&#39;)}</code> 警示框是会立即弹出的。</p>
 
-<p>React components can have state by setting <code>this.state</code> in the constructor, which should be considered private to the component. Let&#39;s store the current value of the square in state, and change it when the square is clicked.</p>
+<p>在 React 组件的构造方法 <code>constructor</code> 当中，你可以通过 <code>this.state</code> 为该组件设置自身的状态数据。我们来试着把棋盘格子变化的数据储存在组件的 state  当中吧：</p>
 
-<p>First, add a constructor to the class to initialize the state:</p>
+<p>首先，我们为组件添加构造函数并初始化 state：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Square</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 <span class="hll">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
 </span><span class="hll">    <span class="kr">super</span><span class="p">();</span>
@@ -395,16 +395,16 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>In <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">JavaScript classes</a>, you need to explicitly call <code>super();</code> when defining the constructor of a subclass.</p>
+<p>在使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">JavaScript classes</a> 时，你必须调用  <code>super();</code> 方法才能在继承父类的子类中正确获取到类型的 <code>this</code> 。</p>
 
-<p>Now change the Square <code>render</code> method to display the value from the current state, and to toggle it on click:</p>
+<p>现在我们试着通过点击事件触发 state 的改变来更新棋盘格子显示的内容：</p>
 
 <ul>
-<li>Replace <code>this.props.value</code> with <code>this.state.value</code> inside the <code>&lt;button&gt;</code> tag.</li>
-<li>Replace the <code>() =&gt; alert()</code> event handler with <code>() =&gt; setState({value: &#39;X&#39;})</code>.</li>
+<li>将 <code>&lt;button&gt;</code> 当中的 <code>this.props.value</code> 替换为 <code>this.state.value</code> .</li>
+<li>将 <code>() =&gt; alert()</code> 方法替换为 <code>() =&gt; setState({value: &#39;X&#39;})</code> .</li>
 </ul>
 
-<p>Now the <code>&lt;button&gt;</code> tag looks like this:</p>
+<p>现在我们的 <code>&lt;button&gt;</code> 标签就变成了下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Square</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
@@ -422,42 +422,42 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Whenever <code>this.setState</code> is called, an update to the component is scheduled, causing React to merge in the passed state update and rerender the component along with its descendants. When the component rerenders, <code>this.state.value</code> will be <code>&#39;X&#39;</code> so you&#39;ll see an X in the grid.</p>
+<p>每当  <code>this.setState</code> 方法被触发时，组件都会开始准备更新，React 通过比较状态的变化来更新组件当中跟随数据改变了的内容。当组件重新渲染时，<code>this.state.value</code> 会变成 <code>&#39;X&#39;</code> ，所以你也就能够在格子里看到 X 的字样。</p>
 
-<p>If you click on any square, an X should show up in it.</p>
+<p>现在你试着点击任何一个格子，都能够看到 X 出现在格子当中。</p>
 
-<p><a href="https://codepen.io/gaearon/pen/VbbVLg?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/VbbVLg?editors=0010">查看此步完整代码示例。</a></p>
 
-<h3>Developer Tools</h3>
+<h3>开发工具</h3>
 
-<p>The React Devtools extension for <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">Chrome</a> and <a href="https://addons.mozilla.org/en-US/firefox/addon/react-devtools/">Firefox</a> lets you inspect a React component tree in your browser devtools.</p>
+<p>在 <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">Chrome</a> 或 <a href="https://addons.mozilla.org/en-US/firefox/addon/react-devtools/">Firefox</a> 上安装 React 开发者工具可以让你在浏览器的开发控制台里看到 React 渲染出来的组件树。</p>
 
 <p><img src="/react/img/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%"></p>
 
-<p>It lets you inspect the props and state of any of the components in your tree.</p>
+<p>你同样可以在开发工具中观察到各个组件的 props 和 state.</p>
 
-<p>After installing it, you can right-click any element on the page, click &quot;Inspect&quot; to open the developer tools, and the React tab will appear as the last tab to the right.</p>
+<p>安装好开发工具之后，你可以在任意页面元素上面右键选择 “审查元素”，之后在弹出的控制台选项卡最右边会看到名为 React 的选项卡。</p>
 
-<p><strong>However, note there are a few extra steps to get it working with CodePen:</strong></p>
+<p><strong>不过，如果你使用的是Codepen在线编辑器的话，还需要几步操作才能正确使用开发工具</strong></p>
 
 <ol>
-<li>Log in or register and confirm your email (required to prevent spam).</li>
-<li>Click the &quot;Fork&quot; button.</li>
-<li>Click &quot;Change View&quot; and then choose &quot;Debug mode&quot;.</li>
-<li>In the new tab that opens, the devtools should now have a React tab.</li>
+<li>注册一个正式的 Codepen 账号。</li>
+<li>点击代码编辑器页面右上角的 &quot;Fork&quot; 按钮，将代码示例拷贝为你自己的 pen.</li>
+<li>点击右上角的 &quot;Change View&quot; 按钮并选择 &quot;Debug mode&quot;.</li>
+<li>在新打开的页面中，你就可以正常地使用 React 开发工具啦。</li>
 </ol>
 
-<h2>Lifting State Up</h2>
+<h2>状态提升</h2>
 
-<p>We now have the basic building blocks for a tic-tac-toe game. But right now, the state is encapsulated in each Square component. To make a fully-working game, we now need to check if one player has won the game, and alternate placing X and O in the squares. To check if someone has won, we&#39;ll need to have the value of all 9 squares in one place, rather than split up across the Square components.</p>
+<p>我们现在已经编写好了井字棋游戏最基本的可以落子的棋盘。但是现在应用的状态是独立保存在棋盘上每个格子的 Square 组件当中的。想要编写出来一个真正能玩的游戏，我们还需要判断哪个玩家获胜，并在 X 或 O 两方之间交替落子。想要检查某个玩家是否获胜，需要获取所有9个格子上面的棋子分布的数据，现在这些数据分散在各个格子当中显然是很麻烦的。</p>
 
-<p>You might think that Board should just inquire what the current state of each Square is. Although it is technically possible to do this in React, it is discouraged because it tends to make code difficult to understand, more brittle, and harder to refactor.</p>
+<p>你可能会想着说，我们也可以在棋盘 Board 组件中收集各个格子 Square 组件当中的数据。虽然技术上来讲是可以实现的，但是代码这么写的话会让人很难理解，并且我们以后想要修改重构时也会非常困难。</p>
 
-<p>Instead, the best solution here is to store this state in the Board component instead of in each Square – and the Board component can tell each Square what to display, like how we made each square display its index earlier.</p>
+<p>所以，最好的解决方式是直接将所有的 state 状态数据存储在 Board 组件当中。之后 Board 组件可以将这些数据传递给各个 Square 组件。</p>
 
-<p><strong>When you want to aggregate data from multiple children or to have two child components communicate with each other, move the state upwards so that it lives in the parent component. The parent can then pass the state back down to the children via props, so that the child components are always in sync with each other and with the parent.</strong></p>
+<p><strong>当你遇到需要同时获取多个子组件数据，或者两个组件之间需要相互通讯的情况时，把子组件的 state 数据提升至其共同的父组件当中保存。之后父组件可以通过 props 将状态数据传递到子组件当中。这样应用当中的状态数据就能够更方便地交流共享了。</strong></p>
 
-<p>Pulling state upwards like this is common when refactoring React components, so let&#39;s take this opportunity to try it out. Add a constructor to the Board and set its initial state to contain an array with 9 nulls, corresponding to the 9 squares:</p>
+<p>像这种提升组件状态的情形在重构 React 组件时经常会遇到。我们趁现在也就来实践一下，在 Board 组件的构造函数中初始化一个包含9个空值的数组作为状态数据，并将这9个数组中的元素分别传递到对应的9个 Square 组件当中。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 <span class="hll">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
 </span><span class="hll">    <span class="kr">super</span><span class="p">();</span>
@@ -496,28 +496,28 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We&#39;ll fill it in later so that a board looks something like</p>
+<p>现在传入的都是空数据，井字棋游戏进行会把数组填充成类似下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">[</span>
   <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span>
   <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span>
   <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>Board&#39;s <code>renderSquare</code> method currently looks like this:</p>
+<p>Board 现在的 <code>renderSquare</code> 方法看起来像下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">renderSquare</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Square</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">i</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>Modify it to pass a <code>value</code> prop to Square.</p>
+<p>我们在 value 属性中传递对应 state 数组元素的值。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">renderSquare</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 <span class="hll">    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Square</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">squares</span><span class="p">[</span><span class="nx">i</span><span class="p">]}</span> <span class="o">/&gt;</span><span class="p">;</span>
 </span>  <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/gWWQPY?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/gWWQPY?editors=0010">查看此步完整代码示例。</a></p>
 
-<p>Now we need to change what happens when a square is clicked. The Board component now stores which squares are filled, which means we need some way for Square to update the state of Board. Since component state is considered private, we can&#39;t update Board&#39;s state directly from Square.</p>
+<p>现在我们需要修改当某个格子被点击时触发的事件处理函数。现在没个格子当中的数据是存储在整个棋盘当中的，所以我们就需要通过一些方法，让格子组件能够修改整个棋盘组件数据的内容。因为每个组件的 state 都是它私有的，所以我们不可以直接在格子组件当中进行修改。</p>
 
-<p>The usual pattern here is pass down a function from Board to Square that gets called when the square is clicked. Change <code>renderSquare</code> in Board again so that it reads:</p>
+<p>惯例的做法是，我们再通过 props 传递一个父组件当中的事件处理函数到子组件当中。也就是从 Board 组件里传递一个事件处理函数到 Square 当中，我们来把 <code>renderSquare</code> 方法改成下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span>  <span class="nx">renderSquare</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">Square</span>
@@ -527,17 +527,17 @@
     <span class="p">);</span>
   <span class="p">}</span>
 </code></pre></div>
-<p>We split the returned element into multiple lines for readability, and added parens around it so that JavaScript doesn&#39;t insert a semicolon after <code>return</code> and break our code.</p>
+<p>注意到我们在写代码的时候，在各个属性直接换了行，这样可以改善我们代码的可读性。并且我们在 JSX 元素的最外层套上了一小括号，以防止 JavaScript 代码在解析时自动在换行处添加分号。</p>
 
-<p>Now we&#39;re passing down two props from Board to Square: <code>value</code> and <code>onClick</code>. The latter is a function that Square can call. Let&#39;s make the following changes to Square:</p>
+<p>现在我们从 Board 组件向 Square 组件中传递两个 props 参数：<code>value</code> 和 <code>onClick</code>. <code>onClick</code> 里传递的是一个之后在 Square 组件中能够触发的方法函数。我们动手来修改代码吧：</p>
 
 <ul>
-<li>Replace <code>this.state.value</code> with <code>this.props.value</code> in Square&#39;s <code>render</code>.</li>
-<li>Replace <code>this.setState()</code> with <code>this.props.onClick()</code> in Square&#39;s <code>render</code>.</li>
-<li>Delete <code>constructor</code> definition from Square because it doesn&#39;t have state anymore.</li>
+<li>将 Square 组件的 <code>render</code> 方法中的 <code>this.state.value</code> 替换为 <code>this.props.value</code> .</li>
+<li>将 Square 组件的 <code>render</code> 方法中的 <code>this.setState()</code> 替换为 <code>this.props.onClick()</code> .</li>
+<li>删掉 Square  组件中的 构造函数 <code>constructor</code> ，因为它现在已经不需要保存 state 了。</li>
 </ul>
 
-<p>After these changes, the whole Square component looks like this:</p>
+<p>进行如上修改之后，代码会变成下面这样：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="hll"><span class="kr">class</span> <span class="nx">Square</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 </span><span class="hll">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
 </span>    <span class="k">return</span> <span class="p">(</span>
@@ -548,19 +548,19 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Now when the square is clicked, it calls the <code>onClick</code> function that was passed by Board. Let&#39;s recap what happens here:</p>
+<p>现在每次格子被点击时就会触发传入的 <code>onClick</code> 方法。我们来捋一下这其中发生了什么：</p>
 
 <ol>
-<li>The <code>onClick</code> prop on the built-in DOM <code>&lt;button&gt;</code> component tells React to set up a click event listener.</li>
-<li>When the button is clicked, React will call the <code>onClick</code> event handler defined in Square&#39;s <code>render()</code> method.</li>
-<li>This event handler calls <code>this.props.onClick()</code>. Square&#39;s props were specified by the Board.</li>
-<li>Board passed <code>onClick={() =&gt; this.handleClick(i)}</code> to Square, so, when called, it runs <code>this.handleClick(i)</code> on the Board.</li>
-<li>We have not defined the <code>handleClick()</code> method on the Board yet, so the code crashes.</li>
+<li>添加 <code>onClick</code> 属性到内置的 DOM 元素 <code>&lt;button&gt;</code> 上让 React 开启了对点击事件的监听。</li>
+<li>当按钮，也就是棋盘格子被点击时, React 会调用 Square 组件的 <code>render()</code> 方法中的 <code>onClick</code> 事件处理函数。</li>
+<li>事件处理函数触发了传入其中的 <code>this.props.onClick()</code> 方法。这个方法是由 Board 传递给 Square 的。</li>
+<li>Board 传递了 <code>onClick={() =&gt; this.handleClick(i)}</code> 给 Square，所以当 Square 中的事件处理函数触发时，其实就是触发的 Board 当中的 <code>this.handleClick(i)</code> 方法。</li>
+<li>现在我们还没有编写 <code>handleClick()</code> 方法，所以代码还不能正常工作。</li>
 </ol>
 
-<p>Note that <code>onClick</code> on the DOM <code>&lt;button&gt;</code> component has a special meaning to React, but we could have called <code>onClick</code> prop in Square and <code>handleClick</code> in Board something else. It is, however, a common convention in React apps to use <code>on*</code> names for the handler prop names and <code>handle*</code> for their implementations.</p>
+<p>注意到这里的 <code>onClick</code> 事件是 React 组件当中所特有的。不过 <code>handleClick</code> 这些方法则只是我们编写事件处理函数时候的命名习惯。</p>
 
-<p>Try clicking a square – you should get an error because we haven&#39;t defined <code>handleClick</code> yet. Add it to the Board class.</p>
+<p>现在我们来动手编写 <code>handleClick</code> 方法吧：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">Board</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
@@ -610,53 +610,53 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/ybbQJX?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/ybbQJX?editors=0010">查看此步完整代码示例。</a></p>
 
-<p>We call <code>.slice()</code> to copy the <code>squares</code> array instead of mutating the existing array. Jump ahead a <a href="/react/tutorial/tutorial.html#why-immutability-is-important">section</a> to learn why immutability is important.</p>
+<p>我们使用了 <code>.slice()</code> 方法来将之前的数组数据<strong>深拷贝</strong>到了一个新的数组中，而不是修改已有的数组。你可以在 <a href="/react/tutorial/tutorial.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%80%A7%E5%9C%A8React%E5%BD%93%E4%B8%AD%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81">这个章节</a> 来了解为什么不可变性在 React 当中的重要性。</p>
 
-<p>Now you should be able to click in squares to fill them again, but the state is stored in the Board component instead of in each Square, which lets us continue building the game. Note how whenever Board&#39;s state changes, the Square components rerender automatically.</p>
+<p>现在你点击棋盘上的格子应该就能够正常落子了。而且状态数据是统一保管在棋盘组件 Board 当中的。你应该注意到了，当事件处理函数触发棋盘父组件的状态数据改变时，格子子组件会自动重新渲染。</p>
 
-<p>Square no longer keeps its own state; it receives its value from its parent Board and informs its parent when it&#39;s clicked. We call components like this <strong>controlled components</strong>.</p>
+<p>现在格子组件 Square 不再拥有自身的状态数据了。它从棋盘父组件 Board 接受数据，并且当自己被点击时通知触发父组件改变状态数据，我们称这类的组件为 <strong>受控组件</strong>。</p>
 
-<h3>Why Immutability Is Important</h3>
+<h3>为什么不可变性在React当中非常重要</h3>
 
-<p>In the previous code example, we suggest using the <code>.slice()</code> operator to copy the <code>squares</code> array prior to making changes and to prevent mutating the existing array. Let&#39;s talk about what this means and why it is an important concept to learn.</p>
+<p>在上一节内容当中，我们通过使用 <code>.slice()</code> 方法对已有的数组数据进行了深拷贝，以此来防止对已有数据的改变。接下来我们稍微了解一下为什么这样的操作是一种非常重要的概念。</p>
 
-<p>There are generally two ways for changing data. The first method is to <em>mutate</em> the data by directly changing the values of a variable. The second method is to replace the data with a new copy of the object that also includes desired changes.</p>
+<p>改变应用数据的方式一般分为两种。第一种是直接修改已有的变量的值。第二种则是将已有的变量替换为一个新的变量。</p>
 
-<h4>Data change with mutation</h4>
+<h4>直接修改数据</h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span><span class="nx">score</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jeff&#39;</span><span class="p">};</span>
 <span class="nx">player</span><span class="p">.</span><span class="nx">score</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="c1">// Now player is {score: 2, name: &#39;Jeff&#39;}</span>
 </code></pre></div>
-<h4>Data change without mutation</h4>
+<h4>替换修改数据</h4>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="p">{</span><span class="nx">score</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jeff&#39;</span><span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">newPlayer</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">player</span><span class="p">,</span> <span class="p">{</span><span class="nx">score</span><span class="o">:</span> <span class="mi">2</span><span class="p">});</span>
 <span class="c1">// Now player is unchanged, but newPlayer is {score: 2, name: &#39;Jeff&#39;}</span>
 
-<span class="c1">// Or if you are using object spread syntax proposal, you can write:</span>
+<span class="c1">// 或者使用最新的对象分隔符语法，你可以这么写：</span>
 <span class="c1">// var newPlayer = {...player, score: 2};</span>
 </code></pre></div>
-<p>The end result is the same but by not mutating (or changing the underlying data) directly we now have an added benefit that can help us increase component and overall application performance.</p>
+<p>两种方式的结果是一样的，但是第二种并没有改变之前已有的数据。通过这样的方式，我们可以得到以下几点好处：</p>
 
-<h4>Easier Undo/Redo and Time Travel</h4>
+<h4>很轻松地实现 撤销/重做以及时间旅行</h4>
 
-<p>Immutability also makes some complex features much easier to implement. For example, further in this tutorial we will implement time travel between different stages of the game. Avoiding data mutations lets us keep a reference to older versions of the data, and switch between them if we need to.</p>
+<p>运用不可变性原则可以让我们很容易实现一些复杂的功能。例如我们在这个教程中会实现的，通过点击列表中的某一项直接返回当某一步棋时的状态。不改变已有的数据内容可以让我们在需要的时候随时切换回历史数据。</p>
 
-<h4>Tracking Changes</h4>
+<h4>记录变化</h4>
 
-<p>Determining if a mutated object has changed is complex because changes are made directly to the object. This then requires comparing the current object to a previous copy, traversing the entire object tree, and comparing each variable and value. This process can become increasingly complex.</p>
+<p>在我们直接修改一个对象的内容之后，是很难判断它哪里发生了改变的。我们想要判断一个对象的改变，必须拿当前的对象和改变之前的对象相互比较，遍历整个对象树，比较每一个值，这样的操作复杂度是非常高的。</p>
 
-<p>Determining how an immutable object has changed is considerably easier. If the object being referenced is different from before, then the object has changed. That&#39;s it.</p>
+<p>而运用不可变性原则之后则要轻松得多。因为我们每次都是返回一个新的对象，所以只要判断这个对象被替换了，那么其中数据肯定是改变了的。</p>
 
-<h4>Determining When to Re-render in React</h4>
+<h4>在 React 当中判定何时重新渲染</h4>
 
-<p>The biggest benefit of immutability in React comes when you build simple <em>pure components</em>. Since immutable data can more easily determine if changes have been made it also helps to determine when a component requires being re-rendered.</p>
+<p>运用不可变性原则给 React 带来最大的好处是，既然我们现在可以很方便地判断对象数据是否发生改变了，那么也就很好决定何时根据数据的改变重新渲染组件。尤其是当我们编写的都属于 *<em>纯组件 pure components *</em>的时候，这种好处的效果更为明显。</p>
 
-<p>To learn more about <code>shouldComponentUpdate()</code> and how you can build <em>pure components</em> take a look at <a href="/react/docs/optimizing-performance.html#examples">Optimizing Performance</a>.</p>
+<p>了解更多有关 <code>shouldComponentUpdate()</code> 以及如何编写 <em>pure components</em> 的内容，你可以查阅 <a href="/react/docs/optimizing-performance.html#examples">性能优化</a> 这一篇。</p>
 
-<h3>Functional Components</h3>
+<h3>函数定义组件</h3>
 
 <p>We&#39;ve removed the constructor, and in fact, React supports a simpler syntax called <strong>functional components</strong> for component types like Square that only consist of a <code>render</code> method. Rather than define a class extending <code>React.Component</code>, simply write a function that takes props and returns what should be rendered.</p>
 
@@ -673,7 +673,7 @@
 
 <p>While we&#39;re cleaning up the code, we also changed <code>onClick={() =&gt; props.onClick()}</code> to just <code>onClick={props.onClick}</code>, as passing the function down is enough for our example. Note that <code>onClick={props.onClick()}</code> would not work because it would call <code>props.onClick</code> immediately instead of passing it down.</p>
 
-<p><a href="https://codepen.io/gaearon/pen/QvvJOv?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/QvvJOv?editors=0010">查看此步完整代码示例。</a></p>
 
 <h3>Taking Turns</h3>
 
@@ -760,7 +760,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/KmmrBy?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/KmmrBy?editors=0010">查看此步完整代码示例。</a></p>
 
 <h3>Declaring a Winner</h3>
 
@@ -815,7 +815,7 @@
 </code></pre></div>
 <p>Congratulations! You now have a working tic-tac-toe game. And now you know the basics of React. So <em>you&#39;re</em> probably the real winner here.</p>
 
-<p><a href="https://codepen.io/gaearon/pen/LyyXgK?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/LyyXgK?editors=0010">查看此步完整代码示例。</a></p>
 
 <h2>Storing a History</h2>
 
@@ -1005,7 +1005,7 @@
 </code></pre></div>
 <p>At this point, Board only needs <code>renderSquare</code> and <code>render</code>; the state initialization and click handler should both live in Game.</p>
 
-<p><a href="https://codepen.io/gaearon/pen/EmmOqJ?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/EmmOqJ?editors=0010">查看此步完整代码示例。</a></p>
 
 <h3>Showing the Moves</h3>
 
@@ -1049,7 +1049,7 @@
     <span class="p">);</span>
   <span class="p">}</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/EmmGEa?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/EmmGEa?editors=0010">查看此步完整代码示例。</a></p>
 
 <p>For each step in the history, we create a list item <code>&lt;li&gt;</code> with a link <code>&lt;a&gt;</code> inside it that goes nowhere (<code>href=&quot;#&quot;</code>) but has a click handler which we&#39;ll implement shortly. With this code, you should see a list of the moves that have been made in the game, along with a warning that says:</p>
 
@@ -1102,7 +1102,7 @@
       <span class="p">);</span>
     <span class="p">});</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/PmmXRE?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/PmmXRE?editors=0010">查看此步完整代码示例。</a></p>
 
 <p>Clicking any of the move links throws an error because <code>jumpTo</code> is undefined. Let&#39;s add a new key to Game&#39;s state to indicate which step we&#39;re currently viewing.</p>
 
@@ -1163,7 +1163,7 @@
 
     <span class="c1">// the rest has not changed</span>
 </code></pre></div>
-<p><a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">View the current code.</a></p>
+<p><a href="https://codepen.io/gaearon/pen/gWWZgR?editors=0010">查看此步完整代码示例。</a></p>
 
 <p>If you click any move link now, the board should immediately update to show what the game looked like at that time.</p>
 
