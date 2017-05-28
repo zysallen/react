@@ -83,7 +83,7 @@
 
 <p>在本节中，我们将围绕几个 React 新手经常使用继承解决的问题，我们将展示如果用组合来解决它们。</p>
 
-<h2>约束性</h2>
+<h2>包含关系</h2>
 
 <p>一些组件不能提前知道它们的子组件是什么。这对于 <code>Sidebar</code> 或 <code>Dialog</code> 这类通用容器尤其常见。</p>
 
@@ -144,9 +144,9 @@
 
 <p>类似 <code>&lt;Contacts /&gt;</code> 和 <code>&lt;Chat /&gt;</code> 这样的 React 元素都是对象，所以你可以像任何其他元素一样传递它们。</p>
 
-<h2>专一性</h2>
+<h2>特殊实例</h2>
 
-<p>有时我们认为组件是其他组件的特殊情况。例如，我们会说 <code>WelcomeDialog</code> 是 <code>Dialog</code> 的特殊情况。</p>
+<p>有时我们认为组件是其他组件的特殊实例。例如，我们会说 <code>WelcomeDialog</code> 是 <code>Dialog</code> 的特殊实例。</p>
 
 <p>在 React 中，这也是通过组合来实现的，通过配置属性用较特殊的组件来渲染较通用的组件。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">Dialog</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
