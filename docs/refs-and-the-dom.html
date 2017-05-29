@@ -79,31 +79,31 @@
     </h1>
     <div class="subHeader"></div>
 
-    <p>In the typical React dataflow, <a href="/react/docs/components-and-props.html">props</a> are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.</p>
+    <p>在典型的 React 数据流中, <a href="/react/docs/components-and-props.html">属性（props）</a>是父组件与子代交互的唯一方式。要修改子组件，你需要通用新的 props 重新渲染它。但是，某些情况下你需要在典型数据流外强制修改子代。要修改的子代可以是 React 组件实例，也可以是 DOM 元素。对于这两种情况，React 提供了解决办法。</p>
 
-<h3>When to Use Refs</h3>
+<h3>何时使用 Refs</h3>
 
-<p>There are a few good use cases for refs:</p>
+<p>下面是几个适合使用 refs 的情况：</p>
 
 <ul>
-<li>Managing focus, text selection, or media playback.</li>
-<li>Triggering imperative animations.</li>
-<li>Integrating with third-party DOM libraries.</li>
+<li>处理焦点、文本选择或媒体控制。</li>
+<li>触发强制动画。</li>
+<li>集成第三方 DOM 库</li>
 </ul>
 
-<p>Avoid using refs for anything that can be done declaratively.</p>
+<p>如果可以通过声明式实现，则尽量避免使用 refs。</p>
 
-<p>For example, instead of exposing <code>open()</code> and <code>close()</code> methods on a <code>Dialog</code> component, pass an <code>isOpen</code> prop to it.</p>
+<p>例如，不要在 <code>Dialog</code> 组件上直接暴露 <code>open()</code> 和 <code>close()</code> 方法，最好传递 <code>isOpen</code> 属性。</p>
 
-<h3>Don&#39;t Overuse Refs</h3>
+<h3>不要过度使用 Refs</h3>
 
-<p>Your first inclination may be to use refs to &quot;make things happen&quot; in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to &quot;own&quot; that state is at a higher level in the hierarchy. See the <a href="/react/docs/lifting-state-up.html">Lifting State Up</a> guide for examples of this.</p>
+<p>你可能首先会想到在你的应用程序中使用 refs 来更新组件。如果是这种情况，请花一点时间，更多的关注在组件层中使用 state。在组件层中，通常较高级别的 state 更为清晰。有关示例，请参考<a href="/react/docs/lifting-state-up.html">状态提升</a>.</p>
 
-<h3>Adding a Ref to a DOM Element</h3>
+<h3>为 DOM 元素添加 Ref</h3>
 
-<p>React supports a special attribute that you can attach to any component. The <code>ref</code> attribute takes a callback function, and the callback will be executed immediately after the component is mounted or unmounted.</p>
+<p>React 支持给任意组件添加特殊属性。<code>ref</code> 属性接受一个回调函数，它在组件被加载或卸载时会立即执行。</p>
 
-<p>When the <code>ref</code> attribute is used on an HTML element, the <code>ref</code> callback receives the underlying DOM element as its argument. For example, this code uses the <code>ref</code> callback to store a reference to a DOM node:</p>
+<p>当给 HTML 元素添加 <code>ref</code> 属性时，<code>ref</code> 回调接收了底层的 DOM 元素作为参数。例如，下面的代码使用 <code>ref</code> 回调来存储 DOM 节点的引用。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -111,13 +111,13 @@
   <span class="p">}</span>
 
   <span class="nx">focus</span><span class="p">()</span> <span class="p">{</span>
-<span class="hll">    <span class="c1">// Explicitly focus the text input using the raw DOM API</span>
+<span class="hll">    <span class="c1">// 直接使用原生 API 使 text 输入框获得焦点</span>
 </span><span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">textInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
 </span>  <span class="p">}</span>
 
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Use the `ref` callback to store a reference to the text input DOM</span>
-    <span class="c1">// element in an instance field (for example, this.textInput).</span>
+    <span class="c1">// 使用 `ref` 的回调将 text 输入框的 DOM 节点存储到 React </span>
+    <span class="c1">// 实例上（比如 this.textInput）</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
         <span class="o">&lt;</span><span class="nx">input</span>
@@ -133,13 +133,13 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>React will call the <code>ref</code> callback with the DOM element when the component mounts, and call it with <code>null</code> when it unmounts.</p>
+<p>React 组件在加载时将 DOM 元素传入 <code>ref</code> 的回调函数，在卸载时则会传入 <code>null</code>。</p>
 
-<p>Using the <code>ref</code> callback just to set a property on the class is a common pattern for accessing DOM elements. The preferred way is to set the property in the <code>ref</code> callback like in the above example. There is even a shorter way to write it: <code>ref={input =&gt; this.textInput = input}</code>. </p>
+<p>为了在类上设置一个属性使用 <code>ref</code> 回调是访问 DOM 元素的常见模式。首先的方法就如上面的例子中一样设置 <code>ref</code>。甚至还有更简短的写法： <code>ref={input =&gt; this.textInput = input}</code>。</p>
 
-<h3>Adding a Ref to a Class Component</h3>
+<h3>为类组件添加 Ref</h3>
 
-<p>When the <code>ref</code> attribute is used on a custom component declared as a class, the <code>ref</code> callback receives the mounted instance of the component as its argument. For example, if we wanted to wrap the <code>CustomTextInput</code> above to simulate it being clicked immediately after mounting:</p>
+<p>当 <code>ref</code> 属性用于使用 class 声明的自定义组件时，<code>ref</code> 的回调接收的是已经加载的 React 实例。例如，如果我们想修改 <code>CustomTextInput</code> 组件，实现它在加载后立即点击的效果：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">AutoFocusTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
 <span class="hll">    <span class="k">this</span><span class="p">.</span><span class="nx">textInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
@@ -153,21 +153,21 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Note that this only works if <code>CustomTextInput</code> is declared as a class:</p>
+<p>需要注意的是，这种方法仅对 <code>class</code> 声明的 <code>CustomTextInput</code> 有效：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="hll"><span class="kr">class</span> <span class="nx">CustomTextInput</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 </span>  <span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3>Refs and Functional Components</h3>
+<h3>Refs 与函数式组件</h3>
 
-<p><strong>You may not use the <code>ref</code> attribute on functional components</strong> because they don&#39;t have instances:</p>
+<p><strong>你不能在函数式组件上使用 <code>ref</code> 属性</strong>，因为它们没有实例：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="hll"><span class="kd">function</span> <span class="nx">MyFunctionalComponent</span><span class="p">()</span> <span class="p">{</span>
 </span>  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="o">/&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kr">class</span> <span class="nx">Parent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-<span class="hll">    <span class="c1">// This will *not* work!</span>
+<span class="hll">    <span class="c1">// 这里 `ref` 无效！</span>
 </span>    <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="nx">MyFunctionalComponent</span>
         <span class="nx">ref</span><span class="o">=</span><span class="p">{(</span><span class="nx">input</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">textInput</span> <span class="o">=</span> <span class="nx">input</span><span class="p">;</span> <span class="p">}}</span> <span class="o">/&gt;</span>
@@ -175,11 +175,11 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.</p>
+<p>如果你想使用 <code>ref</code>，就像你想使用生命周期方法或者 state 一样，应该将其转换为 <code>class</code> 组件。</p>
 
-<p>You can, however, <strong>use the <code>ref</code> attribute inside a functional component</strong> as long as you refer to a DOM element or a class component:</p>
+<p>但是，你可以在函数式组件内部使用 <code>ref</code>，只要它指向一个 DOM 元素或者 class 组件：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-<span class="hll">  <span class="c1">// textInput must be declared here so the ref callback can refer to it</span>
+<span class="hll">  <span class="c1">// 这里必须声明 textInput，这样 ref 回调才可以引用它</span>
 </span><span class="hll">  <span class="kd">let</span> <span class="nx">textInput</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 </span>
   <span class="kd">function</span> <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
@@ -200,15 +200,15 @@
   <span class="p">);</span>  
 <span class="p">}</span>
 </code></pre></div>
-<h3>Exposing DOM Refs to Parent Components</h3>
+<h3>对父组件暴露 DOM 节点</h3>
 
-<p>In rare cases, you might want to have access to a child&#39;s DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.</p>
+<p>在极少数情况下，你可能希望从父组件访问子节点的 DOM 节点。通常不建议这样做，因为它会破坏组件的封装，但偶尔也可用于触发焦点或测量子 DOM 节点的大小或位置。</p>
 
-<p>While you could <a href="#adding-a-ref-to-a-class-component">add a ref to to the child component</a>, this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn&#39;t work with functional components.</p>
+<p>虽然你可以<a href="#adding-a-ref-to-a-class-component">向子组件添加 ref</a>,但这不是一个理想的解决方案，因为你只能获取组件实例而不是 DOM 节点。并且，它还在函数式组件上无效。</p>
 
-<p>Instead, in such cases we recommend exposing a special prop on the child. The child would take a function prop with an arbitrary name (e.g. <code>inputRef</code>) and attach it to the DOM node as a <code>ref</code> attribute. This lets the parent pass its ref callback to the child&#39;s DOM node through the component in the middle.</p>
+<p>相反，在这种情况下，我们建议在子节点上暴露一个特殊的属性。子节点将会获得一个函数属性，并将其作为 <code>ref</code> 属性附加到 DOM 节点。这允许父代通过中间件将 <code>ref</code> 回调给子代的 DOM 节点。</p>
 
-<p>This works both for classes and for functional components.</p>
+<p>适用于类组件和函数式组件。</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
@@ -227,13 +227,13 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>In the example above, <code>Parent</code> passes its ref callback as an <code>inputRef</code> prop to the <code>CustomTextInput</code>, and the <code>CustomTextInput</code> passes the same function as a special <code>ref</code> attribute to the <code>&lt;input&gt;</code>. As a result, <code>this.inputElement</code> in <code>Parent</code> will be set to the DOM node corresponding to the <code>&lt;input&gt;</code> element in the <code>CustomTextInput</code>.</p>
+<p>在上面的例子中，<code>Parent</code> 将它的 ref 回调作为一个特殊的 <code>inputRef</code> 传递给 <code>CustomTextInput</code>，然后 <code>CustomTextInput</code> 通过 <code>ref</code> 属性将其传递给 <code>&lt;input&gt;</code>。最终，<code>Parent</code> 中的 <code>this.inputElement</code> 将被设置为与 <code>CustomTextInput</code> 中的 <code>&lt;input&gt;</code> 元素相对应的 DOM 节点。</p>
 
-<p>Note that the name of the <code>inputRef</code> prop in the above example has no special meaning, as it is a regular component prop. However, using the <code>ref</code> attribute on the <code>&lt;input&gt;</code> itself is important, as it tells React to attach a ref to its DOM node.</p>
+<p>请注意，上述示例中的 <code>inputRef</code> 属性没有特殊的含义，它只是一般的组件属性。然而，使用 <code>&lt;input&gt;</code> 本身的 ref 属性很重要，因为它告诉 React 将 ref 附加到它的 DOM 节点。</p>
 
-<p>This works even though <code>CustomTextInput</code> is a functional component. Unlike the special <code>ref</code> attribute which can <a href="#refs-and-functional-components">only be specified for DOM elements and for class components</a>, there are no restrictions on regular component props like <code>inputRef</code>.</p>
+<p>即使 <code>CustomTextInput</code> 是一个函数式组件，它也同样有效。与<a href="#refs-and-functional-components">只能为 DOM 元素和 class 组件指定的 ref</a> 不同，诸如 <code>inputRef</code> 这种自定义的组件属性则没有限制。</p>
 
-<p>Another benefit of this pattern is that it works several components deep. For example, imagine <code>Parent</code> didn&#39;t need that DOM node, but a component that rendered <code>Parent</code> (let&#39;s call it <code>Grandparent</code>) needed access to it. Then we could let the <code>Grandparent</code> specify the <code>inputRef</code> prop to the <code>Parent</code>, and let <code>Parent</code> &quot;forward&quot; it to the <code>CustomTextInput</code>:</p>
+<p>这种模式的另一个好处是它能作用很深。假如有个 <code>Parent</code> 组件不需要 DOM 节点 A，但是某个渲染 <code>Parent</code> 的组件（我们称之为 <code>Grandparent</code>）需要通过它访问。这时我们可以让 <code>Grandparent</code> 传递 <code>inputRef</code> 给 <code>Parent</code> 组件，然后让 <code>Parent</code> 组件将其转发给 <code>CustomTextInput</code>:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">CustomTextInput</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
@@ -261,17 +261,17 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Here, the ref callback is first specified by <code>Grandparent</code>. It is passed to the <code>Parent</code> as a regular prop called <code>inputRef</code>, and the <code>Parent</code> passes it to the <code>CustomTextInput</code> as a prop too. Finally, the <code>CustomTextInput</code> reads the <code>inputRef</code> prop and attaches the passed function as a <code>ref</code> attribute to the <code>&lt;input&gt;</code>. As a result, <code>this.inputElement</code> in <code>Grandparent</code> will be set to the DOM node corresponding to the <code>&lt;input&gt;</code> element in the <code>CustomTextInput</code>.</p>
+<p>上面的例子中，<code>Grandparent</code> 首先指定了 ref 回调函数。它通过一个常规的 <code>inputRef</code> 属性被传递到 <code>Parent</code>，<code>Parent</code> 也同样把它传递给了 <code>CustomTextInput</code>。最后 <code>CustomTextInput</code> 读取了 <code>inputRef</code> 属性并将传递的函数作为 <code>ref</code> 属性附加到 <code>&lt;input&gt;</code>。最终，<code>Grandparent</code> 中的 <code>this.inputElement</code> 被设置为 <code>CustomTextInput</code> 的 <code>input</code> 对应的 DOM 节点。</p>
 
-<p>All things considered, we advise against exposing DOM nodes whenever possible, but this can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use <a href="/react/docs/react-dom.html#finddomnode"><code>findDOMNode()</code></a>, but it is discouraged.</p>
+<p>总而言之，我们建议尽可能不暴露 DOM 节点，但这是一个有用的解决方式。请注意，此方法要求您向子组件添加一些代码，如果你无法完全控制子组件，最后的办法是使用 <a href="/react/docs/react-dom.html#finddomnode"><code>findDOMNode()</code></a>，但是不推荐这样做。</p>
 
-<h3>Legacy API: String Refs</h3>
+<h3>旧版 API：String 类型的 Refs</h3>
 
-<p>If you worked with React before, you might be familiar with an older API where the <code>ref</code> attribute is a string, like <code>&quot;textInput&quot;</code>, and the DOM node is accessed as <code>this.refs.textInput</code>. We advise against it because string refs have <a href="https://github.com/facebook/react/pull/8333#issuecomment-271648615">some issues</a>, are considered legacy, and <strong>are likely to be removed in one of the future releases</strong>. If you&#39;re currently using <code>this.refs.textInput</code> to access refs, we recommend the callback pattern instead.</p>
+<p>如果你之前使用过 React ，你可能了解过之前的API中的 string 类型的 ref 属性，比如 &quot;textInput&quot; ，你可以通过 this.refs.textInput 访问DOM节点。我们不建议使用它，因为 String 类型的 refs <a href="https://github.com/facebook/react/pull/8333#issuecomment-271648615">存在问题</a>。它已过时并<strong>可能会在未来的版本是移除</strong>。如果你目前还在使用 this.refs.textInput 这种方式访问 refs ，我们建议用回调函数的方式代替。</p>
 
-<h3>Caveats</h3>
+<h3>注意</h3>
 
-<p>If the <code>ref</code> callback is defined as an inline function, it will get called twice during updates, first with <code>null</code> and then again with the DOM element. This is because a new instance of the function is created with each render, so React needs to clear the old ref and set up the new one. You can avoid this by defining the <code>ref</code> callback as a bound method on the class, but note that it shouldn&#39;t matter in most cases.</p>
+<p>如果 ref 回调以内联函数的方式定义，在更新期间它会被调用两次，第一次参数是 null ，之后参数是 DOM 元素。这是因为在每次渲染中都会创建一个新的函数实例。因此，React 需要清理旧的 ref 并且设置新的。通过将 ref 的回调函数定义成类的绑定函数的方式可以避免上述问题，但是大多数情况下无关紧要。</p>
 
 
     <div class="docs-prevnext">
