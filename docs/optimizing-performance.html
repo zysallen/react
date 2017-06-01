@@ -79,76 +79,76 @@
     </h1>
     <div class="subHeader"></div>
 
-    <p>Internally, React uses several clever techniques to minimize the number of costly DOM operations required to update the UI. For many applications, using React will lead to a fast user interface without doing much work to specifically optimize for performance. Nevertheless, there are several ways you can speed up your React application.</p>
+    <p>更新UI时，React在内部使用几种巧妙的技术来最小化DOM操作的数量。对许多应用来说，使用React不需要做太多的优化工作就可以快速创建用户界面。除此之外，还有一些优化React应用性能的办法。</p>
 
-<h2>Use the Production Build</h2>
+<h2>使用生产版本</h2>
 
-<p>If you&#39;re benchmarking or experiencing performance problems in your React apps, make sure you&#39;re testing with the minified production build.</p>
+<p>在React应用中检测性能问题时，请务必使用压缩过的生产版本。</p>
 
-<p>By default, React includes many helpful warnings. These warnings are very useful in development. However, they make React larger and slower so you should make sure to use the production version when you deploy the app.</p>
+<p>默认情况下，React包含很多在开发过程中很有帮助的警告。然而，这会导致React更大更慢。因此，在部署应用时，请确认使用了生产版本。</p>
 
-<p>If you aren&#39;t sure whether your build process is set up correctly, you can check it by installing <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">React Developer Tools for Chrome</a>. If you visit a site with React in production mode, the icon will have a dark background:</p>
+<p>如果你不确定构建过程是否正确，可以安装<a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">React开发者工具（chrome）</a>。当你访问一个生产模式的React页面时，这个工具的图标会有一个黑色的背景：</p>
 
 <p><img src="/react/img/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools on a website with production version of React"></p>
 
-<p>If you visit a site with React in development mode, the icon will have a red background:</p>
+<p>当你访问一个开发模式的React页面时，这个工具的图标会有一个红色的背景：</p>
 
 <p><img src="/react/img/docs/devtools-dev.png" style="max-width:100%" alt="React DevTools on a website with development version of React"></p>
 
-<p>It is expected that you use the development mode when working on your app, and the production mode when deploying your app to the users.</p>
+<p>最好在开发应用时使用开发模式，部署应用时换为生产模式。</p>
 
-<p>You can find instructions for building your app for production below.</p>
+<p>以下是构建生产用应用的流程。</p>
 
-<h3>Create React App</h3>
+<h3>Create React App方式</h3>
 
-<p>If your project is built with <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>, run:</p>
+<p>如果你的项目是以<a href="https://github.com/facebookincubator/create-react-app">Create React App</a>创建的，运行如下代码：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>npm run build
 </code></pre></div>
-<p>This will create a production build of your app in the <code>build/</code> folder of your project.</p>
+<p>这将会在该项目的<code>build/</code>文件夹内创建一个生产版本的应用。</p>
 
-<p>Remember that this is only necessary before deploying to production. For normal development, use <code>npm start</code>.</p>
+<p>注意只有发布项目时才有必要这样做，正常开发时，使用<code>npm start</code>。</p>
 
-<h3>Single-File Builds</h3>
+<h3>单文件生产版本</h3>
 
-<p>We offer production-ready versions of React and React DOM as single files:</p>
+<p>我们提供压缩好的生产版本的React和React DOM文件:</p>
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/react@15/dist/react.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>Remember that only React files ending with <code>.min.js</code> are suitable for production.</p>
+<p>注意只有结尾为<code>.min.js</code>的React文件才是适合生产使用的。</p>
 
 <h3>Brunch</h3>
 
-<p>For the most efficient Brunch production build, install the <a href="https://github.com/brunch/uglify-js-brunch"><code>uglify-js-brunch</code></a> plugin:</p>
+<p>为了创建最高效的Brunch生产版本，需要安装<a href="https://github.com/brunch/uglify-js-brunch"><code>uglify-js-brunch</code></a> 插件:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span># If you use npm
 npm install --save-dev uglify-js-brunch
 
 # If you use Yarn
 yarn add --dev uglify-js-brunch
 </code></pre></div>
-<p>Then, to create a production build, add the <code>-p</code> flag to the <code>build</code> command:</p>
+<p>接下来，为了构建生产版本，在<code>build</code>命令后添加<code>-p</code>参数：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>brunch build -p
 </code></pre></div>
-<p>Remember that you only need to do this for production builds. You shouldn&#39;t pass <code>-p</code> flag or apply this plugin in development because it will hide useful React warnings, and make the builds much slower.</p>
+<p>注意只有生产版本需要这样操作。不要在开发环境中安装这个插件或者使用<code>-p</code>参数，因为它会隐藏掉有用的React警告并使构建过程更慢。</p>
 
 <h3>Browserify</h3>
 
-<p>For the most efficient Browserify production build, install a few plugins:</p>
+<p>为了创建最高效的Browserify生产版本，需要安装一些插件：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span># If you use npm
 npm install --save-dev bundle-collapser envify uglify-js uglifyify 
 
 # If you use Yarn
 yarn add --dev bundle-collapser envify uglify-js uglifyify 
 </code></pre></div>
-<p>To create a production build, make sure that you add these transforms <strong>(the order matters)</strong>:</p>
+<p>为了构建生产版本，务必添加这些设置指令 <strong>(参数很重要)</strong>:</p>
 
 <ul>
-<li>The <a href="https://github.com/hughsk/envify"><code>envify</code></a> transform ensures the right build environment is set. Make it global (<code>-g</code>).</li>
-<li>The <a href="https://github.com/hughsk/uglifyify"><code>uglifyify</code></a> transform removes development imports. Make it global too (<code>-g</code>).</li>
-<li>The <a href="https://github.com/substack/bundle-collapser"><code>bundle-collapser</code></a> plugin replaces long module IDs with numbers.</li>
-<li>Finally, the resulting bundle is piped to <a href="https://github.com/mishoo/UglifyJS2"><code>uglify-js</code></a> for mangling (<a href="https://github.com/hughsk/uglifyify#motivationusage">read why</a>).</li>
+<li><a href="https://github.com/hughsk/envify"><code>envify</code></a>该插件确保正确的编译环境，全局安装（<code>-g</code>）。</li>
+<li><a href="https://github.com/hughsk/uglifyify"><code>uglifyify</code></a>该插件移除了开发接口。全局安装（<code>-g</code>）。</li>
+<li><a href="https://github.com/substack/bundle-collapser"><code>bundle-collapser</code></a>该插件用数字替代了长长的模块ID。</li>
+<li>最后，以上结果都被输添加至<a href="https://github.com/mishoo/UglifyJS2"><code>uglify-js</code></a>来得到整合。(<a href="https://github.com/hughsk/uglifyify#motivationusage">了解原因</a>).</li>
 </ul>
 
-<p>For example:</p>
+<p>举个例子：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
@@ -156,29 +156,29 @@ yarn add --dev bundle-collapser envify uglify-js uglifyify
   | uglifyjs --compress --mangle &gt; ./bundle.js
 </code></pre></div>
 <blockquote>
-<p><strong>Note:</strong></p>
+<p><strong>注意：</strong></p>
 
-<p>The package name is <code>uglify-js</code>, but the binary it provides is called <code>uglifyjs</code>.<br>
-This is not a typo.</p>
+<p>包的名称是<code>uglify-js</code>，但是它提供的文件叫<code>uglifyjs</code>。<br>
+这不是一个错字。</p>
 </blockquote>
 
-<p>Remember that you only need to do this for production builds. You shouldn&#39;t apply these plugins in development because they will hide useful React warnings, and make the builds much slower.</p>
+<p>注意只有生产版本需要这样操作。不要在开发环境中安装这些插件，因为它们会隐藏掉有用的React警告并使构建过程更慢。</p>
 
 <h3>Rollup</h3>
 
-<p>For the most efficient Rollup production build, install a few plugins:</p>
+<p>为了创建最高效的Rollup生产版本，需要安装一些插件：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span># If you use npm
 npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
 
 # If you use Yarn
 yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
 </code></pre></div>
-<p>To create a production build, make sure that you add these plugins <strong>(the order matters)</strong>:</p>
+<p>为了构建生产版本，务必添加这些插件 <strong>(参数很重要)</strong>:</p>
 
 <ul>
-<li>The <a href="https://github.com/rollup/rollup-plugin-replace"><code>replace</code></a> plugin ensures the right build environment is set.</li>
-<li>The <a href="https://github.com/rollup/rollup-plugin-commonjs"><code>commonjs</code></a> plugin provides support for CommonJS in Rollup.</li>
-<li>The <a href="https://github.com/TrySound/rollup-plugin-uglify"><code>uglify</code></a> plugin compresses and mangles the final bundle.</li>
+<li><a href="https://github.com/rollup/rollup-plugin-replace"><code>replace</code></a>该插件确保正确的编译环境。</li>
+<li><a href="https://github.com/rollup/rollup-plugin-commonjs"><code>commonjs</code></a>该插件在Rollup内提供对CommonJS的支持。</li>
+<li><a href="https://github.com/TrySound/rollup-plugin-uglify"><code>uglify</code></a>该插件压缩生成最终版本。</li>
 </ul>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
   <span class="c1">// ...</span>
@@ -190,20 +190,20 @@ yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
   <span class="c1">// ...</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>For a complete setup example <a href="https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0">see this gist</a>.</p>
+<p>查看完整的<a href="https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0">安装例子</a>.</p>
 
-<p>Remember that you only need to do this for production builds. You shouldn&#39;t apply the <code>uglify</code> plugin or the <code>replace</code> plugin with <code>&#39;production&#39;</code> value in development because they will hide useful React warnings, and make the builds much slower.</p>
+<p>注意只有生产版本需要这样操作。不要在开发环境中安装<code>uglify</code>和<code>replace</code>，因为它们会隐藏掉有用的React警告并使构建过程更慢。</p>
 
 <h3>Webpack</h3>
 
 <blockquote>
-<p><strong>Note:</strong></p>
+<p><strong>注意：</strong></p>
 
-<p>If you&#39;re using Create React App, please follow <a href="#create-react-app">the instructions above</a>.<br>
-This section is only relevant if you configure Webpack directly.</p>
+<p>如果你正在使用<a href="#create-react-app">Create React App</a>方式，参考上述文档。<br>
+本节只适用于直接配置Webpack的情况。</p>
 </blockquote>
 
-<p>For the most efficient Webpack production build, make sure to include these plugins in your production configuration:</p>
+<p>为了创建最高效的Webpack生产版本，需要在生产版本的配置中添加这些插件：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">DefinePlugin</span><span class="p">({</span>
   <span class="s1">&#39;process.env&#39;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">NODE_ENV</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">)</span>
@@ -211,60 +211,60 @@ This section is only relevant if you configure Webpack directly.</p>
 <span class="p">}),</span>
 <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">UglifyJsPlugin</span><span class="p">()</span>
 </code></pre></div>
-<p>You can learn more about this in <a href="https://webpack.js.org/guides/production-build/">Webpack documentation</a>.</p>
+<p>了解更多参见<a href="https://webpack.js.org/guides/production-build/">Webpack文档</a>.</p>
 
-<p>Remember that you only need to do this for production builds. You shouldn&#39;t apply <code>UglifyJsPlugin</code> or <code>DefinePlugin</code> with <code>&#39;production&#39;</code> value in development because they will hide useful React warnings, and make the builds much slower.</p>
+<p>注意只有生产版本需要这样操作。不要在开发环境中安装<code>UglifyJsPlugin</code>和<code>DefinePlugin</code>，因为它们会隐藏掉有用的React警告并使构建过程更慢。</p>
 
-<h2>Profiling Components with Chrome Timeline</h2>
+<h2>使用Chrome Timeline归档组件</h2>
 
-<p>In the <strong>development</strong> mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:</p>
+<p>在<strong>开发</strong>模式下， 在支持的浏览器内使用性能工具可以直观的了解组件何时挂载，更新和卸载。例如：</p>
 
 <p><center><img src="/react/img/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center></p>
 
-<p>To do this in Chrome:</p>
+<p>Chrome浏览器内：</p>
 
 <ol>
-<li><p>Load your app with <code>?react_perf</code> in the query string (for example, <code>http://localhost:3000/?react_perf</code>).</p></li>
-<li><p>Open the Chrome DevTools <strong><a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool">Timeline</a></strong> tab and press <strong>Record</strong>.</p></li>
-<li><p>Perform the actions you want to profile. Don&#39;t record more than 20 seconds or Chrome might hang.</p></li>
-<li><p>Stop recording.</p></li>
-<li><p>React events will be grouped under the <strong>User Timing</strong> label.</p></li>
+<li><p>在项目地址栏内添加查询字符串 <code>?react_perf</code>（例如， <code>http://localhost:3000/?react_perf</code>）。</p></li>
+<li><p>打开Chrome开发工具<strong><a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool">Timeline</a></strong> 按tab键然后选<strong>Record</strong>.</p></li>
+<li><p>执行你想要分析的动作。不要记录超过20s，不然Chrome可能会挂起。</p></li>
+<li><p>停止记录。</p></li>
+<li><p>React事件将会被归类在 <strong>User Timing</strong>标签下。</p></li>
 </ol>
 
-<p>Note that <strong>the numbers are relative so components will render faster in production</strong>. Still, this should help you realize when unrelated UI gets updated by mistake, and how deep and how often your UI updates occur.</p>
+<p>注意<strong>由于这些数字是相对的，因此组件在生产版本中会运行更快</strong>。然而，这也能够帮助你了解何时会有无关的组件被错误的更新，以及你的组件更新的深度和频率。</p>
 
-<p>Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">User Timing API</a> so we expect more browsers to add support for it.</p>
+<p>目前浏览器中仅有Chrome，Edge和IE支持此特性，但是我们使用此标准<a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">用户Timing API</a>，因此我们期待更多的浏览器对其添加支持。</p>
 
-<h2>Avoid Reconciliation</h2>
+<h2>避免重复渲染</h2>
 
-<p>React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a &quot;virtual DOM&quot;, but it works the same way on React Native.</p>
+<p>React在渲染出的UI内部建立和维护了一个内层的实现方式，它包括了从组件返回的React元素。这种实现方式使得React避免了一些不必要的创建和关联DOM节点，因为这样做可能比直接操作JavaScript对象更慢一些。有时它被称之为“虚拟DOM”，但是它其实和React Native的工作方式是一样的。</p>
 
-<p>When a component&#39;s props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM.</p>
+<p>当一个组件的<code>props</code>或者<code>state</code>改变时，React通过比较新返回的元素和之前渲染的元素来决定是否有必要更新实际的DOM。当他们不相等时，React会更新DOM。</p>
 
-<p>In some cases, your component can speed all of this up by overriding the lifecycle function <code>shouldComponentUpdate</code>, which is triggered before the re-rendering process starts. The default implementation of this function returns <code>true</code>, leaving React to perform the update:</p>
+<p>在一些情况下，你的组件可以通过重写这个生命周期函数<code>shouldComponentUpdate</code>来提升速度， 它是在重新渲染过程开始前触发的。 这个函数默认返回<code>true</code>，可使React执行更新：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If you know that in some situations your component doesn&#39;t need to update, you can return <code>false</code> from <code>shouldComponentUpdate</code> instead, to skip the whole rendering process, including calling <code>render()</code> on this component and below.</p>
+<p>如果你知道在某些情况下你的组件不需要更新，你可以在<code>shouldComponentUpdate</code>内返回<code>false</code>来跳过整个渲染进程，该进程包括了对该组件和之后的内容调用<code>render()</code>指令。</p>
 
-<h2>shouldComponentUpdate In Action</h2>
+<h2>shouldComponentUpdate应用</h2>
 
-<p>Here&#39;s a subtree of components. For each one, <code>SCU</code> indicates what <code>shouldComponentUpdate</code> returned, and <code>vDOMEq</code> indicates whether the rendered React elements were equivalent. Finally, the circle&#39;s color indicates whether the component had to be reconciled or not.</p>
+<p>这是一个组件的子树。对其中每个组件来说，<code>SCU</code>表明了<code>shouldComponentUpdate</code>的返回内容，<code>vDOMEq</code>表明了待渲染的React元素与原始元素是否相等，最后，圆圈的颜色表明这个组件是否需要重新渲染。</p>
 
 <figure><img src="/react/img/docs/should-component-update.png" style="max-width:100%" /></figure>
 
-<p>Since <code>shouldComponentUpdate</code> returned <code>false</code> for the subtree rooted at C2, React did not attempt to render C2, and thus didn&#39;t even have to invoke <code>shouldComponentUpdate</code> on C4 and C5.</p>
+<p>由于以C2为根的子树的<code>shouldComponentUpdate</code>返回了<code>false</code>，React不会试图渲染C2，甚至不会在C4和C5上调用<code>shouldComponentUpdate</code>。</p>
 
-<p>For C1 and C3, <code>shouldComponentUpdate</code> returned <code>true</code>, so React had to go down to the leaves and check them. For C6 <code>shouldComponentUpdate</code> returned <code>true</code>, and since the rendered elements weren&#39;t equivalent React had to update the DOM.</p>
+<p>对C1和C3来说，<code>shouldComponentUpdate</code>返回了<code>true</code>，因此React会深入到分支中并检查它们。C6的<code>shouldComponentUpdate</code>返回了<code>true</code>，由于待渲染的元素与原始元素并不相等，React会更新这个DOM节点。</p>
 
-<p>The last interesting case is C8. React had to render this component, but since the React elements it returned were equal to the previously rendered ones, it didn&#39;t have to update the DOM.</p>
+<p>最后一个有趣的情况是C8，React需要渲染这个组件，但是由于组件元素返回值与原元素相等，因此它并没有更新这个DOM节点。</p>
 
-<p>Note that React only had to do DOM mutations for C6, which was inevitable. For C8, it bailed out by comparing the rendered React elements, and for C2&#39;s subtree and C7, it didn&#39;t even have to compare the elements as we bailed out on <code>shouldComponentUpdate</code>, and <code>render</code> was not called.</p>
+<p>注意React只需更新C6，因为它是不可避免的。对C8来说，它通过比较待渲染元素与原始元素避免了渲染，对C2的子树和C7，它们甚至都没有执行比较，因为我们设置了<code>shouldComponentUpdate</code>为<code>false</code>，<code>render</code>没有被调用。</p>
 
-<h2>Examples</h2>
+<h2>案例</h2>
 
-<p>If the only way your component ever changes is when the <code>props.color</code> or the <code>state.count</code> variable changes, you could have <code>shouldComponentUpdate</code> check that:</p>
+<p>如果想让组件只在<code>props.color</code>或者<code>state.count</code>的值变化时重新渲染，你可以像下面这样设定<code>shouldComponentUpdate</code>：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">CounterButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -292,7 +292,7 @@ This section is only relevant if you configure Webpack directly.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>In this code, <code>shouldComponentUpdate</code> is just checking if there is any change in <code>props.color</code> or <code>state.count</code>. If those values don&#39;t change, the component doesn&#39;t update. If your component got more complex, you could use a similar pattern of doing a &quot;shallow comparison&quot; between all the fields of <code>props</code> and <code>state</code> to determine if the component should update. This pattern is common enough that React provides a helper to use this logic - just inherit from <code>React.PureComponent</code>. So this code is a simpler way to achieve the same thing:</p>
+<p>在以上代码中，<code>shouldComponentUpdate</code>只检查<code>props.color</code>和<code>state.count</code>的变化。如果这些值没有变化，组件就不会更新。当你的组件变得更加复杂时，你可以使用类似的模式来做一个“浅比较”，用来比较属性和值以判定是否需要更新组件。这种模式十分常见，因此React提供了一个辅助对象来实现这个逻辑 - 继承自<code>React.PureComponent</code>。以下代码可以更简单的实现相同的操作：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kr">class</span> <span class="nx">CounterButton</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
   <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
@@ -310,9 +310,9 @@ This section is only relevant if you configure Webpack directly.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Most of the time, you can use <code>React.PureComponent</code> instead of writing your own <code>shouldComponentUpdate</code>. It only does a shallow comparison, so you can&#39;t use it if the props or state may have been mutated in a way that a shallow comparison would miss.</p>
+<p>大部分情况下，你可以使用<code>React.PureComponent</code>而不必写你自己的<code>shouldComponentUpdate</code>，它只做一个浅比较。但是由于浅比较会忽略属性或状态<strong>突变</strong>的情况，此时你不能使用它。</p>
 
-<p>This can be a problem with more complex data structures. For example, let&#39;s say you want a <code>ListOfWords</code> component to render a comma-separated list of words, with a parent <code>WordAdder</code> component that lets you click a button to add a word to the list. This code does <em>not</em> work correctly:</p>
+<p>对于更复杂的数据结构这可能成为一个问题。例如，假设你想要一个<code>ListOfWords</code>组件来渲染一个逗号分隔的单词列表，并使用一个带了点击按钮名字叫<code>WordAdder</code>的父组件来给子列表添加一个单词。以下代码<em>并不正确</em>： </p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">class</span> <span class="nx">ListOfWords</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
   <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">words</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)}</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
@@ -345,70 +345,70 @@ This section is only relevant if you configure Webpack directly.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The problem is that <code>PureComponent</code> will do a simple comparison between the old and new values of <code>this.props.words</code>. Since this code mutates the <code>words</code> array in the <code>handleClick</code> method of <code>WordAdder</code>, the old and new values of <code>this.props.words</code> will compare as equal, even though the actual words in the array have changed. The <code>ListOfWords</code> will thus not update even though it has new words that should be rendered.</p>
+<p>问题是<code>PureComponent</code>将会在<code>this.props.words</code>的新旧值之间做一个简单的比较。由于代码中<code>words</code>数组在<code>WordAdder</code>的<code>handleClick</code>方法中被改变了，尽管数组中的实际单词已经改变，<code>this.props.words</code>的新旧值还是相等的，因此即便<code>ListOfWords</code>具有应该被渲染的新单词，它还是不会更新。</p>
 
-<h2>The Power Of Not Mutating Data</h2>
+<h2>不会突变的数据的力量</h2>
 
-<p>The simplest way to avoid this problem is to avoid mutating values that you are using as props or state. For example, the <code>handleClick</code> method above could be rewritten using <code>concat</code> as:</p>
+<p>避免此类问题最简单的方式是避免使用值可能会<strong>突变</strong>的属性或状态。例如，上面例子中的<code>handleClick</code>应该用<code>concat</code>重写成：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
     <span class="nx">words</span><span class="o">:</span> <span class="nx">prevState</span><span class="p">.</span><span class="nx">words</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="s1">&#39;marklar&#39;</span><span class="p">])</span>
   <span class="p">}));</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>ES6 supports a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread syntax</a> for arrays which can make this easier. If you&#39;re using Create React App, this syntax is available by default.</p>
+<p>ES6支持数组的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread语法</a>可以让它变得更容易。如果你使用的是<code>Create React App</code>，那么此语法默认可用。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
     <span class="nx">words</span><span class="o">:</span> <span class="p">[...</span><span class="nx">prevState</span><span class="p">.</span><span class="nx">words</span><span class="p">,</span> <span class="s1">&#39;marklar&#39;</span><span class="p">],</span>
   <span class="p">}));</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>You can also rewrite code that mutates objects to avoid mutation, in a similar way. For example, let&#39;s say we have an object named <code>colormap</code> and we want to write a function that changes <code>colormap.right</code> to be <code>&#39;blue&#39;</code>. We could write:</p>
+<p>你也可以用相似的方式重写可以会突变的对象。例如，假设我们有一个叫<code>colormap</code>的对象，我们想写一个把<code>colormap.right</code>改变成<code>&#39;blue&#39;</code>的函数，我们应该写：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">updateColorMap</span><span class="p">(</span><span class="nx">colormap</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">colormap</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>To write this without mutating the original object, we can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> method:</p>
+<p>想要实现代码而不污染原始对象，我们可以使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a>方法：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">updateColorMap</span><span class="p">(</span><span class="nx">colormap</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">colormap</span><span class="p">,</span> <span class="p">{</span><span class="nx">right</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>updateColorMap</code> now returns a new object, rather than mutating the old one. <code>Object.assign</code> is in ES6 and requires a polyfill.</p>
+<p><code>updateColorMap</code>现在会返回一个新对象，而不会改变之前的旧对象。<code>Object.assign</code>在ES6中，需要<code>polyfill</code>支持。</p>
 
-<p>There is a JavaScript proposal to add <a href="https://github.com/sebmarkbage/ecmascript-rest-spread">object spread properties</a> to make it easier to update objects without mutation as well:</p>
+<p>有一个JavaScript提议来添加<a href="https://github.com/sebmarkbage/ecmascript-rest-spread">对象spread属性</a>以便不会突然变化的更新对象：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="kd">function</span> <span class="nx">updateColorMap</span><span class="p">(</span><span class="nx">colormap</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{...</span><span class="nx">colormap</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">};</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If you&#39;re using Create React App, both <code>Object.assign</code> and the object spread syntax are available by default.</p>
+<p>如果使用<code>Create React App</code>，默认情况下 <code>Object.assign</code>和spread对象都可以使用。</p>
 
-<h2>Using Immutable Data Structures</h2>
+<h2>使用不可突变的数据结构</h2>
 
-<p><a href="https://github.com/facebook/immutable-js">Immutable.js</a> is another way to solve this problem. It provides immutable, persistent collections that work via structural sharing:</p>
+<p><a href="https://github.com/facebook/immutable-js">Immutable.js</a>是解决这个问题的另一种方法。它通过结构共享提供不可突变的，持久的集合：</p>
 
 <ul>
-<li><em>Immutable</em>: once created, a collection cannot be altered at another point in time.</li>
-<li><em>Persistent</em>: new collections can be created from a previous collection and a mutation such as set. The original collection is still valid after the new collection is created.</li>
-<li><em>Structural Sharing</em>: new collections are created using as much of the same structure as the original collection as possible, reducing copying to a minimum to improve performance.</li>
+<li><em>不可突变</em>:一旦创建，集合就不能在另一个时间点改变。</li>
+<li><em>持久性</em>:可以使用原始集合和一个突变来创建新的集合。原始集合在新集合创建后仍然可用。</li>
+<li><em>结构共享</em>:新集合尽可能多的使用原始集合的结构来创建，以便将复制操作降至最少从而提升性能。</li>
 </ul>
 
-<p>Immutability makes tracking changes cheap. A change will always result in a new object so we only need to check if the reference to the object has changed. For example, in this regular JavaScript code:</p>
+<p>不可突变数据使得变化跟踪很方便。每个变化都会导致产生一个新的对象，因此我们只需检查索引对象是否改变。例如，在这个常见的JavaScript代码中：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">};</span>
 <span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
 <span class="nx">y</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;baz&#39;</span><span class="p">;</span>
 <span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// true</span>
 </code></pre></div>
-<p>Although <code>y</code> was edited, since it&#39;s a reference to the same object as <code>x</code>, this comparison returns <code>true</code>. You can write similar code with immutable.js:</p>
+<p>虽然<code>y</code>被编辑了，但是由于它与<code>x</code>索引了相同的对象，这个比较会返回<code>true</code>。你可以使用<code>immutable.js</code>实现类似效果：</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">const</span> <span class="nx">SomeRecord</span> <span class="o">=</span> <span class="nx">Immutable</span><span class="p">.</span><span class="nx">Record</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="kc">null</span> <span class="p">});</span>
 <span class="kr">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeRecord</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">});</span>
 <span class="kr">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">);</span>
 <span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span><span class="p">;</span> <span class="c1">// false</span>
 </code></pre></div>
-<p>In this case, since a new reference is returned when mutating <code>x</code>, we can safely assume that <code>x</code> has changed.</p>
+<p>在这个例子中，<code>x</code>突变后返回了一个新的索引，因此我们可以安全的确认<code>x</code>被改变了。</p>
 
-<p>Two other libraries that can help use immutable data are <a href="https://github.com/rtfeldman/seamless-immutable">seamless-immutable</a> and <a href="https://github.com/kolodny/immutability-helper">immutability-helper</a>.</p>
+<p>还有两个库可以帮助我们使用不可突变数据：<a href="https://github.com/rtfeldman/seamless-immutable">seamless-immutable</a> 和<a href="https://github.com/kolodny/immutability-helper">immutability-helper</a>。</p>
 
-<p>Immutable data structures provide you with a cheap way to track changes on objects, which is all we need to implement <code>shouldComponentUpdate</code>. This can often provide you with a nice performance boost.</p>
+<p>实现<code>shouldComponentUpdate</code>时，不可突变的数据结构帮助我们轻松的追踪对象变化。这通常可以提供一个不错的性能提升。</p>
 
 
     <div class="docs-prevnext">
